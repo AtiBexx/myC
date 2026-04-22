@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bejárási teszt</title>
+<script>
+function módosít() {
+    var hely = document.getElementById("listám");
+    var elem1 = hely.firstChild;
+    var elem2 = elem1.nextSibling;
+    var elem3 = elem2.nextSibling;
+    var elem4 = elem3.nextSibling;
+    elem1.innerHTML = "Torta";
+    elem2.innerHTML = "Fagyi";
+    elem3.innerHTML = "Süti";
+    elem4.innerHTML = "Karamella";
+}
+</script>
+</head>
+<body>
+<h1>Elemek módosítása bejárással</h1>
+<h2>Itt egy lista az ételekről, amiket venned kell</h2>
+<ul id="listám"><li>Répa</li><li>Kelbimbó</li><li>Padlizsán</li><li>Tofu</li></ul>
+<button type="button" onclick="módosít()">
+A lista módosítása
+</button>
+</body>
+</html>

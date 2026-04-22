@@ -1,0 +1,114 @@
+z a checkMultipleAnswers függvény csak az ellenőrzést végzi,
+nem olvas be semmit a felhasználótól (std::cin-ből).
+Amit csinál:
+1.
+Kap egy már beolvasott felhasználói választ (userAnswer).
+2.
+Kapja a helyes válasz(oka)t tartalmazó stringet (correctAnswersString),
+ami a fájlból lett beolvasva.
+3.
+Ezután szétszedi a correctAnswersString-et a vesszők mentén, és összehasonlítja
+a felhasználó válaszával.
+Tehát a userAnswer stringet már előtte be kellett olvasni a std::getline(std::cin, answer);
+paranccsal, mielőtt meghívnád ezt a checkMultipleAnswers függvényt.
+
+1. Miért van a return false; a cikluson kívül?
+Gondolj úgy a függvényre, mint egy nyomozóra, aki egy listán keres egy gyanúsítottat.
+•
+while (getline(ss, slice, ',')): A nyomozó végigmegy a listán
+(a vesszővel elválasztott szavakon), és mindenkit (slice) megnéz.
+•
+if (trim(slice) == trimmedUserAnswer): Ha megtalálja a gyanúsítottat
+(a felhasználó válasza egyezik az egyik helyes válasszal)...
+•
+return true;: ...akkor azonnal kiabál, hogy "MEGVAN!", és abbahagyja a keresést.
+A függvény véget ér, és true-val tér vissza.
+De mi van, ha a nyomozó végigér a teljes listán, és egyetlen egyezést sem talált?
+•
+A while ciklus véget ér, mert elfogytak a "szeletek".
+•
+A program eljut a return false; sorhoz.
+•
+Ez azt jelenti: "Végignéztem mindent, de nem találtam semmit." A függvény false-szal tér vissza.
+Ha a return false;-t betennéd a while ciklusba (pl. egy else ágba), akkor már az első
+sikertelen összehasonlítás után kilépne a függvény, és nem ellenőrizné a többi lehetséges helyes választ!
+2. Miért nem jó az if(trim(slice) != trimmedUserAnswer) a ciklus után?
+Ez a megoldás azért nem működik, mert a while ciklus lefutása után a slice változó az
+utolsó beolvasott "szelet" értékét fogja tartalmazni (vagy üres lesz, ha a correctAnswersString üres volt).
+•
+Példa: correctAnswersString = "egy perc, egy pillanat", userAnswer = "valami rossz".
+i.
+slice = "egy perc". trim(slice) != trimmedUserAnswer -> igaz.
+ii.
+slice = " egy pillanat". trim(slice) != trimmedUserAnswer -> igaz.
+iii.
+A ciklus véget ér. A slice értéke " egy pillanat".
+iv.
+A ciklus utáni if(trim(slice) != trimmedUserAnswer)
+("egy pillanat" != "valami rossz") igaz lesz,
+de ez nem mond semmit arról, hogy a többi lehetséges válasz jó volt-e.
+A ciklus után már "elveszítjük" az információt a korábbi szeletekről.
+Ezért kell a return false; a ciklus után, ami azt jelenti:
+"Ha idáig eljutott a program, akkor a ciklusban biztosan nem volt return true;, tehát nem volt egyezés."
+
+Nem, a függvény nem azt ellenőrzi, hogy "érkezett-e válasz a felhasználótól".
+A checkMultipleAnswers függvény pontosan azt ellenőrzi, hogy a felhasználó által beírt válasz megegyezik-e
+a lehetséges helyes válaszok listájának BÁRMELYIK elemével.
+Bontsuk szét újra:
+1.
+string trimmedUserAnswer = trim(userAnswer);
+◦
+Ez a sor veszi a felhasználó által beírt szöveget (pl. " egy perc "),
+és megtisztítja a felesleges szóközöktől (eredmény: "egy perc"). Ez a felhasználó végleges válasza.
+2.
+stringstream ss(correctAnswersString);
+◦
+Ez a sor veszi a fájlból beolvasott helyes válaszokat (pl. "egy pillanat, egy perc").
+3.
+while (getline(ss, slice, ','))
+◦
+Ez a ciklus végigmegy a fájlból beolvasott helyes válaszok listáján,
+és minden egyes vesszővel elválasztott részt (pl. "egy pillanat", majd " egy perc") beletesz a slice változóba.
+4.
+if (trim(slice) == trimmedUserAnswer)
+◦
+Ez a sor veszi az aktuális lehetséges helyes választ (slice),
+megtisztítja a szóközöktől (pl. "egy perc"), és összehasonlítja a felhasználó válaszával (trimmedUserAnswer).
+5.
+return true;
+◦
+Ha az összehasonlítás igaz (a felhasználó válasza megegyezik az
+egyik lehetséges helyes válasszal), akkor a függvény azonnal true-val tér vissza.
+6.
+return false; (a while ciklus után)
+◦
+Ha a while ciklus végigfutott, és egyetlen slice sem egyezett meg a
+felhasználó válaszával, akkor a függvény false-szal tér vissza.
+Tehát a függvény lényege, hogy megtalálja-e a felhasználó válaszát a
+helyes válaszok listájában. Nem csak azt nézi, hogy üres-e a felhasználó bemenete.
+
+
+s.begin() és s.end() függvények nagyon fontosak, mert iterátorokat (mutatókat)
+adnak vissza. Ezek mondják meg, hogy "ettől a karaktertől" (eleje) "eddig a
+karakterig" (vége ) dolgozzon a függvény.
+Az s.begin() a végén (a harmadik paraméter): Nem azért van ott, hogy "újra az elejére menjen".
+•
+Hanem a célhelyet (output destination) jelöli ki.
+•
+Logika: "Vedd az elemeket az első tartományból (s.begin(), s.end()), alakítsd át őket,
+és írd be az eredményt ide: (s.begin())."
+•
+Tehát felülírod az eredeti szöveget, karakterről karakterre, ugyanazon a helyen.
+Mivel lehetne helyettesíteni? Ha nem string objektumot használnál, hanem mondjuk
+C-stílusú tömböt (char[] vagy vector), akkor lehetne indexekkel (s[i])
+vagy pointerekkel (&s[0]) dolgozni, de std::string-nél a begin() és end() a standard és
+legbiztosabb módja a tartomány kijelölésének.
+Szóval a te kódodban a transform helyesen van használva:
+1.
+Forrás eleje: s.begin()
+2.
+Forrás vége: s.end()
+3.
+Cél eleje: s.begin() (Ugyanoda írjuk vissza!)
+4.
+Művelet: ::tolower

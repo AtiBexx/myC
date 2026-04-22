@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A hibák elkapásának tesztelése</title>
+<style>
+    fieldset {
+        width: 550px;
+    }
+
+    label, input {
+        margin: 10px;
+    }
+</style>
+<script>
+function kiszámít() {
+    var játékok, pontszámok, tömb, összeg, átlag, kimenet;
+    játékok = document.getElementById("játékok").value;
+    pontszámok = document.getElementById("pontszámok").value;
+    tömb = pontszámok.split(', ');
+    összeg = 0;
+    for(i = 0; i < tömb.length; i++) {
+        összeg = összeg + parseInt(tömb[i]);
+    }
+    try {
+        if (játékok == 0) {
+          throw "Érvényes számú játékot adj meg";
+        } else if (játékok == "") {
+          throw "Érvényes számú játékot adj meg";
+        } else if (isNaN(játékok)) {
+          throw "Érvényes számú játékot adj meg";
+    }
+    átlag = összeg / játékok;
+    kimenet = "Az átlag " + átlag;
+    document.getElementById("eredmény").innerHTML = kimenet;
+    } catch (hiba) {
+    document.getElementById("eredmény").innerHTML = hiba;
+    }
+}
+</script>
+</head>
+<body>
+<fieldset>
+<legend>Bowling-kalkulátor</legend>
+<label>Add meg a lejátszott bowling-játékok számát</label>
+<input type="text" id="játékok" size="3"><br>
+<label>Add meg a pontszámokat vesszővel elválasztva</label>
+<input type="text" id="pontszámok" size="20"><br>
+<button onclick="kiszámít()">
+Átlag kiszámítása
+</button>
+<p id="eredmény"></p>
+</fieldset>
+</body>
+</html>

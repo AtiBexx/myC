@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta name ="viewport" content ="with-device-width,initial-scale=1.0">
+        <title>List_with_CSS</title>
+        <style>
+            dl,li{ background-color : rgba(128, 128, 128, 0.11);}
+            li:hover{background-color: rgba(255, 255, 255, 0.11);}
+            dt,dd {display: block; padding: 2px 5px;}
+            dt:hover,dd:hover{background-color: rgba(255, 255, 255, 0.11);}
+            li::marker{color: rgb(0, 255, 34); font-size: 18px;}
+            h1{text-align: center; 
+                font-size: 40px; color: blue; 
+                margin: 2px; 
+                /*letter-spacing: 5px;*/
+                width: 100%;}
+                h2{text-align: center;}
+            pre{background-color: rgba(0, 0, 0, 0.055);}
+        </style>
+	<!-- Megadjuk a javaSript helyét -->
+        <script src="copy.js"></script>
+    </head>
+    <body>
+        <h1>List_with_CSS</h1>
+        <section id="Rendezetlen_Listák">
+            <h2>- Rendezetlen Listák- UnOrderedList</h2>
+             <ul>
+                <li>Foglalkozom prünytyikével</li>
+                <li>Tanulok html-t css Javascriptet php és c++ c javát és kotlint</li>
+                <li>Nézek állást</li>
+                <li>zenével is foglalkozom</li>
+             </ul>
+             <button onclick="copyCode('myCode')">Copy Code</button> <!-- Copy gomb -->
+             <pre><code id="myCode">    &lt;ul&gt;
+            &lt;li&gt;Foglalkozom prünytyikével&lt;/li&gt;
+            &lt;li&gt;Tanulok html-t css Javascriptet php és c++ c javát és kotlint&lt;/li&gt;
+            &lt;li&gt;Nézek állást&lt;/li&gt;
+            &lt;li&gt;zenével is foglalkozom&lt;/li&gt;
+    &lt;/ul&gt;</code></pre>
+        </section>
+    <section id="Rendezett_Listák">
+            <h2>- Rendezett Listák- OrderedList</h2>
+             <ol>
+                <li>Foglalkozom prünytyikével</li>
+                <li>Tanulok html-t css Javascriptet php és c++ c javát és kotlint</li>
+                <li>Nézek állást</li>
+                <li>zenével is foglalkozom</li>
+             </ol>
+             <button onclick="copyCode('myCode1')">Copy Code</button> <!-- Copy gomb -->
+             <pre><code id="myCode1">    &lt;ol&gt;
+            &lt;li&gt;Foglalkozom prünytyikével&lt;/li&gt;
+            &lt;li&gt;Tanulok html-t css Javascriptet php és c++ c javát és kotlint&lt;/li&gt;
+            &lt;li&gt;Nézek állást&lt;/li&gt;
+            &lt;li&gt;zenével is foglalkozom&lt;/li&gt;
+    &lt;/ol&gt;</code></pre>
+        </section>
+
+         <section id="Leíró_Listák">
+            <h2>- Leíró Listák- description_List</h2>
+             <dl>
+                <dt>Foglalkozom prünytyikével</dt>
+                <dd>Tanulok html-t css Javascriptet php és c++ c javát és kotlint</dd>
+                <dt>Nézek állást</dt>
+                <dd>zenével is foglalkozom</dd>
+             </dl>
+             <button onclick="copyCode('myCode2')">Copy Code</button> <!-- Copy gomb -->
+             <pre><code id="myCode2">    &lt;dl&gt;
+        &lt;dt&gt;Foglalkozom prünytyikével&lt;/dt&gt;
+        &lt;dd&gt;Tanulok html-t css Javascriptet php és c++ c javát és kotlint&lt;/dd&gt;
+        &lt;dt&gt;Nézek állást&lt;/dt&gt;
+        &lt;dd&gt;zenével is foglalkozom&lt;/dd&gt;
+    &lt;dl&gt;</code></pre>
+        </section>
+    </body>
+</html>

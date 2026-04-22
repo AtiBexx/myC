@@ -1,0 +1,175 @@
+Igen, több variáció is van:
+
+**Clang verzió:**
+```bash
+clang++ -S -O2 -o output.asm sajatfajl.cpp
+```
+
+**Intel szintaxis** (olvashatóbb mint az AT&T alapértelmezett):
+```bash
+g++ -S -O2 -masm=intel -o output.asm sajatfajl.cpp
+```
+
+**Objektum fájlból visszafejtve:**
+```bash
+g++ -O2 -c sajatfajl.cpp -o sajatfajl.o
+objdump -d -M intel sajatfajl.o
+```
+
+**Futtatható binárisból:**
+```bash
+objdump -d -M intel a.out
+```
+
+**A legtisztább output** – kommentek és direktívák nélkül:
+```bash
+g++ -S -O2 -fno-asynchronous-unwind-tables -fno-exceptions sajatfajl.cpp -o clean.asm
+```
+
+A sorrend amit én ajánlanék:
+
+1. Először `-S` flaggel nyers ASM
+2. Utána `objdump`-pal a binárisból – ez mutatja amit *tényleg* futtat a CPU
+3. Godbolt-on összehasonlítod Clang vs GCC outputját
+
+A különbség az `-S` és az `objdump` között fontos – az `-S` még fordítás előtti ASM, az `objdump` már a linker utáni végleges bináris visszafejtése. Termuxon mindkettő elérhető alapból.
+
+Igen, vissza tudod fejteni! 😄
+
+```bash
+objdump -d -M intel pdf.exe
+```
+
+De a valóságban erre vannak **profi eszközök:**
+
+**Ingyenes:**
+```
+Ghidra – NSA fejlesztette, nyílt forrású
+radare2 – parancssoros, nagyon erős
+Binary Ninja – (van ingyenes verzió)
+```
+
+**Fizetős:**
+```
+IDA Pro – az iparági standard, de brutálisan drága
+```
+
+A Ghidra különlegessége hogy nemcsak ASM-re fordítja vissza, hanem megpróbálja **visszaállítani a C kódot is** – nyilván nem tökéletesen, de felismerhető lesz a logika.
+
+A valóságban viszont egy `pdf.exe` ellen több védelmi réteg is lehet:
+
+- **Obfuszkáció** – szándékosan összekuszált kód
+- **Packer** – pl. UPX tömörítő, ami futásig rejti a kódot
+- **Anti-debug** technikák – észreveszi ha debuggolják
+
+A UPX-et például ki lehet csomagolni:
+```bash
+upx -d pdf.exe
+```
+
+Ez egyébként pontosan az amit a **malware analisták** csinálnak minden nap – egy ismeretlen `.exe`-t szétszedenek Ghidrával hogy lássák mit csinál valójában. 😄
+
+Á, értem! 😄
+
+Igen, le tudod fordítani! Az ASM fájlból visszacsinálhatsz binárist:
+
+```bash
+g++ -o output output.asm
+```
+
+Vagy GAS (GNU Assembler) direktekkel:
+```bash
+as -o output.o output.asm
+ld -o output output.o
+```
+
+De van egy kis csapda – ha a GCC Intel szintaxissal generálta az ASM-t (`-masm=intel`), akkor visszafordításnál is meg kell mondani:
+
+```bash
+g++ -masm=intel -o output output.asm
+```
+
+Különben a GAS AT&T-nek értelmezi és hibát dob.
+
+A körforgás tehát:
+```
+.cpp → (g++ -S) → .asm → (g++) → bináris
+```
+
+Érdekes kísérlet egyébként – módosíthatod kézzel az ASM fájlt fordítás előtt, és látod hogy a változtatásod hogyan hat a futó programra. Így tanul az ember igazán ASM-et. 😄
+
+Igen, ugyanúgy! 😄
+
+```bash
+objdump -d -M intel valami.dll
+```
+
+A DLL tulajdonképpen majdnem ugyanolyan mint egy EXE, csak:
+- Nincs saját belépési pontja (`main()`)
+- Exportált függvényeket tartalmaz amiket más programok hívnak
+
+**Az exportált függvényeket külön is megnézheted:**
+```bash
+objdump -p valami.dll | grep "Export"
+```
+
+Windows alatt még jobb eszköz erre:
+```
+dumpbin /exports valami.dll
+```
+
+**Ghidrában** még szebb – automatikusan felismeri az összes exportált függvényt és névvel együtt mutatja:
+
+```
+CreateWindow()
+LoadFile()
+EncryptData()
+```
+
+Ez az egyik oka amiért a DLL-ek érdekesek reverse engineering szempontból – az exportált függvénynevek néha **bennmaradnak** a binárisban, és rögtön árulkodnak arról mit csinál a program.
+
+Például egy gyanús malware DLL-ben ha látod hogy:
+```
+HideProcess()
+InjectCode()
+KeyLogger()
+```
+
+...akkor elég egyértelmű mi a helyzet. 😄
+
+Ez egyébként pontosan amit a vírusirtók csinálnak statikus analízisnél – megnézik a DLL exportjait mielőtt még futtatnák.
+
+Igen, pontosan! Ez a strip-elés lényege.
+
+Amikor lefordítod a kódot **debug szimbólumok nélkül:**
+```bash
+g++ -O2 -o output sajatfajl.cpp
+```
+
+A változónevek, függvénynevek **bekerülnek a binárisba** de utána a linker "levágja" őket – marad csak:
+
+```asm
+mov rax, [rbp-0x8]   ; ez volt mondjuk az "int szamlalo"
+add rax, 0x1          ; ez volt a szamlalo++
+```
+
+Tehát a reverser dolga ilyenkor:
+- Látja hogy `rbp-0x8` egy helyi változó
+- Látja hogy mindig növekszik
+- Következtet: "ez valószínűleg egy számláló"
+
+**De debug szimbólummal fordítva** (`-g` flag) bennmaradnak a nevek – ezért érdemes release binárisoknál mindig `strip`-elni:
+
+```bash
+strip output
+```
+
+Ez **eltávolítja az összes szimbólumot** – ezért látod hogy profi szoftverek binárisaiban nincs semmi értelmes névvel.
+
+A reverser ilyenkor elnevezi maga:
+```
+sub_401234()     →  "ez lehet a titkosító függvény"
+loc_401250       →  "ez egy ciklus eleje"
+```
+
+Ghidra ezt részben automatikusan csinálja – innen jön a "mesterséges intelligencia" a modern reverse engineering toolokban. 😄

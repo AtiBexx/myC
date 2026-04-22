@@ -1,0 +1,1 @@
+<p>&copy ÁrverésSegéd - megkönnyítjük az árverést</p>

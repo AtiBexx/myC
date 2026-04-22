@@ -1,0 +1,155 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+
+using namespace std;
+
+// Struktúra egy szó tárolásához
+struct WordEntry {
+    string english;
+    vector<string> hungarians;
+    string pronunciation;
+};
+
+// Segédfüggvény: felesleges szóközök levágása az elejéről és végéről
+string trim(const string& str) {
+    size_t first = str.find_first_not_of(" \t\r\n");
+    if (string::npos == first) return "";
+    size_t last = str.find_last_not_of(" \t\r\n");
+    return str.substr(first, (last - first + 1));
+}
+
+// Segédfüggvény: kisbetűssé alakítás az összehasonlításhoz
+string toLowerCase(string str) {
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
+}
+
+// Sor feldolgozása (szétdarabolás a -> és a , jelek mentén)
+bool parseLine(const string& line, WordEntry& entry) {
+    size_t arrowPos = line.find("->");
+    if (arrowPos == string::npos) return false; // Ha nincs ->, átugorjuk
+
+    entry.english = trim(line.substr(0, arrowPos));
+    string rest = line.substr(arrowPos + 2);
+
+    // Kiejtés keresése a [ ] jelek között
+    size_t bracketOpen = rest.find('[');
+    size_t bracketClose = rest.find(']');
+    string hungarianPart = rest;
+
+    if (bracketOpen != string::npos && bracketClose != string::npos) {
+        entry.pronunciation = trim(rest.substr(bracketOpen + 1, bracketClose - bracketOpen - 1));
+        // Eltávolítjuk a kiejtést a szöveg végét idéző "rest" változóból, pl. "kiejtés : " szót is ha van
+        string raw_pron = rest.substr(bracketOpen + 1, bracketClose - bracketOpen - 1);
+        size_t colonPos = raw_pron.find(':');
+        if(colonPos != string::npos) {
+            entry.pronunciation = trim(raw_pron.substr(colonPos + 1));
+        } else {
+             entry.pronunciation = trim(raw_pron);
+        }
+        hungarianPart = rest.substr(0, bracketOpen);
+    } else {
+        entry.pronunciation = "";
+    }
+
+    // Magyar jelentések szétválasztása a vesszők mentén
+    stringstream ss(hungarianPart);
+    string item;
+    while (getline(ss, item, ',')) {
+        string trimmed_item = trim(item);
+        if (!trimmed_item.empty()) {
+            entry.hungarians.push_back(trimmed_item);
+        }
+    }
+    return !entry.hungarians.empty();
+}
+
+// Kérdező funkció (visszatérési értéke false, ha a felhasználó kilép)
+bool askQuestion(const string& questionWord, const vector<string>& goodAnswers, const string& pronunciation, const string& targetLang) {
+    string answer;
+    
+    while (true) {
+        cout << "\nMit jelent " << targetLang << " ez a szo: " << questionWord << "?" << endl << "> ";
+        getline(cin, answer);
+        answer = trim(answer);
+
+        if (toLowerCase(answer) == "exit") return false;
+
+        bool isCorrect = false;
+        for (const string& goodAnswer : goodAnswers) {
+            if (toLowerCase(answer) == toLowerCase(goodAnswer)) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            cout << "Good answer!";
+            if (!pronunciation.empty()) {
+                cout << " Kiejtes: [" << pronunciation << "]";
+            }
+            cout << endl;
+            return true; // Sikeres válasz, mehet a következő
+        } else {
+            cout << "Rossz valasz! A helyes valasz(ok): ";
+            for (size_t i = 0; i < goodAnswers.size(); ++i) {
+                cout << goodAnswers[i] << (i < goodAnswers.size() - 1 ? ", " : "");
+            }
+            cout << "\n(Ird be a helyes valaszt a tovabblepeshez!)" << endl;
+        }
+    }
+}
+
+int main() {
+    string filename = "szavak.txt"; // Itt adhatod meg a fájlod nevét
+    ifstream file(filename);
+    
+    if (!file.is_open()) {
+        cout << "Nem talalhato a fajl: " << filename << endl;
+        cout << "Kerlek hozz letre egyet a program mappajaban!" << endl;
+        return 1;
+    }
+
+    vector<WordEntry> words;
+    string line;
+    
+    // Fájl beolvasása és feldolgozása
+    while (getline(file, line)) {
+        WordEntry entry;
+        if (parseLine(line, entry)) {
+            words.push_back(entry);
+        }
+    }
+    file.close();
+
+    if (words.empty()) {
+        cout << "A fajl ures vagy hibas formatumu." << endl;
+        return 1;
+    }
+
+    cout << "--- Szotanulo Program Indul ---" << endl;
+    cout << words.size() << " szot olvastam be. (Kilepeshez ird be: exit)" << endl;
+
+    // Fő ciklus a kérdezéshez
+    for (const WordEntry& word : words) {
+        // 1. Angolról magyarra
+        if (!askQuestion(word.english, word.hungarians, word.pronunciation, "magyarul")) {
+            cout << "Kilepes..." << endl;
+            break;
+        }
+
+        // 2. Magyarról angolra (az első magyar jelentést kérdezzük)
+        vector<string> englishAnswer = {word.english};
+        if (!askQuestion(word.hungarians[0], englishAnswer, word.pronunciation, "angolul")) {
+            cout << "Kilepes..." << endl;
+            break;
+        }
+    }
+
+    cout << "\nVege a listanak vagy kileptel. Szep munka!" << endl;
+    return 0;
+}

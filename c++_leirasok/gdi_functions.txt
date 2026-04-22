@@ -1,0 +1,206 @@
+# Windows GDI (Graphics Device Interface) Függvények és Leírásuk
+
+## 1. Régió (Region) Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| CombineRgn | Két régiót kombinál és az eredményt egy harmadik régióban tárolja |
+| CreateEllipticRgn | Elliptikus régiót hoz létre |
+| CreateEllipticRgnIndirect | Elliptikus régiót hoz létre |
+| CreatePolygonRgn | Sokszög régiót hoz létre |
+| CreatePolyPolygonRgn | Több sokszögből álló régiót hoz létre |
+| CreateRectRgn | Téglalapos régiót hoz létre |
+| CreateRectRgnIndirect | Téglalapos régiót hoz létre |
+| CreateRoundRectRgn | Kerekített sarkú téglalapos régiót hoz létre |
+| EqualRgn | Megvizsgálja, hogy két régió azonos-e |
+| ExtCreateRegion | Régiót hoz létre a megadott régióból és transzformációs adatokból |
+| FillRgn | Kitölti a régiót a megadott ecsettel |
+| FrameRgn | Keretet rajzol a megadott régió köré a megadott ecsettel |
+| GetPolyFillMode | Lekéri a jelenlegi sokszög kitöltési módot |
+| GetRegionData | A megadott puffert kitölti a régió leíró adataival |
+| GetRgnBox | Lekéri a megadott régió határoló téglalapját |
+| InvertRgn | Megfordítja a színeket a megadott régióban |
+| OffsetRgn | Eltolja a régiót a megadott eltolásokkal |
+| PaintRgn | Kifesti a megadott régiót az eszközkontextusban jelenleg kiválasztott ecsettel |
+| PtInRegion | Meghatározza, hogy a megadott pont a régió belsejében van-e |
+| RectInRegion | Meghatározza, hogy a megadott téglalap bármely része a régió határain belül van-e |
+| SetPolyFillMode | Beállítja a sokszögek kitöltési módját |
+| SetRectRgn | Egy régiót konvertál a megadott koordinátákkal rendelkező téglalapos régióvá |
+
+## 2. Vonal- és Görberajzoló Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| MoveTo | Beállítja az aktuális pozíciót a rajzolás előkészítéséhez |
+| LineTo | Vonalat rajzol az aktuális pozícióból egy megadott pozícióba, és áthelyezi az aktuális pozíciót a vonal végére |
+| Polyline | Pontok sorozatát köti össze vonalszakaszokkal |
+| PolylineTo | Pontok sorozatát köti össze vonalszakaszokkal az aktuális pozícióból indulva, és áthelyezi az aktuális pozíciót a vonalzár végére |
+| Arc | Ívet rajzol |
+| ArcTo | Ívet rajzol és áthelyezi az aktuális pozíciót az ív végére |
+| PolyBezier | Egy vagy több Bézier-görbét rajzol |
+| PolyBezierTo | Egy vagy több Bézier-görbét rajzol és áthelyezi az aktuális pozíciót az utolsó görbe végére |
+| PolyDraw | Vonalszakaszok és Bézier-görbék sorozatát rajzolja egy pontsorozaton keresztül, és áthelyezi az aktuális pozíciót az utolsó vonal vagy görbe végére |
+
+## 3. Zárt Alakzatok Rajzolása
+
+| Függvény | Leírás |
+|----------|--------|
+| Chord | Egy zárt alakzatot rajzol, amelyet egy ellipszis és egy egyenes metszete határol |
+| Ellipse | Kört vagy ellipszist rajzol |
+| Pie | Szeletes tortát (szeletes ívet) rajzol |
+| Polygon | Pontok sorozatát köti össze egy sokszöggé |
+| Rectangle | Téglalapot rajzol négyzetes sarkakkal |
+| RoundRect | Téglalapot rajzol kerekített sarkakkal |
+
+## 4. Szövegkezelő Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| DrawText | Formázott szöveget rajzol egy téglalapba |
+| DrawTextEx | Formázott szöveget rajzol egy téglalapba |
+| TextOut | Egy sor szöveget ír ki az aktuális vagy megadott pozícióra |
+| TabbedTextOut | Tabulátorokat tartalmazó szöveget ír ki |
+| ExtTextOut | Egy sor szöveget ír ki, és opcionálisan kitölt egy téglalapot háttérszínnel vagy változtatja az elválasztó karakterek közötti távolságot |
+| GetTextExtent | Kiszámítja egy karakterlánc szélességét az aktuális betűtípusban |
+| GetTabbedTextExtent | Kiszámítja tabulátorokat tartalmazó karakterlánc szélességét az aktuális betűtípusban |
+| GetTextMetrics | Betűmetrikákat ad vissza (karaktermagasság, átlagos karakter szélesség stb.) az aktuális betűtípushoz |
+| SetTextAlign | Beállítja a szövegkiírási igazítási paramétereket |
+| SetTextJustification | Megadja a szükséges plusz szélességet egy szöveg igazításához |
+| SetTextColor | Beállítja az eszközkontextus szövegkiírási színét |
+| SetBkColor | Beállítja az eszközkontextus háttérszínét, amely meghatározza a karakterek mögötti kitöltés színét |
+
+## 5. Bitkép (Bitmap) Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| AlphaBlend | Átlátszó vagy félig átlátszó képpontokat tartalmazó bitképet jelenít meg |
+| BitBlt | Bit blokk átvitelt hajt végre |
+| CreateBitmap | Bitképet hoz létre |
+| CreateBitmapIndirect | Bitképet hoz létre |
+| CreateCompatibleBitmap | Kompatibilis bitképet hoz létre egy eszközhöz |
+| CreateDIBitmap | Egy DIB-ből hoz létre eszközfüggő bitképet (DDB) |
+| CreateDIBSection | Olyan DIB-t hoz létre, amelybe az alkalmazások közvetlenül írhatnak |
+| ExtFloodFill | Kitölt egy területet a megjelenítési felületen az aktuális ecsettel |
+| GetBitmapDimensionEx | Lekéri egy bitkép méreteit |
+| GetDIBColorTable | RGB színértékeket kér le egy DIB szakasz bitképből |
+| GetDIBits | Bitképet másol egy pufferbe |
+| GetPixel | Lekéri egy adott koordinátán lévő képpont RGB színértékét |
+| GetStretchBltMode | Lekéri a jelenlegi nyújtási módot |
+| GradientFill | Téglalap és háromszög struktúrákat tölt ki |
+| LoadBitmap | Bitképet tölt be egy modul végrehajtható fájljából |
+| MaskBlt | Kombinálja a forrás és cél bitképek színadatait |
+| PlgBlt | Bit blokk átvitelt hajt végre |
+| SetBitmapDimensionEx | Beállítja a preferált méreteket egy bitképhez |
+| SetDIBColorTable | RGB értékeket állít be egy DIB-ben |
+| SetDIBits | Beállítja a képpontokat egy bitképben DIB-ből származó színadatok használatával |
+| SetDIBitsToDevice | Egy téglalap képpontjait állítja be DIB-ből származó színadatok használatával |
+| SetPixel | Beállítja egy képpont színét |
+| SetPixelV | Egy képpontot állít be a szín legjobb közelítésére |
+| SetStretchBltMode | Beállítja a bitkép nyújtási módját |
+| StretchBlt | Bitképet másol és nyújt vagy összenyom |
+| StretchDIBits | Színadatokat másol egy DIB-ből |
+| TransparentBlt | Bit blokk átvitelt hajt végre színadatokkal |
+
+## 6. Ecset (Brush) Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| CreateBrushIndirect | Ecsetet hoz létre a megadott stílussal, színnel és mintával |
+| CreateDIBPatternBrushPt | Ecsetet hoz létre DIB mintával |
+| CreateHatchBrush | Ecsetet hoz létre vonalas mintázattal és színnel |
+| CreatePatternBrush | Ecsetet hoz létre bitkép mintával |
+| CreateSolidBrush | Ecsetet hoz létre egyszínű kitöltéssel |
+| GetBrushOrgEx | Lekéri az ecset eredetét egy eszközkontextushoz |
+| GetSysColorBrush | Ecsetkezelőt ad vissza, amely egy színindexhez tartozik |
+| PatBlt | Téglalapot fest ki |
+| SetBrushOrgEx | Beállítja az ecset eredetét egy eszközkontextushoz |
+| SetDCBrushColor | Beállítja az aktuális eszközkontextus ecsetszínét |
+
+## 7. Toll (Pen) Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| CreatePen | Létrehoz egy logikai tollat a megadott stílussal, vastagsággal és színnel |
+| CreatePenIndirect | Létrehoz egy logikai kosztüm tollat a struktúrában megadott stílussal, vastagsággal és színnel |
+| ExtCreatePen | Létrehoz egy logikai kosztüm vagy geometriai tollat a megadott stílussal, vastagsággal és ecsetattribútumokkal |
+| SetDCPenColor | Beállítja az aktuális eszközkontextus tollszínét |
+
+## 8. Betűtípus és Szövegkezelő Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| AddFontMemResourceEx | Beágyazott betűtípust ad a rendszer betűtípustáblájához |
+| AddFontResource | Betűtípus-erőforrást ad a rendszer betűtípustáblájához |
+| AddFontResourceEx | Privát vagy nem felsorolható betűtípust ad a rendszer betűtípustáblájához |
+| CreateFont | Létrehoz egy logikai betűtípust |
+| CreateFontIndirect | Létrehoz egy logikai betűtípust egy struktúrából |
+| CreateFontIndirectEx | Létrehoz egy logikai betűtípust egy struktúrából |
+| DrawText | Formázott szöveget rajzol egy téglalapba |
+| DrawTextEx | Formázott szöveget rajzol egy téglalapba |
+| EnumFontFamExProc | Alkalmazás által meghatározott visszahívó függvény betűtípusok feldolgozásához az EnumFontFamiliesEx függvénnyel |
+| EnumFontFamiliesEx | Felsorolja a rendszer összes betűtípusát bizonyos jellemzőkkel |
+| ExtTextOut | Karakterláncot rajzol |
+| GetAspectRatioFilterEx | Lekéri a képarány szűrő beállítását |
+| GetCharABCWidths | Lekéri egymás utáni karakterek szélességét egy TrueType betűtípusból |
+| GetCharABCWidthsFloat | Lekéri egymás utáni karakterek szélességét az aktuális betűtípusból |
+| GetCharABCWidthsI | Lekéri egymás utáni karakterindexek vagy egy karakterindex tömb szélességét egy TrueType betűtípusból |
+| GetCharacterPlacement | Információt kap egy karakterláncról |
+| GetCharWidth32 | Lekéri egymás utáni karakterek szélességét az aktuális betűtípusból |
+| GetCharWidthFloat | Lekéri az egymás utáni karakterek tört szélességét az aktuális betűtípusból |
+| GetCharWidthI | Lekéri egymás utáni karakterindexek vagy egy karakterindex tömb szélességét az aktuális betűtípusból |
+| GetFontData | Metrikai adatokat kap egy TrueType betűtípusból |
+| GetFontLanguageInfo | Információt ad vissza az eszközkontextusban kiválasztott betűtípusról |
+| GetFontUnicodeRanges | Megmondja, mely Unicode karaktereket támogatja egy betűtípus |
+| GetGlyphIndices | Egy karakterláncot átalakít egy karakterindex tömbbé |
+| GetGlyphOutline | Lekéri egy karakter körvonalát vagy bitképét egy TrueType betűtípusból |
+| GetKerningPairs | Lekéri a karakterek közötti térköz párokat egy betűtípusból |
+| GetOutlineTextMetrics | Szövegmetrikákat kap TrueType betűtípusokhoz |
+| GetRasterizerCaps | Megmondja, hogy telepítve vannak-e TrueType betűtípusok |
+| GetTabbedTextExtent | Kiszámítja egy karakterlánc szélességét és magasságát, beleértve a tabulátorokat |
+| GetTextAlign | Lekéri a szövegigazítási beállítást egy eszközkontextushoz |
+| GetTextCharacterExtra | Lekéri a karakterek közötti jelenlegi távolságot egy eszközkontextushoz |
+| GetTextColor | Lekéri a szöveg színét egy eszközkontextushoz |
+| GetTextExtentExPoint | Lekéri a karakterek számát egy karakterláncban, amelyek beleférnek egy térbe |
+| GetTextExtentExPointI | Lekéri a karakterindexek számát, amelyek beleférnek egy térbe |
+| GetTextExtentPoint32 | Kiszámítja egy szöveg karakterlánc szélességét és magasságát |
+| GetTextExtentPointI | Kiszámítja egy karakterindex tömb szélességét és magasságát |
+| GetTextFace | Lekéri a nevét a betűtípusnak, amely egy eszközkontextusban van kiválasztva |
+| GetTextMetrics | Kitölt egy puffert egy betűtípus metrikáival |
+| PolyTextOut | Több szöveget rajzol az eszközkontextusban lévő betűtípusokkal és színekkel |
+| RemoveFontMemResourceEx | Egy dokumentumba beágyazott forrású betűtípust távolít el a rendszer betűtípustáblájából |
+| RemoveFontResource | Egy fájlban lévő betűtípusokat távolítja el a rendszer betűtípustáblájából |
+| RemoveFontResourceEx | Egy privát vagy nem felsorolható betűtípust távolít el a rendszer betűtípustáblájából |
+| SetMapperFlags | Megváltoztatja a logikai betűtípusok fizikai betűtípusokká való leképezéséhez használt algoritmust |
+| SetTextAlign | Beállítja a szövegigazítási flag-eket egy eszközkontextushoz |
+| SetTextCharacterExtra | Beállítja a karakterek közötti távolságot |
+| SetTextColor | Beállítja a szöveg színét egy eszközkontextushoz |
+| SetTextJustification | Megadja a rendszer által hozzáadandó szóköz mértékét a sztringben lévő szóköz karakterekhez |
+| TabbedTextOut | Karakterláncot ír egy helyre, a tabulátorokat megadott értékekre bővítve |
+| TextOut | Karakterláncot ír egy helyre |
+
+## 9. Egyéb GDI Függvények
+
+| Függvény | Leírás |
+|----------|--------|
+| GetDC | Lekér egy eszközkontextust egy ablakhoz |
+| ReleaseDC | Felszabadít egy eszközkontextust |
+| BeginPaint | Elkezdi a festést egy ablakon |
+| EndPaint | Befejezi a festést egy ablakon |
+| GetClientRect | Lekéri egy ablak kliens területét |
+| FillRect | Kitölt egy téglalapot |
+| Rectangle | Téglalapot rajzol |
+| SetPixel | Beállít egy képpont színét |
+| GetPixel | Lekéri egy képpont színét |
+| SelectObject | Kiválaszt egy objektumot az eszközkontextusba |
+| DeleteObject | Töröl egy GDI objektumot |
+| CreateCompatibleDC | Kompatibilis eszközkontextust hoz létre |
+| DeleteDC | Töröl egy eszközkontextust |
+| SaveDC | Ment egy eszközkontextus állapotot |
+| RestoreDC | Visszaállít egy eszközkontextus állapotot |
+| SetBkMode | Beállítja a háttérmódot |
+| SetROP2 | Beállítja a rajzolási módokat |
+| GetDeviceCaps | Lekéri az eszköz képességeit |
+| SetViewportOrgEx | Beállítja a nézetpont eredetét |
+| SetWindowOrgEx | Beállítja az ablak eredetét |
+| DPtoLP | Egyesített pontokat konvertál logikai pontokká |
+| LPtoDP | Logikai pontokat konvertál egyesített pontokká |

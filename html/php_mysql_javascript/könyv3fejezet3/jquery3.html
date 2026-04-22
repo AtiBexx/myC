@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A szöveg jQueryvel való lecserélésének tesztelése</title>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        $("button").click( function() {
+            $("p").html("<h1>Ez itt címsor lett</h1>");
+        });
+    });
+</script>
+</head>
+<body>
+<h1>Ez a címsorom</h1>
+<p>Ez itt némi tartalom a weblapomon</p>
+<button>Tesztgomb</button>
+</body>
+</html>

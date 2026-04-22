@@ -1,0 +1,12 @@
+/*A függvény elején (return;): Itt még nem nyitottál meg fájlt,
+ *és nem indítottál el folyamatot. Ha a felhasználó beírja, hogy "exit",
+ *akkor a legjobb megoldás a return;, mert az azonnal megállítja a createVocab() függvényt,
+ *és visszadob a főmenübe.
+•
+A belső ciklusban (break;):
+Itt már meg van nyitva egy fájl (outFile).
+Ha itt "exit"-et írnak,
+előbb a break segítségével ki kell törnünk a belső ciklusból,
+hogy a program eljusson a outFile.close(); sorig.
+Ha itt return-t használnál, a fájl nyitva maradna,
+ami adatvesztéshez vezethet.*/

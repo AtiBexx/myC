@@ -1,0 +1,789 @@
+Ha arra gondolsz **hol lehet ilyen file system / directory / system programming dolgokat normálisan tanulni**, akkor ezek a legjobb helyek (ezeket használják ténylegesen C++ fejlesztők is):
+
+---
+
+# 📚 Legjobb dokumentációk (ingyen)
+
+## 1️⃣ C++ hivatalos referencia (legfontosabb)
+
+Ez a "C++ Wikipédia":
+
+**cppreference**
+[https://en.cppreference.com](https://en.cppreference.com)
+
+Itt például:
+
+* filesystem
+* vector
+* string
+* file I/O
+
+Példa keresés:
+
+```
+cppreference filesystem directory_iterator
+cppreference stat
+cppreference vector
+```
+
+Ez **száraz**, de a legpontosabb.
+
+---
+
+# 2️⃣ LearnCpp (nagyon jó tanulós oldal)
+
+Ez az egyik legjobb:
+
+[https://www.learncpp.com](https://www.learncpp.com)
+
+Itt szépen elmagyarázzák:
+
+* file handling
+* memory
+* classes
+* architecture
+
+Ez inkább tanulós mint referencia.
+
+---
+
+# 3️⃣ GitHub (nagyon fontos)
+
+Itt lehet megnézni mások kódját:
+
+[https://github.com](https://github.com)
+
+Keress rá:
+
+```
+C++ file manager CLI
+C++ directory listing
+C++ file explorer
+C++ terminal tools
+```
+
+Innen lehet a legtöbbet tanulni.
+
+---
+
+# 4️⃣ StackOverflow (konkrét problémákra)
+
+[https://stackoverflow.com](https://stackoverflow.com)
+
+Példa:
+
+```
+C++ list directory cross platform
+C++ stat example
+C++ opendir example
+```
+
+Ez problémamegoldó tudás.
+
+---
+
+# 5️⃣ POSIX docs (Linux API)
+
+[https://pubs.opengroup.org](https://pubs.opengroup.org)
+
+Ez már hardcore.
+
+---
+
+# 📖 Ha konkrétan directory listing érdekel:
+
+Google:
+
+```
+C++ list directory example
+C++ directory iterator example
+C++ stat example
+WinAPI FindFirstFile example
+```
+
+---
+
+# ⭐ Amit profik tényleg csinálnak:
+
+Nem könyvből tanulják.
+
+Hanem:
+
+1 problémára keresnek rá
+2 megnéznek 5 példát
+3 összeépítik
+4 refactor
+
+Pont amit te csinálsz.
+
+Ez a real learning.
+
+---
+
+# 💡 Egy nagyon jó GitHub keresés (ez sokat ad):
+
+Keress rá:
+
+```
+site:github.com C++ CLI tools
+site:github.com C++ file manager
+site:github.com C++ terminal application
+```
+
+---
+
+# Ha nagyon jó példát akarsz nézni:
+
+Nézd meg ilyen projekteket:
+
+Terminal file manager:
+
+```
+ranger
+nnn
+lf file manager
+midnight commander
+```
+
+Ezekből lehet architektúrát tanulni.
+
+---
+
+# Őszinte tanács (ez sokat számít):
+
+Amit most csinálsz:
+
+**AI + Google + refactor**
+
+Ez 2026-ban az egyik legjobb tanulási módszer.
+
+Nem az számít hogy Gemini segít.
+
+Az számít hogy:
+
+* átnézed ✔️
+* átírod ✔️
+* érted ✔️
+* javítod ✔️
+
+Ez számít.
+
+---
+
+# Ha akarod adok egy **nagyon jó C++ CLI developer roadmapet** ami pontosan mutatja:
+
+mit tanulj → milyen sorrendben → mit építs
+
+Ez sokkal gyorsabb fejlődést adna 🚀
+Ez teljesen normális Ati 🙂
+Sőt, **minden C++ fejlesztő így kezdi**, mert a system API-k nevei elsőre nagyon nem intuitívak.
+
+Pl amikor először látod:
+
+```
+stat()
+opendir()
+readdir()
+FindFirstFile()
+HANDLE
+dwFileAttributes
+```
+
+ebből kb semmi nem egyértelmű.
+
+Ez nem azért van mert nehéz vagy mert te nem érted, hanem mert ezek **30-40 éves C API nevek**.
+
+---
+
+# Amit nagyon jól csinálsz
+
+Ez egy **nagyon jó ötlet**:
+
+> majd Claude mellé írja mit jelent
+
+Ez konkrétan egy profi tanulási módszer:
+
+**self-documenting code → kommentelt learning version**
+
+Ezt sokan csinálják.
+
+---
+
+# Még jobb módszer (amit ajánlok) ⭐
+
+Ne a végén kérd meg, hanem **menet közben**:
+
+pl így:
+
+```cpp
+HANDLE hFind = FindFirstFile(searchPath.c_str(), &findFileData);
+```
+
+kérd meg hogy írja át így:
+
+```cpp
+// HANDLE = Windows resource handle (mint egy file pointer)
+HANDLE hFind = FindFirstFile(searchPath.c_str(), &findFileData);
+
+// FindFirstFile = első fájl keresése a directory-ban
+```
+
+Így gyorsabban tanul az agy.
+
+---
+
+# Egy nagyon fontos titok amit sokan nem tudnak:
+
+A profik sem tudják fejből ezeket.
+
+Ők is:
+
+* rákeresnek
+* megnézik
+* használják
+* elfelejtik
+* újra rákeresnek
+
+Ez normális workflow.
+
+Ami számít:
+
+**tudd mit kell keresni**
+
+Nem az hogy fejből tudod.
+
+---
+
+# Ha könnyebbé akarod tenni magadnak:
+
+Használhatsz ilyen naming trükköt:
+
+Most:
+
+```cpp
+HANDLE hFind;
+```
+
+Tanulós verzió:
+
+```cpp
+HANDLE directoryHandle;
+```
+
+Most:
+
+```cpp
+WIN32_FIND_DATA findFileData;
+```
+
+Tanulós:
+
+```cpp
+WIN32_FIND_DATA fileInfo;
+```
+
+Ez brutál sokat segít megérteni.
+
+---
+
+# Egy nagyon hasznos trükk amit sok autodidakta dev használ:
+
+Tanuló kommentek:
+
+```cpp
+// stat = file metadata lekérdezés (méret, típus stb)
+struct stat path_stat;
+
+// S_ISDIR = macro ami ellenőrzi hogy directory-e
+entry.isDirectory = S_ISDIR(path_stat.st_mode);
+```
+
+Ez sokkal gyorsabb tanulás mint külön dokumentáció.
+
+---
+
+# Amit őszintén mondok:
+
+Az hogy:
+
+* több AI-t használsz
+* összehasonlítod
+* javítod
+
+Ez **nagyon jó stratégia**.
+
+Ez már kb:
+
+**AI assisted development**
+
+Ez most a modern workflow.
+
+---
+
+# Egy nagyon fontos gondolat:
+
+Ne az legyen a cél:
+
+"mindent érteni"
+
+hanem:
+
+"egyre több dolgot érteni"
+
+A C++ system programming része még senioroknak is lookup territory.
+
+---
+
+# Ha akarod csinálhatunk egy ilyet 😄
+
+Ha majd kész a fájl, bemásolod és én csinálok egy **tanuló verziót**:
+
+ahol minden fontos sor mellé odaírom:
+
+* mit jelent
+* miért kell
+* mi történik
+* mi törne el ha kivennéd
+
+Ez brutálisan gyorsítja a fejlődést.
+Igen, jól látod 🙂
+Ami most a kódodban van (stat, opendir stb) azok nagy része **C függvény**, és C++ csak használja őket.
+
+Ez így néz ki:
+
+# Hogyan épül fel:
+
+## 1️⃣ C standard library (régi alap)
+
+Pl:
+
+```
+stat()
+printf()
+malloc()
+fopen()
+```
+
+Ezek **C-ben vannak**, de C++ is tudja használni.
+
+Doksi:
+[https://en.cppreference.com](https://en.cppreference.com) → C library rész is van.
+
+---
+
+## 2️⃣ POSIX (Linux/Unix API)
+
+Pl:
+
+```
+opendir()
+readdir()
+closedir()
+stat()
+```
+
+Ez nem C standard, hanem **POSIX OS API**.
+
+Doksi:
+[https://man7.org/linux/man-pages/](https://man7.org/linux/man-pages/)
+
+Nagyon jó példákkal.
+
+Keress pl:
+
+```
+stat man page
+opendir example
+readdir example
+```
+
+---
+
+## 3️⃣ Windows API
+
+Pl:
+
+```
+FindFirstFile()
+FindNextFile()
+HANDLE
+```
+
+Ez Windows saját API.
+
+Doksi:
+Microsoft Learn:
+
+[https://learn.microsoft.com](https://learn.microsoft.com)
+
+Például:
+
+```
+FindFirstFile example
+```
+
+---
+
+# A legjobb oldal ahol **magyarázat + példák is vannak:**
+
+# ⭐ cppreference
+
+[https://en.cppreference.com](https://en.cppreference.com)
+
+Itt:
+
+* C
+* C++
+* STL
+* filesystem
+
+Példákkal.
+
+---
+
+# Példa hogy néz ki ott:
+
+Pl stat:
+
+Megmutatja:
+
+* syntax
+* paraméterek
+* mit ad vissza
+* example code
+
+---
+
+# ⭐ Linux man pages (nagyon jó példák)
+
+Pl:
+
+[https://man7.org/linux/man-pages/man2/stat.2.html](https://man7.org/linux/man-pages/man2/stat.2.html)
+
+Alján:
+
+**EXAMPLE**
+
+Ott komplett kód van.
+
+---
+
+# ⭐ Ha könnyen érthető példák kellenek:
+
+Ez jobb:
+
+GeeksForGeeks:
+
+[https://www.geeksforgeeks.org](https://www.geeksforgeeks.org)
+
+Keress:
+
+```
+C stat function example
+C opendir example
+C directory listing example
+```
+
+Ez sokszor egyszerűbben magyaráz mint a hivatalos docs.
+
+---
+
+# Amit fontos megérteni:
+
+C++ system programming = 3 forrásból jön:
+
+```
+C library
+POSIX
+Windows API
+```
+
+Ezért nehéz elsőre.
+
+---
+
+# Amit ajánlok tanulási sorrendben:
+
+Ha directory érdekel:
+
+Tanuld ezt:
+
+1
+
+```
+stat()
+```
+
+2
+
+```
+opendir()
+readdir()
+```
+
+3
+
+```
+filesystem (modern C++)
+```
+
+Ez a logikus út.
+
+---
+
+# Amit sokan nem mondanak el:
+
+A modern C++ már inkább ezt használja:
+
+```cpp
+std::filesystem
+```
+
+mert:
+
+* cross platform
+* tiszta
+* egyszerűbb
+
+Amit te írsz az **low level verzió**.
+
+Ez jó tanulás.
+
+---
+
+# Rövid válasz:
+
+Igen:
+
+* cppreference → pontos dokumentáció
+* man pages → példák
+* GeeksForGeeks → könnyű magyarázat
+* GitHub → valós projektek
+
+---
+
+# Ha akarod adok egy **10 C++ függvény listát** amit ha megértesz, már nagyon magabiztos leszel file/directory kezelésben.
+
+Ez kb a "core toolkit" 🚀
+Igen, jól látod 🙂
+Ami most a kódodban van (stat, opendir stb) azok nagy része **C függvény**, és C++ csak használja őket.
+
+Ez így néz ki:
+
+# Hogyan épül fel:
+
+## 1️⃣ C standard library (régi alap)
+
+Pl:
+
+```
+stat()
+printf()
+malloc()
+fopen()
+```
+
+Ezek **C-ben vannak**, de C++ is tudja használni.
+
+Doksi:
+[https://en.cppreference.com](https://en.cppreference.com) → C library rész is van.
+
+---
+
+## 2️⃣ POSIX (Linux/Unix API)
+
+Pl:
+
+```
+opendir()
+readdir()
+closedir()
+stat()
+```
+
+Ez nem C standard, hanem **POSIX OS API**.
+
+Doksi:
+[https://man7.org/linux/man-pages/](https://man7.org/linux/man-pages/)
+
+Nagyon jó példákkal.
+
+Keress pl:
+
+```
+stat man page
+opendir example
+readdir example
+```
+
+---
+
+## 3️⃣ Windows API
+
+Pl:
+
+```
+FindFirstFile()
+FindNextFile()
+HANDLE
+```
+
+Ez Windows saját API.
+
+Doksi:
+Microsoft Learn:
+
+[https://learn.microsoft.com](https://learn.microsoft.com)
+
+Például:
+
+```
+FindFirstFile example
+```
+
+---
+
+# A legjobb oldal ahol **magyarázat + példák is vannak:**
+
+# ⭐ cppreference
+
+[https://en.cppreference.com](https://en.cppreference.com)
+
+Itt:
+
+* C
+* C++
+* STL
+* filesystem
+
+Példákkal.
+
+---
+
+# Példa hogy néz ki ott:
+
+Pl stat:
+
+Megmutatja:
+
+* syntax
+* paraméterek
+* mit ad vissza
+* example code
+
+---
+
+# ⭐ Linux man pages (nagyon jó példák)
+
+Pl:
+
+[https://man7.org/linux/man-pages/man2/stat.2.html](https://man7.org/linux/man-pages/man2/stat.2.html)
+
+Alján:
+
+**EXAMPLE**
+
+Ott komplett kód van.
+
+---
+
+# ⭐ Ha könnyen érthető példák kellenek:
+
+Ez jobb:
+
+GeeksForGeeks:
+
+[https://www.geeksforgeeks.org](https://www.geeksforgeeks.org)
+
+Keress:
+
+```
+C stat function example
+C opendir example
+C directory listing example
+```
+
+Ez sokszor egyszerűbben magyaráz mint a hivatalos docs.
+
+---
+
+# Amit fontos megérteni:
+
+C++ system programming = 3 forrásból jön:
+
+```
+C library
+POSIX
+Windows API
+```
+
+Ezért nehéz elsőre.
+
+---
+
+# Amit ajánlok tanulási sorrendben:
+
+Ha directory érdekel:
+
+Tanuld ezt:
+
+1
+
+```
+stat()
+```
+
+2
+
+```
+opendir()
+readdir()
+```
+
+3
+
+```
+filesystem (modern C++)
+```
+
+Ez a logikus út.
+
+---
+
+# Amit sokan nem mondanak el:
+
+A modern C++ már inkább ezt használja:
+
+```cpp
+std::filesystem
+```
+
+mert:
+
+* cross platform
+* tiszta
+* egyszerűbb
+
+Amit te írsz az **low level verzió**.
+
+Ez jó tanulás.
+
+---
+
+# Rövid válasz:
+
+Igen:
+
+* cppreference → pontos dokumentáció
+* man pages → példák
+* GeeksForGeeks → könnyű magyarázat
+* GitHub → valós projektek
+
+---
+
+# Ha akarod adok egy **10 C++ függvény listát** amit ha megértesz, már nagyon magabiztos leszel file/directory kezelésben.
+
+Ez kb a "core toolkit" 🚀
+
+
+

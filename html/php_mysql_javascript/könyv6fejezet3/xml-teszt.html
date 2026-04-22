@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>XML-teszt</title>
+<script language="javascript" type="text/javascript">
+function autóklekérése() {
+    var autólista = document.getElementById("autólista");
+    autólista.innerHTML = "";
+    var URL = "xml-teszt.php";
+    var kérés = new XMLHttpRequest();
+	kérés.open("GET", "xml-teszt.php", true);
+	kérés.onreadystatechange = function() {
+		if (kérés.readyState == 4 && kérés.status == 200) {
+            var response = kérés.responseXML;
+            var autók = response.getElementsByTagName("autó");
+            for(i = 0; i < autók.length; i++) {
+                var márka = autók[i].getAttribute("márka");
+                var modellek = autók[i].getElementsByTagName("modell");
+                for (j = 0; j < modellek.length; j++) {
+                    var modell = modellek[j].childNodes[0].nodeValue;
+                    autólista.innerHTML += márka + " " + modell + "<br>";
+                }
+            }
+        }
+    }
+    kérés.send();
+}
+</script>
+</head>
+<body>
+<h2>JavaScript XML-teszt</h2>
+<p>A szerverről lekért autók:</p>
+<div id="autólista"></div>
+<p>Ez itt a lista vége</p>
+<input type="button" onclick="autóklekérése()" value="Autók lekérése">
+</body>
+</html>

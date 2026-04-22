@@ -1,0 +1,36 @@
+Szuper kérdés! Ez nem a nyelv (Java vagy Kotlin) döntése, hanem a te logikádé, de Kotlinban sokkal szebben és rövidebben meg lehet írni ezt a "lazítást", hogy a "szó" és a "szo" is helyes legyen a kvízben.
+
+Ezt a programozásban Normalizálásnak hívjuk. A lényege, hogy a különleges karaktereket (mint az é, á, ő, ű) átalakítjuk az alap latin megfelelőjükre.
+
+Hogyan csináld meg Kotlinban?
+Kotlinban a java.text.Normalizer osztályt használjuk (mivel a Kotlin tudja használni a Java eszköztárát). Itt egy egyszerű kis függvény, amit bárhol bevethetsz a learning appodban:
+
+Kotlin
+fun String.removeAccents(): String {
+    val temp = java.text.Normalizer.normalize(this, java.text.Normalizer.Form.NFD)
+    return "\\p{InCombiningDiacriticalMarks}+".toRegex().replace(temp, "").lowercase()
+}
+
+// Így használod az ellenőrzésnél:
+val helyesValasz = "Almabor"
+val felhasznaloBeirasa = "almabór"
+
+if (felhasznaloBeirasa.removeAccents() == helyesValasz.removeAccents()) {
+    // Elfogadjuk! Mindkettő "almabor" lett a gép szemében.
+}
+Mi történik itt a háttérben?
+NFD forma: Szétszedi a betűt az alapbetűre és az ékezetre (pl. az é betűből csinál egy e-t és egy "vessző" jelet).
+
+Regex (reguláris kifejezés): Ez a bűvös sor \\p{InCombiningDiacriticalMarks}+ megkeresi az összes ilyen "leválasztott" ékezetet és egyszerűen törli őket.
+
+Lowercase: Kisbetűssé teszi, hogy az "Alma" és az "alma" is egyezzen.
+
+Miért jobb ez a kvíz appodhoz?
+Felhasználóbarát: Senki nem szeret mobilont gépelve az ű és ő betűkkel szenvedni, ha siet a válasszal.
+
+Offline is megy: Ez a kód nem igényel netet, nem kell hozzá nagy könyvtár, így a 4 GB-os telefonon is milliszekundumok alatt lefut.
+
+Kiterjesztett funkció (Extension Function): Mint láttad, a fenti kódban a String.removeAccents() formát használtam. Ez egy tipikus Kotlin "varázslat": onnantól kezdve minden szövegre meghívhatod ezt a funkciót, mintha gyárilag benne lenne a nyelvben.
+
+Java vs. Kotlin ebben?
+Javában ugyanezt megírni kb. 8-10 sor kód lenne, és sokkal csúnyább a sok try-catch vagy segédosztály miatt. Kotlinban ez egyetlen sorba is sűríthető.

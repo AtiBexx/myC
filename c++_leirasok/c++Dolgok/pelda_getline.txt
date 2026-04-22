@@ -1,0 +1,35 @@
+void choiceLanguage()
+{
+    const SettingsMenu &settingsMenu = settingsMenuTranslations[static_cast<int>(currentLanguage)];
+    const BackStrings &backSTR = backbackTranslations[static_cast<int>(currentLanguage)];
+
+    for (;;) {
+        screenWipe();
+        std::cout << "--- " << settingsMenu.settingsMenu1 << " ---" << std::endl;
+        std::cout << "1. Magyar / Hungarian" << std::endl;
+        std::cout << "2. English / Angol" << std::endl;
+        std::cout << "0. " << backSTR.backStrings << std::endl;
+        std::cout << "\nValasztas: ";
+
+        std::string input;
+        std::getline(std::cin, input);
+
+        if (input == "1") {
+            currentLanguage = Language::HUNGARIAN;
+            std::cout << "Nyelv sikeresen megvaltoztatva: Magyar!" << std::endl;
+            std::cin.get();
+            break; // Kilépünk a ciklusból
+        } else if (input == "2") {
+            currentLanguage = Language::ENGLISH;
+            std::cout << "Language successfully changed to: English!" << std::endl;
+            std::cin.get();
+            break; // Kilépünk a ciklusból
+        } else if (input == "0") {
+            break; // Vissza az előző menübe
+        } else {
+            // Rossz választás
+            std::cout << "Hiba: Ervenytelen valasztas!" << std::endl;
+            std::cin.get();
+        }
+    }
+}

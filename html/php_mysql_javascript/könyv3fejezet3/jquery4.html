@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tulajdonságok módosítása a jQueryvel</title>
+</head>
+<style>
+   div {
+       background-color:yellow;
+   }
+
+   .módosít {
+       background-color:red;
+       font-size:50px;
+   }
+</style>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+   jQuery(document).ready(function() {
+       $("button").click(function() {
+            $("p").toggleClass("módosít");
+       });
+   });
+</script>
+<body>
+<div id="tároló">
+<h1>Ez a címsorom</h1>
+<p id="tartalom">Ez itt némi tartalom a weblapomon</p>
+<button>Tesztgomb</button>
+</div>
+</body>
+</html>

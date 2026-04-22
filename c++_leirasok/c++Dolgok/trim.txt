@@ -1,0 +1,210 @@
+Szia Ati! 🙂
+Ez a függvény a **string elejéről és végéről levágja a szóközöket** (ezt hívják *trim*-nek).
+
+Menjünk végig rajta lépésenként:
+
+---
+
+## Mit csinál a függvény?
+
+```cpp
+string trim(const std::string& str)
+```
+
+* bemenet: egy szöveg (`str`)
+* `const std::string&` → referencia, hogy ne másolja a stringet (gyorsabb)
+* kimenet: egy új string szóközök nélkül a széleken
+
+---
+
+## 1. első nem szóköz karakter keresése
+
+```cpp
+size_t first = str.find_first_not_of(' ');
+```
+
+Ez megkeresi az **első karaktert ami NEM szóköz**.
+
+Példa:
+
+```
+"   hello   "
+```
+
+indexek:
+
+```
+0:' '
+1:' '
+2:' '
+3:'h'
+```
+
+Tehát:
+
+```
+first = 3
+```
+
+---
+
+## 2. ha csak szóköz van
+
+```cpp
+if (string::npos == first)
+```
+
+`npos` azt jelenti:
+
+**nem talált semmit**
+
+Ha a string ilyen:
+
+```
+"     "
+```
+
+akkor nincs nem szóköz karakter → ezért:
+
+```
+return "";
+```
+
+üres stringet ad vissza.
+
+---
+
+## 3. utolsó nem szóköz karakter
+
+```cpp
+size_t last = str.find_last_not_of(' ');
+```
+
+Ez megkeresi hátulról az utolsó nem szóköz karaktert.
+
+Példa:
+
+```
+"   hello   "
+```
+
+```
+last = 7   ('o')
+```
+
+---
+
+## 4. substring kivágása
+
+```cpp
+return str.substr(first, (last - first + 1));
+```
+
+Ez kivágja a tényleges szöveget.
+
+A `substr`:
+
+```
+substr(kezdő_index, hossz)
+```
+
+Miért kell +1 ?
+
+Mert:
+
+```
+first = 3
+last = 7
+
+7 - 3 = 4   (de hello 5 karakter!)
+```
+
+Ezért:
+
+```
+7 - 3 + 1 = 5
+```
+
+---
+
+## Vizualizáció:
+
+```
+"   hello   "
+    ^   ^
+    |   |
+  first last
+```
+
+Kivágjuk:
+
+```
+hello
+```
+
+---
+
+## Röviden mit csinál:
+
+Ez:
+
+```
+"   alma   "
+```
+
+ebből ezt csinálja:
+
+```
+"alma"
+```
+
+---
+
+## Egy fontos megjegyzés (profi tipp) 🔧
+
+Ez csak **space karaktert** vág le. Jobb így:
+
+```cpp
+find_first_not_of(" \t\n\r")
+```
+
+így levágja:
+
+* space
+* tab
+* newline
+* carriage return
+
+Profi verzió:
+
+```cpp
+size_t first = str.find_first_not_of(" \t\n\r");
+size_t last = str.find_last_not_of(" \t\n\r");
+```
+
+---
+
+Ha akarod megmutathatom azt is:
+
+* hogyan csinálták ezt DOS programokban régen
+* hogyan lehet még gyorsabb verziót írni
+* STL-es profi megoldást
+
+(sok régi C++ kódban ez gyakori 😉)
+
+jobb c++ verzió
+```
+#include <cctype>
+#include <algorithm>
+
+std::string trim(const std::string& s){
+
+    auto start = std::find_if_not(s.begin(), s.end(), ::isspace);
+    auto end = std::find_if_not(s.rbegin(), s.rend(), ::isspace).base();
+
+    if(start >= end)
+        return "";
+
+    return std::string(start,end);
+}
+```

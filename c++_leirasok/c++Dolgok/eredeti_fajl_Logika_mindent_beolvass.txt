@@ -1,0 +1,460 @@
+//
+// Created by AtiBexx2 on 2026. 03. 24.
+//
+
+#include "cliFileReading.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdlib>   // system()
+#include <cctype>    // isalnum()
+#include <algorithm> // std::all_of()
+#include "../Editor/osEditor.h"
+#include "dataFileReading.h"
+#include "../Common/generalFunctions.h"
+#include "../Quiz/programQuiz.h"
+
+
+// Platform választás a fájlkezeléshez
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h> // stat() függvényhez
+#endif
+
+using std::vector;
+using std::string;
+using std::cout;
+using std::endl;
+
+// --- BIZTONSÁGI ÉS FÁJLKEZELŐ SEGÉDFÜGGVÉNYEK ---
+
+// Karakterek engedélyezésére (Whitelist szűrő - MODERN C++11 verzió)
+bool isPathSafe(const std::string& path) {
+    if (path.empty() || path.length() > 255) return false;
+
+    // Path Traversal védelem (ne lehessen kilépni a mappából)
+    if (path.find("..") != std::string::npos) return false;
+
+    // Veszélyes parancsok tiltása (kisbetűssé alakítva nézzük)
+    string lowerPath = toLowerCase(path);
+    if (lowerPath.find("format") != std::string::npos ||
+        lowerPath.find("rm ") != std::string::npos) { // "rm " szóközzel veszélyes
+        return false;
+    }
+
+    return std::all_of(path.begin(), path.end(), [](unsigned char c) {
+        return std::isalnum(c) ||
+               c == '/' || c == '\\' || c == '.' ||
+               c == '_' || c == '-' || c == ' ';
+    });
+}
+
+// Fájlok és mappák másolására szolgáló függvény
+void copyFileFolders(const std::string& srcPath, bool isDirectory) {
+    if (!isPathSafe(srcPath)) {
+        cout << "Hiba: Veszelyes forras utvonal!" << endl;
+        return;
+    }
+
+    cout << "Masolando: " << srcPath << endl;
+    cout << "Uj nev/utvonal: ";
+    string destName;
+    std::getline(std::cin, destName);
+    string destPath = trim(destName);
+
+    if (!isPathSafe(destPath)) {
+        cout << "Hiba: Veszelyes cel utvonal!" << endl;
+        std::cin.get();
+        return;
+    }
+
+    string command;
+#ifdef _WIN32
+    if (isDirectory) {
+        command = "xcopy /E /I /H /Y \"" + srcPath + "\" \"" + destPath + "\"";
+    } else {
+        command = "copy /Y \"" + srcPath + "\" \"" + destPath + "\"";
+    }
+#else
+    command = "cp -r -p \"" + srcPath + "\" \"" + destPath + "\"";
+#endif
+
+    int result = std::system(command.c_str());
+
+    if (result == 0) cout << "Sikeres masolas!" << endl;
+    else cout << "Hiba tortent (Kod: " << result << ")" << endl;
+
+    std::cin.get();
+}
+
+// Fájlok és mappák törlésére szolgáló függvény
+void deleteFileFolders(const std::string& fullPath, bool isDirectory) {
+    if (!isPathSafe(fullPath)) {
+        cout << "Hiba: Veszelyes karakterek vagy utvonal! Torles megtagadva." << endl;
+        std::cin.get();
+        return;
+    }
+
+    cout << "\n !!! FIGYELEM !!! " << endl;
+    cout << "Biztosan torolni szeretned: " << fullPath << "? (y/n): ";
+
+    string confirm;
+    std::getline(std::cin, confirm);
+
+    string c = toLowerCase(trim(confirm));
+    if (c != "y" && c != "yes") {
+        std::cout << "Torles megszakitva." << std::endl;
+        std::cin.get();
+        return;
+    }
+
+    string command;
+#ifdef _WIN32
+    if (isDirectory) {
+        command = "rd /s /q \"" + fullPath + "\"";
+    } else {
+        command = "del /f /q \"" + fullPath + "\"";
+    }
+#else
+    if (isDirectory) {
+        command = "rm -rf \"" + fullPath + "\"";
+    } else {
+        command = "rm -f \"" + fullPath + "\"";
+    }
+#endif
+
+    int result = std::system(command.c_str());
+
+    if (result == 0) std::cout << "Sikeresen torolve!" << std::endl;
+    else std::cout << "Hiba tortent (Kod: " << result << ")" << std::endl;
+
+    std::cin.get();
+}
+
+// Fájlok és mappák áthelyezésére
+void movingFileFolders(const std::string& srcPath, bool isDirectory) {
+    if (!isPathSafe(srcPath)) {
+        cout << "Hiba: Veszelyes forras utvonal!" << endl;
+        return;
+    }
+
+    cout << "Athelyezendo: " << srcPath << endl;
+    cout << "Uj nev/utvonal: ";
+    string destName;
+    std::getline(std::cin, destName);
+    string destPath = trim(destName);
+
+    if (!isPathSafe(destPath)) {
+        cout << "Hiba: Veszelyes cel utvonal! Athelyezes megtagadva." << endl;
+        std::cin.get();
+        return;
+    }
+
+    string command;
+#ifdef _WIN32
+    command = "move /Y \"" + srcPath + "\" \"" + destPath + "\"";
+#else
+    command = "mv -f \"" + srcPath + "\" \"" + destPath + "\"";
+#endif
+
+    int result = std::system(command.c_str());
+
+    if (result == 0) cout << "Sikeres athelyezes!" << endl;
+    else cout << "Hiba tortent (Kod: " << result << ")" << endl;
+
+    std::cin.get();
+}
+
+// Fájlok vagy mappák átnevezésére
+void reNameFileFolders(const std::string& srcPath, bool isDirectory) {
+    if (!isPathSafe(srcPath)) {
+        cout << "Hiba: Veszelyes forras utvonal! Atnevezes megtagadva." << endl;
+        std::cin.get();
+        return;
+    }
+
+    cout << "Atnevezendo: " << srcPath << endl;
+    cout << "Uj nev: ";
+    string newName;
+    std::getline(std::cin, newName);
+    newName = trim(newName);
+
+    size_t lastSlash = srcPath.find_last_of("/\\");
+    string currentDir = (lastSlash == string::npos) ? "" : srcPath.substr(0, lastSlash + 1);
+    string destPath = currentDir + newName;
+
+    if (!isPathSafe(destPath)) {
+        cout << "Hiba: Veszelyes uj nev! Atnevezes megtagadva." << endl;
+        std::cin.get();
+        return;
+    }
+
+    string command;
+#ifdef _WIN32
+    command = "move /Y \"" + srcPath + "\" \"" + destPath + "\"";
+#else
+    command = "mv -f \"" + srcPath + "\" \"" + destPath + "\"";
+#endif
+
+    int result = std::system(command.c_str());
+
+    if (result == 0) cout << "Sikeres atnevezes!" << endl;
+    else cout << "Hiba tortent (Kod: " << result << ")" << endl;
+
+    std::cin.get();
+}
+
+// Fájl szerkesztése az operációs rendszer szerkesztőjével
+void editFile(const std::string& fullPath) {
+    if (!isPathSafe(fullPath)) {
+        cout << "Hiba: Veszelyes fajl utvonal! Szerkesztes megtagadva." << endl;
+        std::cin.get();
+        return;
+    }
+
+    // Meghívjuk az osEditor modul függvényét
+    openFileInEditor(fullPath);
+
+    cout << "Szerkesztes befejezve (vagy elinditva)." << endl;
+    std::cin.get();
+}
+
+// Segédfüggvény a fájlok és mappák listázására
+vector<FileEntry> listFiles(const std::string &directory) {
+    vector<FileEntry> entriesFolderAndFiles;
+
+#ifdef _WIN32
+    string searchPath = directory;
+    if (!searchPath.empty() && searchPath.back() != '\\')
+        searchPath += "\\";
+    searchPath += "*";
+    WIN32_FIND_DATA findFileData;
+    HANDLE hFind = FindFirstFile(searchPath.c_str(), &findFileData);
+
+    if (hFind == INVALID_HANDLE_VALUE) return entriesFolderAndFiles;
+
+    do {
+        const string filename = findFileData.cFileName;
+        if (filename != "." && filename != "..") {
+            FileEntry entry;
+            entry.name = filename;
+            entry.isDirectory = (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) !=0;
+            entriesFolderAndFiles.push_back(entry);
+        }
+    } while (FindNextFile(hFind, &findFileData) !=0);
+    FindClose(hFind);
+#else
+    DIR *dir;
+    struct dirent *ent;
+
+    if ((dir = opendir(directory.c_str())) != NULL) {
+        while ((ent = readdir(dir)) != NULL) {
+            const string filename = ent->d_name;
+            if (filename != "." && filename != "..") {
+                FileEntry entry;
+                entry.name = filename;
+
+                string fullPath = directory;
+                if (!fullPath.empty() && fullPath.back() != '/') fullPath += "/";
+                fullPath += filename;
+
+                struct stat path_stat{};
+                if (stat(fullPath.c_str(), &path_stat) == 0) {
+                    entry.isDirectory = S_ISDIR(path_stat.st_mode);
+                } else {
+                #ifdef _DIRENT_HAVE_D_TYPE
+                    entry.isDirectory = (ent->d_type == DT_DIR);
+                #else
+                    entry.isDirectory = false;
+                #endif
+                }
+                entriesFolderAndFiles.push_back(entry);
+            }
+        }
+        closedir(dir);
+    }
+#endif
+    return entriesFolderAndFiles;
+}
+
+// A fájlok kiválasztásához/listázásához
+void listAndSelectFile() {
+    const string ROOT_DIR ="./data";
+    string path = ROOT_DIR;
+
+    for (;;) {
+        screenWipe();
+        cout << "--- Jelenlegi mappa: "  << path << " ---" << endl;
+
+        std::vector<FileEntry> entriesFoldersAndFiles = listFiles(path);
+
+        if (entriesFoldersAndFiles.empty()) {
+            cout <<"(Ures mappa)" << endl;
+        } else {
+            for (const FileEntry &entry: entriesFoldersAndFiles) {
+                if (entry.isDirectory) cout <<"[MAPPA] " << entry.name << endl;
+                else cout << "        " << entry.name << endl;
+            }
+        }
+
+        cout << "---------------------------------------" << endl;
+        cout << "Parancsok: nev (belep), .. (vissza), del/delete nev, cp/copy nev, mv/move nev, rn/rename nev, edit nev, exit" << std::endl;
+        cout << "Valasztas: ";
+
+        string rawInput;
+        std::getline(std::cin, rawInput);
+        string input = trim(rawInput);
+        string lowerInput = toLowerCase(input);
+
+        if (lowerInput == "exit") return;
+
+        if (lowerInput == "..") {
+            size_t lastSlash = path.find_last_of("/\\");
+            if (path.length() > ROOT_DIR.length() && lastSlash != string::npos) {
+                path = path.substr(0, lastSlash);
+            } else {
+                screenWipe();
+                cout << "Nem lephetsz kijebb a data mappabol!" << endl;
+                std::cin.get();
+            }
+            continue;
+        }
+
+        // TÖRLÉS KEZELÉSE
+        bool isDelCmd = (lowerInput.length() > 4 && lowerInput.substr(0, 4) == "del ");
+        bool isDeleteCmd = (lowerInput.length() > 7 && lowerInput.substr(0, 7) == "delete ");
+
+        if (isDelCmd || isDeleteCmd) {
+            string targetName = isDelCmd ? input.substr(4) : input.substr(7);
+            bool found = false; bool isDir = false;
+            for (const FileEntry& entry : entriesFoldersAndFiles) {
+                if (entry.name == targetName) { found = true; isDir = entry.isDirectory; break; }
+            }
+            if (found) {
+                string fullPath = path;
+                if (!fullPath.empty() && fullPath.back() != '/' && fullPath.back() != '\\') fullPath += "/";
+                fullPath += targetName;
+                deleteFileFolders(fullPath, isDir);
+            } else {
+                cout << "Hiba: Nincs ilyen fajl vagy mappa!" << endl;
+                std::cin.get();
+            }
+            continue;
+        }
+
+        // MÁSOLÁS KEZELÉSE
+        bool isCpCmd = (lowerInput.length() > 3 && lowerInput.substr(0, 3) == "cp ");
+        bool isCopyCmd = (lowerInput.length() > 5 && lowerInput.substr(0, 5) == "copy ");
+
+        if (isCpCmd || isCopyCmd) {
+            string targetName = isCpCmd ? input.substr(3) : input.substr(5);
+            bool found = false; bool isDir = false;
+            for (const auto& entry : entriesFoldersAndFiles) {
+                if (entry.name == targetName) { found = true; isDir = entry.isDirectory; break; }
+            }
+            if (found) {
+                string fullPath = path;
+                if (!fullPath.empty() && fullPath.back() != '/' && fullPath.back() != '\\') fullPath += "/";
+                fullPath += targetName;
+                copyFileFolders(fullPath, isDir);
+            } else {
+                cout << "Hiba: Nincs ilyen fajl vagy mappa!" << endl;
+                std::cin.get();
+            }
+            continue;
+        }
+
+        // ÁTHELYEZÉS KEZELÉSE
+        bool isMvCmd = (lowerInput.length() > 3 && lowerInput.substr(0, 3) == "mv ");
+        bool isMoveCmd = (lowerInput.length() > 5 && lowerInput.substr(0, 5) == "move ");
+
+        if (isMvCmd || isMoveCmd) {
+            string targetName = isMvCmd ? input.substr(3) : input.substr(5);
+            bool found = false; bool isDir = false;
+            for (const auto& entry : entriesFoldersAndFiles) {
+                if (entry.name == targetName) { found = true; isDir = entry.isDirectory; break; }
+            }
+            if (found) {
+                string fullPath = path;
+                if (!fullPath.empty() && fullPath.back() != '/' && fullPath.back() != '\\') fullPath += "/";
+                fullPath += targetName;
+                movingFileFolders(fullPath, isDir);
+            } else {
+                cout << "Hiba: Nincs ilyen fajl vagy mappa!" << endl;
+                std::cin.get();
+            }
+            continue;
+        }
+
+        // ÁTNEVEZÉS KEZELÉSE
+        bool isRnCmd = (lowerInput.length() > 3 && lowerInput.substr(0, 3) == "rn ");
+        bool isRenameCmd = (lowerInput.length() > 7 && lowerInput.substr(0, 7) == "rename ");
+
+        if (isRnCmd || isRenameCmd) {
+            string targetName = isRnCmd ? input.substr(3) : input.substr(7);
+            bool found = false; bool isDir = false;
+            for (const auto& entry : entriesFoldersAndFiles) {
+                if (entry.name == targetName) { found = true; isDir = entry.isDirectory; break; }
+            }
+            if (found) {
+                string fullPath = path;
+                if (!fullPath.empty() && fullPath.back() != '/' && fullPath.back() != '\\') fullPath += "/";
+                fullPath += targetName;
+                reNameFileFolders(fullPath, isDir);
+            } else {
+                cout << "Hiba: Nincs ilyen fajl vagy mappa!" << endl;
+                std::cin.get();
+            }
+            continue;
+        }
+
+        // EDIT KEZELÉSE
+        bool isEditCmd = (lowerInput.length() > 5 && lowerInput.substr(0, 5) == "edit ");
+        if (isEditCmd) {
+            string targetName = input.substr(5);
+            bool found = false; bool isDir = false;
+            for (const auto& entry : entriesFoldersAndFiles) {
+                if (entry.name == targetName) { found = true; isDir = entry.isDirectory; break; }
+            }
+            if (found && !isDir) {
+                string fullPath = path;
+                if (!fullPath.empty() && fullPath.back() != '/' && fullPath.back() != '\\') fullPath += "/";
+                fullPath += targetName;
+                editFile(fullPath);
+            } else {
+                cout << "Hiba: Nincs ilyen fajl (vagy mappa, amit nem lehet szerkeszteni)!" << endl;
+                std::cin.get();
+            }
+            continue;
+        }
+
+        // Keresés belépéshez vagy betöltéshez
+        bool contentFound = false; bool isDir = false;
+        for (const auto& entry: entriesFoldersAndFiles) {
+            if (entry.name == input) { contentFound = true; isDir = entry.isDirectory; break; }
+        }
+
+        if (contentFound) {
+            if (isDir) {
+                if (!path.empty() && path.back() != '/') path += "/";
+                path += input;
+            } else {
+                string fullPath = path;
+                if (!fullPath.empty() && fullPath.back() != '/') fullPath += "/";
+                fullPath += input;
+                cout << "Fajl kivalasztva: " << fullPath << endl;
+                vector<WordPair> loadedWords = loadwords(fullPath);
+                startQuiz(loadedWords);
+            }
+        } else {
+            if (!input.empty()) {
+                screenWipe();
+                cout << "Hiba: Nincs ilyen fajl vagy mappa!" << endl;
+                std::cin.get();
+            }
+        }
+    }
+}

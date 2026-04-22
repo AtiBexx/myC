@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Az egéresemények tesztelése</title>
+<style>
+   #teszt {
+      background-color: yellow;
+      width:400px;
+   }
+</style>
+<script>
+    function módosít(állapot) {
+      if (állapot == "be") {
+        document.getElementById("teszt").style.backgroundColor="red";
+      } else if (állapot == "ki") {
+        document.getElementById("teszt").style.backgroundColor="yellow";
+}
+    }
+</script>
+</head>
+<body>
+<h1>Ez itt az egéresemények tesztje</h1>
+<p id="teszt" onmouseover="módosít('be')" onmouseout="módosít('ki')">Ez itt olyan tartalom, amelynek megváltozik a színe!</p>
+</body>
+</html>

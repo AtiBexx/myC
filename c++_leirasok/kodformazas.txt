@@ -1,0 +1,38 @@
+Vscode
+Windows/Linux: Shift + Alt + F → formázza a fájlt
+Mac: Shift + Option + F
+
+----------
+Clion & egyeb Jetbrains termékek
+CTRL+ALT+L
+
+------------
+Eclipse
+Ctrl + Shift + F
+
+-----------
+Notepad++
+Notepad++ alapból nem tud C++-t formázni, kell hozzá plugin:
+Telepítsd a NppAStyle plugint (vagy AStyle.exe-t)
+Utána: Plugins → AStyle → Format
+Billentyűkombó: sajátot állíthatsz be (pl. Ctrl + Alt + F)
+Beállításokban lehet szabályozni, hogy tab/spaces, tördelés, stb
+
+----------
+NetBeans
+Formázás:
+Alt + Shift + F (Windows/Linux)
+Ctrl + Shift + F (Mac)
+Beállítás:
+Tools → Options → Editor → Formatting → C++
+Választhatsz stílust (K&R, GNU, Java stílus) vagy sajátot csinálhatsz.
+
+------------
+Visual Studio (nem VSCode)
+Formázás egész fájlra:
+Ctrl + K, Ctrl + D
+Formázás kijelölt blokkra:
+Ctrl + K, Ctrl + F
+Beállítások:
+Tools → Options → Text Editor → C/C++ → Formatting
+Itt a stílust állíthatod (LLVM, Microsoft, K&R stb.)

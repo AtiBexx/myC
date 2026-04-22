@@ -1,0 +1,41 @@
+{
+  "configurations": [
+    {
+      "name": "MinGW (g++)",
+      "includePath": ["${workspaceFolder}/**"],
+      "defines": [],
+      "compilerPath": "C:/mingw64/bin/g++.exe",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "windows-gcc-x64"
+    },
+    {
+      "name": "MSVC",
+      "includePath": ["${workspaceFolder}/**"],
+      "defines": [],
+      "compilerPath": "F:/intelij/vsCommunity/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/cl.exe",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "windows-msvc-x64"
+    },
+    {
+      "name": "Clang++",
+      "includePath": ["${workspaceFolder}/**"],
+      "defines": [],
+      "compilerPath": "C:/Program Files/LLVM/bin/clang++.exe",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "windows-clang-x64"
+    },
+    {
+      "name": "Clang",
+      "includePath": ["${workspaceFolder}/**"],
+      "defines": [],
+      "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+      "cStandard": "c17",
+      "cppStandard": "c17",
+      "intelliSenseMode": "windows-clang-x64"
+    }
+  ],
+  "version": 4
+}

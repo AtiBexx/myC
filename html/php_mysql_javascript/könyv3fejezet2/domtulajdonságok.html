@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A DOM-tulajdonságok tesztelése</title>
+</head>
+<body>
+<body>
+<h1>Ez a weblap címsora</h1>
+<p>Ez a mintaszöveg</p> <br>
+<button type="button" onclick="változtat('red')">Háttér módosítása pirosra</button>
+<button type="button" onclick="változtat('white')">Háttér módosítása fehérre</button>
+<script>
+function változtat(szín) {
+    document.body.style.backgroundColor = szín;
+}
+</script>
+</body>
+</html>

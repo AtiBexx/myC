@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 – Gergely és Héber Naptár</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0c09;
+  --panel: #141209;
+  --gold: #c8a44a;
+  --gold2: #e6c870;
+  --cream: #f0e6cf;
+  --muted: rgba(240,230,207,0.42);
+  --border: rgba(200,164,74,0.2);
+  --sidebar: 280px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  height: 100vh;
+}
+
+/* ─── SIDEBAR ─── */
+aside {
+  width: var(--sidebar);
+  min-width: var(--sidebar);
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+aside::-webkit-scrollbar { width: 3px; }
+aside::-webkit-scrollbar-thumb { background: var(--border); }
+
+.logo {
+  padding: 1.3rem 1rem 0.9rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: var(--panel); z-index: 20;
+}
+.logo h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; color: var(--gold); line-height: 1.4;
+}
+.logo .sub { font-size: 0.7rem; color: var(--muted); font-style: italic; margin-top: 0.2rem; }
+
+.nav-list { padding: 0.5rem 0.4rem; }
+.nav-btn {
+  display: block; width: 100%; background: none; border: none;
+  border-radius: 3px; color: var(--muted);
+  font-family: 'EB Garamond', serif; font-size: 0.88rem;
+  padding: 0.28rem 0.65rem; text-align: left; cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-btn:hover { background: rgba(200,164,74,0.1); color: var(--cream); }
+.nav-btn.on { background: rgba(200,164,74,0.17); color: var(--gold); font-weight: 600; }
+
+.info {
+  margin: 0.4rem 0.45rem;
+  padding: 0.8rem;
+  background: rgba(200,164,74,0.04);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: rgba(240,230,207,0.7);
+  line-height: 1.65;
+}
+.info h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 0.78rem; margin-bottom: 0.4rem; }
+.info strong { color: var(--gold2); }
+.info p { margin-bottom: 0.4rem; }
+.info .calc-box {
+  background: rgba(200,164,74,0.08);
+  border: 1px solid rgba(200,164,74,0.25);
+  border-radius: 3px;
+  padding: 0.4rem 0.6rem;
+  margin: 0.35rem 0;
+  font-size: 0.71rem;
+  color: var(--gold2);
+}
+
+.legend { padding: 0.3rem 0.45rem 1rem; }
+.legend h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 0.76rem; margin-bottom: 0.35rem; padding: 0 0.2rem; }
+.leg { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.22rem; font-size: 0.72rem; color: rgba(240,230,207,0.68); padding: 0 0.2rem; }
+.dot { width: 9px; height: 9px; border-radius: 1px; flex-shrink: 0; }
+
+/* ─── MAIN ─── */
+main { flex: 1; overflow-y: auto; }
+main::-webkit-scrollbar { width: 4px; }
+main::-webkit-scrollbar-thumb { background: var(--border); }
+
+.month-sec { border-bottom: 1px solid var(--border); }
+
+.month-head {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; color: var(--gold);
+  padding: 0.5rem 0.9rem 0.4rem;
+  background: rgba(200,164,74,0.06);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: baseline; gap: 0.5rem;
+}
+.month-head .heb { font-size: 0.67rem; color: var(--muted); font-style: italic; font-weight: 400; }
+
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  background: rgba(200,164,74,0.07);
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.65rem; font-weight: 400;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 0.28rem 0.5rem; text-align: left;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 37px; z-index: 9;
+  white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid rgba(200,164,74,0.065); transition: background 0.1s; }
+tbody tr:hover { background: rgba(200,164,74,0.055); }
+tbody tr.shab { background: rgba(55,55,80,0.15); }
+tbody tr.shab:hover { background: rgba(55,55,80,0.24); }
+td { padding: 0.22rem 0.5rem; vertical-align: middle; white-space: nowrap; }
+
+/* Gergely oszlopok */
+.cg-date  { color: rgba(240,230,207,0.85); width: 70px; font-size: 0.84rem; font-weight: 500; }
+.cg-day   { color: rgba(240,230,207,0.38); width: 46px; font-size: 0.7rem; }
+/* Héber oszlopok */
+.ch-mon   { color: rgba(240,230,207,0.65); width: 90px; font-size: 0.8rem; }
+.ch-day   { color: rgba(240,230,207,0.5); width: 36px; font-size: 0.8rem; text-align: center; }
+/* Ünnep */
+.ch-hol   { font-size: 0.75rem; }
+
+.pill { display: inline-block; padding: 0.09rem 0.46rem; border-radius: 20px; font-size: 0.72rem; }
+.pm { background: rgba(200,164,74,0.2); color: #e6c870; border: 1px solid rgba(200,164,74,0.45); }
+.pi { background: rgba(42,74,107,0.3); color: #8ab4d8; border: 1px solid rgba(42,74,107,0.5); }
+.pf { background: rgba(110,30,30,0.3); color: #e08888; border: 1px solid rgba(140,40,40,0.5); }
+.pr { background: rgba(50,90,55,0.28); color: #90c890; border: 1px solid rgba(60,120,65,0.45); }
+.ps { color: rgba(240,230,207,0.24); font-size: 0.68rem; }
+
+.divider { height: 1px; background: var(--border); margin: 0.4rem 0.45rem; }
+</style>
+</head>
+<body>
+
+<aside id="aside">
+  <div class="logo">
+    <h1>2026 · Gergely &amp;<br>Héber Naptár</h1>
+    <div class="sub">5786 → 5787 · Minden naphoz Gergely dátum</div>
+  </div>
+
+  <div class="nav-list" id="navList"></div>
+
+  <div class="divider"></div>
+
+  <div class="info">
+    <h3>📐 Hogyan számítsd ki a héber dátumot?</h3>
+
+    <p><strong>1. lépés – A héber év:</strong><br>
+    Adj hozzá 3760-at (január–szeptember hónapokban) vagy 3761-et (október–december hónapokban) a Gergely-évhez.</p>
+    <div class="calc-box">
+      2026 + 3760 = <strong>5786</strong> (jan–szept)<br>
+      2026 + 3761 = <strong>5787</strong> (okt–dec)
+    </div>
+
+    <p><strong>2. lépés – Miért csúszik minden évben?</strong><br>
+    A héber naptár holdnaptár: egy héber hónap = 29 vagy 30 nap (újholdtól újholdig). Egy héber év = 354 nap, míg a Gergely-év = 365 nap. Ez <strong>~11 nap különbséget</strong> jelent évente — ezért esnek más Gergely-dátumra az ünnepek.</p>
+
+    <p><strong>3. lépés – A nap este kezdődik!</strong><br>
+    A héber nap napnyugtával kezdődik és a következő napnyugtáig tart. Például Ros Hasáná <em>este</em> kezdődik — ez azt jelenti, hogy a Gergely-naptárban az előző este már az ünnep.</p>
+
+    <p><strong>4. lépés – Szökőév (Adár II):</strong><br>
+    19 éves ciklusban 7-szer van szökőév. Ilyenkor betesznek egy extra hónapot: <strong>Adár II</strong>-t. Szökőévben Purim az Adár II. hónapban van. <strong>2026 nem szökőév</strong> (5786).</p>
+
+    <p><strong>5. lépés – A héber hónapok sorrendje:</strong></p>
+    <div class="calc-box" style="font-size:0.69rem; line-height:1.7;">
+      1. Niszán · 2. Ijár · 3. Sziván<br>
+      4. Tammuz · 5. Áv · 6. Elul<br>
+      7. Tisri · 8. Hésván · 9. Kiszlév<br>
+      10. Tévét · 11. Svát · 12. Adár
+    </div>
+
+    <p><strong>Gyors ellenőrzés:</strong> Ha tudod a Gergely-dátumot és tudni akarod a héber napot — használd a <strong>hebcal.com</strong> oldalt, ahol bármelyik dátumot át tudod váltani.</p>
+  </div>
+
+  <div class="legend">
+    <h3>Jelmagyarázat</h3>
+    <div class="leg"><div class="dot" style="background:rgba(200,164,74,0.4);border:1px solid rgba(200,164,74,0.7)"></div>Főünnep</div>
+    <div class="leg"><div class="dot" style="background:rgba(42,74,107,0.55);border:1px solid rgba(42,74,107,0.8)"></div>Kisebb ünnep / emléknap</div>
+    <div class="leg"><div class="dot" style="background:rgba(110,30,30,0.5);border:1px solid rgba(140,40,40,0.7)"></div>Böjtnap</div>
+    <div class="leg"><div class="dot" style="background:rgba(50,90,55,0.5);border:1px solid rgba(60,120,65,0.7)"></div>Ros Hódesh (újhold, hónapkezdet)</div>
+    <div class="leg"><div class="dot" style="background:rgba(55,55,80,0.5);border:1px solid rgba(80,80,110,0.5)"></div>Szombat (Sabbát)</div>
+  </div>
+</aside>
+
+<main id="mainArea"></main>
+
+<script>
+// ── NAPTÁR ADATOK ──────────────────────────────────────────────────────────
+// Formátum: "GERGELY-DÁTUM": ["HéberHónap", HéberNap, "Ünnep szövege", "pillClass"]
+const DATA = {
+"2026-01-01":["Tévét",20,"",""],       "2026-01-02":["Tévét",21,"",""],
+"2026-01-03":["Tévét",22,"",""],       "2026-01-04":["Tévét",23,"",""],
+"2026-01-05":["Tévét",24,"",""],       "2026-01-06":["Tévét",25,"",""],
+"2026-01-07":["Tévét",26,"",""],       "2026-01-08":["Tévét",27,"",""],
+"2026-01-09":["Tévét",28,"",""],
+"2026-01-10":["Tévét",29,"10 Tévét – böjt (Jeruzsálem ostromának kezdete)","pf"],
+"2026-01-11":["Svát",1,"Ros Hódesh Svát – új hónap kezdete","pr"],
+"2026-01-12":["Svát",2,"",""],         "2026-01-13":["Svát",3,"",""],
+"2026-01-14":["Svát",4,"",""],         "2026-01-15":["Svát",5,"",""],
+"2026-01-16":["Svát",6,"",""],         "2026-01-17":["Svát",7,"",""],
+"2026-01-18":["Svát",8,"",""],         "2026-01-19":["Svát",9,"",""],
+"2026-01-20":["Svát",10,"",""],        "2026-01-21":["Svát",11,"",""],
+"2026-01-22":["Svát",12,"",""],        "2026-01-23":["Svát",13,"",""],
+"2026-01-24":["Svát",14,"",""],
+"2026-01-25":["Svát",15,"Tu BiSvát – fák újéve","pi"],
+"2026-01-26":["Svát",16,"",""],        "2026-01-27":["Svát",17,"",""],
+"2026-01-28":["Svát",18,"",""],        "2026-01-29":["Svát",19,"",""],
+"2026-01-30":["Svát",20,"",""],        "2026-01-31":["Svát",21,"",""],
+"2026-02-01":["Svát",22,"",""],        "2026-02-02":["Svát",23,"",""],
+"2026-02-03":["Svát",24,"",""],        "2026-02-04":["Svát",25,"",""],
+"2026-02-05":["Svát",26,"",""],        "2026-02-06":["Svát",27,"",""],
+"2026-02-07":["Svát",28,"",""],        "2026-02-08":["Svát",29,"",""],
+"2026-02-09":["Adár",1,"Ros Hódesh Adár – új hónap kezdete","pr"],
+"2026-02-10":["Adár",2,"",""],         "2026-02-11":["Adár",3,"",""],
+"2026-02-12":["Adár",4,"",""],         "2026-02-13":["Adár",5,"",""],
+"2026-02-14":["Adár",6,"",""],         "2026-02-15":["Adár",7,"",""],
+"2026-02-16":["Adár",8,"",""],         "2026-02-17":["Adár",9,"",""],
+"2026-02-18":["Adár",10,"",""],        "2026-02-19":["Adár",11,"",""],
+"2026-02-20":["Adár",12,"",""],
+"2026-02-21":["Adár",13,"Eszter böjtje (Taanis Eszter)","pf"],
+"2026-02-22":["Adár",14,"🎭 Purim – Eszter könyve, jelmezek, ajándékozás","pm"],
+"2026-02-23":["Adár",15,"Shushan Purim (bekerített városokban)","pi"],
+"2026-02-24":["Adár",16,"",""],        "2026-02-25":["Adár",17,"",""],
+"2026-02-26":["Adár",18,"",""],        "2026-02-27":["Adár",19,"",""],
+"2026-02-28":["Adár",20,"",""],
+"2026-03-01":["Adár",21,"",""],        "2026-03-02":["Adár",22,"",""],
+"2026-03-03":["Adár",23,"",""],        "2026-03-04":["Adár",24,"",""],
+"2026-03-05":["Adár",25,"",""],        "2026-03-06":["Adár",26,"",""],
+"2026-03-07":["Adár",27,"",""],        "2026-03-08":["Adár",28,"",""],
+"2026-03-09":["Adár",29,"",""],
+"2026-03-10":["Niszán",1,"Ros Hódesh Niszán – a szabadság hónapjának kezdete","pr"],
+"2026-03-11":["Niszán",2,"",""],       "2026-03-12":["Niszán",3,"",""],
+"2026-03-13":["Niszán",4,"",""],       "2026-03-14":["Niszán",5,"",""],
+"2026-03-15":["Niszán",6,"",""],       "2026-03-16":["Niszán",7,"",""],
+"2026-03-17":["Niszán",8,"",""],       "2026-03-18":["Niszán",9,"",""],
+"2026-03-19":["Niszán",10,"",""],      "2026-03-20":["Niszán",11,"",""],
+"2026-03-21":["Niszán",12,"",""],      "2026-03-22":["Niszán",13,"",""],
+"2026-03-23":["Niszán",14,"Peszách előeste – Széder este (este kezdődik!)","pm"],
+"2026-03-24":["Niszán",15,"🍷 Peszách I. napja – kivonulás ünnepe","pm"],
+"2026-03-25":["Niszán",16,"Peszách II. napja","pm"],
+"2026-03-26":["Niszán",17,"Peszách hol hamoed (félünnep)","pi"],
+"2026-03-27":["Niszán",18,"Peszách hol hamoed (félünnep)","pi"],
+"2026-03-28":["Niszán",19,"Peszách hol hamoed (félünnep)","pi"],
+"2026-03-29":["Niszán",20,"Peszách hol hamoed (félünnep)","pi"],
+"2026-03-30":["Niszán",21,"Peszách VII. napja – tengerátkelés","pm"],
+"2026-03-31":["Niszán",22,"Peszách VIII. napja (diaszpóra)","pm"],
+"2026-04-01":["Niszán",23,"",""],      "2026-04-02":["Niszán",24,"",""],
+"2026-04-03":["Niszán",25,"",""],      "2026-04-04":["Niszán",26,"",""],
+"2026-04-05":["Niszán",27,"Jom Hashoá – Holocaust emléknap","pi"],
+"2026-04-06":["Niszán",28,"",""],      "2026-04-07":["Niszán",29,"",""],
+"2026-04-08":["Ijár",1,"Ros Hódesh Ijár","pr"],
+"2026-04-09":["Ijár",2,"",""],         "2026-04-10":["Ijár",3,"",""],
+"2026-04-11":["Ijár",4,"",""],         "2026-04-12":["Ijár",5,"",""],
+"2026-04-13":["Ijár",6,"",""],         "2026-04-14":["Ijár",7,"",""],
+"2026-04-15":["Ijár",8,"",""],         "2026-04-16":["Ijár",9,"",""],
+"2026-04-17":["Ijár",10,"",""],        "2026-04-18":["Ijár",11,"",""],
+"2026-04-19":["Ijár",12,"",""],        "2026-04-20":["Ijár",13,"",""],
+"2026-04-21":["Ijár",14,"Peszách Séni – második Peszách","pi"],
+"2026-04-22":["Ijár",15,"",""],        "2026-04-23":["Ijár",16,"",""],
+"2026-04-24":["Ijár",17,"",""],
+"2026-04-25":["Ijár",18,"Lag BaOmer – a 33. ómer nap","pi"],
+"2026-04-26":["Ijár",19,"",""],        "2026-04-27":["Ijár",20,"",""],
+"2026-04-28":["Ijár",21,"",""],
+"2026-04-29":["Ijár",22,"Jom Haácmáut – Izrael Függetlenség napja","pi"],
+"2026-04-30":["Ijár",23,"",""],
+"2026-05-01":["Ijár",24,"",""],        "2026-05-02":["Ijár",25,"",""],
+"2026-05-03":["Ijár",26,"",""],        "2026-05-04":["Ijár",27,"",""],
+"2026-05-05":["Ijár",28,"",""],        "2026-05-06":["Ijár",29,"",""],
+"2026-05-07":["Sziván",1,"Ros Hódesh Sziván","pr"],
+"2026-05-08":["Sziván",2,"",""],       "2026-05-09":["Sziván",3,"",""],
+"2026-05-10":["Sziván",4,"",""],       "2026-05-11":["Sziván",5,"",""],
+"2026-05-12":["Sziván",6,"📜 Sávuot I. – Tóra-adás ünnepe, Sínai-hegy","pm"],
+"2026-05-13":["Sziván",7,"Sávuot II. napja","pm"],
+"2026-05-14":["Sziván",8,"",""],       "2026-05-15":["Sziván",9,"",""],
+"2026-05-16":["Sziván",10,"",""],      "2026-05-17":["Sziván",11,"",""],
+"2026-05-18":["Sziván",12,"",""],      "2026-05-19":["Sziván",13,"",""],
+"2026-05-20":["Sziván",14,"",""],      "2026-05-21":["Sziván",15,"",""],
+"2026-05-22":["Sziván",16,"",""],      "2026-05-23":["Sziván",17,"",""],
+"2026-05-24":["Sziván",18,"",""],      "2026-05-25":["Sziván",19,"",""],
+"2026-05-26":["Sziván",20,"",""],      "2026-05-27":["Sziván",21,"",""],
+"2026-05-28":["Sziván",22,"",""],      "2026-05-29":["Sziván",23,"",""],
+"2026-05-30":["Sziván",24,"",""],      "2026-05-31":["Sziván",25,"",""],
+"2026-06-01":["Sziván",26,"",""],      "2026-06-02":["Sziván",27,"",""],
+"2026-06-03":["Sziván",28,"",""],      "2026-06-04":["Sziván",29,"",""],
+"2026-06-05":["Tammuz",1,"Ros Hódesh Tammuz","pr"],
+"2026-06-06":["Tammuz",2,"",""],       "2026-06-07":["Tammuz",3,"",""],
+"2026-06-08":["Tammuz",4,"",""],       "2026-06-09":["Tammuz",5,"",""],
+"2026-06-10":["Tammuz",6,"",""],       "2026-06-11":["Tammuz",7,"",""],
+"2026-06-12":["Tammuz",8,"",""],       "2026-06-13":["Tammuz",9,"",""],
+"2026-06-14":["Tammuz",10,"",""],      "2026-06-15":["Tammuz",11,"",""],
+"2026-06-16":["Tammuz",12,"",""],      "2026-06-17":["Tammuz",13,"",""],
+"2026-06-18":["Tammuz",14,"",""],      "2026-06-19":["Tammuz",15,"",""],
+"2026-06-20":["Tammuz",16,"",""],
+"2026-06-21":["Tammuz",17,"17 Tammuz – böjt (Jeruzsálem falának áttörése)","pf"],
+"2026-06-22":["Tammuz",18,"",""],      "2026-06-23":["Tammuz",19,"",""],
+"2026-06-24":["Tammuz",20,"",""],      "2026-06-25":["Tammuz",21,"",""],
+"2026-06-26":["Tammuz",22,"",""],      "2026-06-27":["Tammuz",23,"",""],
+"2026-06-28":["Tammuz",24,"",""],      "2026-06-29":["Tammuz",25,"",""],
+"2026-06-30":["Tammuz",26,"",""],
+"2026-07-01":["Tammuz",27,"",""],      "2026-07-02":["Tammuz",28,"",""],
+"2026-07-03":["Tammuz",29,"",""],
+"2026-07-04":["Áv",1,"Ros Hódesh Áv","pr"],
+"2026-07-05":["Áv",2,"",""],           "2026-07-06":["Áv",3,"",""],
+"2026-07-07":["Áv",4,"",""],           "2026-07-08":["Áv",5,"",""],
+"2026-07-09":["Áv",6,"",""],           "2026-07-10":["Áv",7,"",""],
+"2026-07-11":["Áv",8,"",""],
+"2026-07-12":["Áv",9,"Tisá BeÁv – böjt (Szentély pusztulása, Kr.e. 586 és Kr.u. 70)","pf"],
+"2026-07-13":["Áv",10,"",""],          "2026-07-14":["Áv",11,"",""],
+"2026-07-15":["Áv",12,"",""],          "2026-07-16":["Áv",13,"",""],
+"2026-07-17":["Áv",14,"",""],
+"2026-07-18":["Áv",15,"Tu BeÁv – szerelem ünnepe","pi"],
+"2026-07-19":["Áv",16,"",""],          "2026-07-20":["Áv",17,"",""],
+"2026-07-21":["Áv",18,"",""],          "2026-07-22":["Áv",19,"",""],
+"2026-07-23":["Áv",20,"",""],          "2026-07-24":["Áv",21,"",""],
+"2026-07-25":["Áv",22,"",""],          "2026-07-26":["Áv",23,"",""],
+"2026-07-27":["Áv",24,"",""],          "2026-07-28":["Áv",25,"",""],
+"2026-07-29":["Áv",26,"",""],          "2026-07-30":["Áv",27,"",""],
+"2026-07-31":["Áv",28,"",""],
+"2026-08-01":["Áv",29,"",""],
+"2026-08-02":["Elul",1,"Ros Hódesh Elul – bűnbánat hónapja kezdődik","pr"],
+"2026-08-03":["Elul",2,"",""],         "2026-08-04":["Elul",3,"",""],
+"2026-08-05":["Elul",4,"",""],         "2026-08-06":["Elul",5,"",""],
+"2026-08-07":["Elul",6,"",""],         "2026-08-08":["Elul",7,"",""],
+"2026-08-09":["Elul",8,"",""],         "2026-08-10":["Elul",9,"",""],
+"2026-08-11":["Elul",10,"",""],        "2026-08-12":["Elul",11,"",""],
+"2026-08-13":["Elul",12,"",""],        "2026-08-14":["Elul",13,"",""],
+"2026-08-15":["Elul",14,"",""],        "2026-08-16":["Elul",15,"",""],
+"2026-08-17":["Elul",16,"",""],        "2026-08-18":["Elul",17,"",""],
+"2026-08-19":["Elul",18,"",""],        "2026-08-20":["Elul",19,"",""],
+"2026-08-21":["Elul",20,"",""],        "2026-08-22":["Elul",21,"",""],
+"2026-08-23":["Elul",22,"",""],        "2026-08-24":["Elul",23,"",""],
+"2026-08-25":["Elul",24,"",""],        "2026-08-26":["Elul",25,"",""],
+"2026-08-27":["Elul",26,"",""],        "2026-08-28":["Elul",27,"",""],
+"2026-08-29":["Elul",28,"",""],        "2026-08-30":["Elul",29,"",""],
+"2026-08-31":["Elul",30,"",""],
+"2026-09-01":["Tisri",1,"🎊 Ros Hasáná I. – Zsidó Újév (este kezdődik, kürt szól)","pm"],
+"2026-09-02":["Tisri",2,"Ros Hasáná II. napja","pm"],
+"2026-09-03":["Tisri",3,"Cedalja böjtje","pf"],
+"2026-09-04":["Tisri",4,"",""],        "2026-09-05":["Tisri",5,"",""],
+"2026-09-06":["Tisri",6,"",""],        "2026-09-07":["Tisri",7,"",""],
+"2026-09-08":["Tisri",8,"",""],        "2026-09-09":["Tisri",9,"",""],
+"2026-09-10":["Tisri",10,"✡ Jom Kipur – Engesztelés napja (24 órás böjt)","pf"],
+"2026-09-11":["Tisri",11,"",""],       "2026-09-12":["Tisri",12,"",""],
+"2026-09-13":["Tisri",13,"",""],       "2026-09-14":["Tisri",14,"",""],
+"2026-09-15":["Tisri",15,"🌿 Szukkot I. – Sátrak ünnepe (lulávval és etróggal)","pm"],
+"2026-09-16":["Tisri",16,"Szukkot II. napja","pm"],
+"2026-09-17":["Tisri",17,"Szukkot hol hamoed (félünnep)","pi"],
+"2026-09-18":["Tisri",18,"Szukkot hol hamoed (félünnep)","pi"],
+"2026-09-19":["Tisri",19,"Szukkot hol hamoed (félünnep)","pi"],
+"2026-09-20":["Tisri",20,"Szukkot hol hamoed (félünnep)","pi"],
+"2026-09-21":["Tisri",21,"Hósana Rabbá – a nagy Hósana","pi"],
+"2026-09-22":["Tisri",22,"Semini Ácéret – nyolcadik nap","pm"],
+"2026-09-23":["Tisri",23,"Szimhát Torá – a Tóra örömünnepe","pm"],
+"2026-09-24":["Tisri",24,"",""],       "2026-09-25":["Tisri",25,"",""],
+"2026-09-26":["Tisri",26,"",""],       "2026-09-27":["Tisri",27,"",""],
+"2026-09-28":["Tisri",28,"",""],       "2026-09-29":["Tisri",29,"",""],
+"2026-09-30":["Tisri",30,"",""],
+"2026-10-01":["Hésván",1,"Ros Hódesh Hésván","pr"],
+"2026-10-02":["Hésván",2,"",""],       "2026-10-03":["Hésván",3,"",""],
+"2026-10-04":["Hésván",4,"",""],       "2026-10-05":["Hésván",5,"",""],
+"2026-10-06":["Hésván",6,"",""],       "2026-10-07":["Hésván",7,"",""],
+"2026-10-08":["Hésván",8,"",""],       "2026-10-09":["Hésván",9,"",""],
+"2026-10-10":["Hésván",10,"",""],      "2026-10-11":["Hésván",11,"",""],
+"2026-10-12":["Hésván",12,"",""],      "2026-10-13":["Hésván",13,"",""],
+"2026-10-14":["Hésván",14,"",""],      "2026-10-15":["Hésván",15,"",""],
+"2026-10-16":["Hésván",16,"",""],      "2026-10-17":["Hésván",17,"",""],
+"2026-10-18":["Hésván",18,"",""],      "2026-10-19":["Hésván",19,"",""],
+"2026-10-20":["Hésván",20,"",""],      "2026-10-21":["Hésván",21,"",""],
+"2026-10-22":["Hésván",22,"",""],      "2026-10-23":["Hésván",23,"",""],
+"2026-10-24":["Hésván",24,"",""],      "2026-10-25":["Hésván",25,"",""],
+"2026-10-26":["Hésván",26,"",""],      "2026-10-27":["Hésván",27,"",""],
+"2026-10-28":["Hésván",28,"",""],      "2026-10-29":["Hésván",29,"",""],
+"2026-10-30":["Kiszlév",1,"Ros Hódesh Kiszlév","pr"],
+"2026-10-31":["Kiszlév",2,"",""],
+"2026-11-01":["Kiszlév",3,"",""],      "2026-11-02":["Kiszlév",4,"",""],
+"2026-11-03":["Kiszlév",5,"",""],      "2026-11-04":["Kiszlév",6,"",""],
+"2026-11-05":["Kiszlév",7,"",""],      "2026-11-06":["Kiszlév",8,"",""],
+"2026-11-07":["Kiszlév",9,"",""],      "2026-11-08":["Kiszlév",10,"",""],
+"2026-11-09":["Kiszlév",11,"",""],     "2026-11-10":["Kiszlév",12,"",""],
+"2026-11-11":["Kiszlév",13,"",""],     "2026-11-12":["Kiszlév",14,"",""],
+"2026-11-13":["Kiszlév",15,"",""],     "2026-11-14":["Kiszlév",16,"",""],
+"2026-11-15":["Kiszlév",17,"",""],     "2026-11-16":["Kiszlév",18,"",""],
+"2026-11-17":["Kiszlév",19,"",""],     "2026-11-18":["Kiszlév",20,"",""],
+"2026-11-19":["Kiszlév",21,"",""],     "2026-11-20":["Kiszlév",22,"",""],
+"2026-11-21":["Kiszlév",23,"",""],     "2026-11-22":["Kiszlév",24,"",""],
+"2026-11-23":["Kiszlév",25,"🕎 Hanuka 1. napja (Kiszlév 25.)","pm"],
+"2026-11-24":["Kiszlév",26,"🕎 Hanuka 2. napja","pm"],
+"2026-11-25":["Kiszlév",27,"🕎 Hanuka 3. napja","pm"],
+"2026-11-26":["Kiszlév",28,"🕎 Hanuka 4. napja","pm"],
+"2026-11-27":["Kiszlév",29,"🕎 Hanuka 5. napja","pm"],
+"2026-11-28":["Tévét",1,"🕎 Hanuka 6. napja + Ros Hódesh Tévét","pm"],
+"2026-11-29":["Tévét",2,"🕎 Hanuka 7. napja","pm"],
+"2026-11-30":["Tévét",3,"🕎 Hanuka 8. (utolsó) napja","pm"],
+"2026-12-01":["Tévét",4,"",""],        "2026-12-02":["Tévét",5,"",""],
+"2026-12-03":["Tévét",6,"",""],        "2026-12-04":["Tévét",7,"",""],
+"2026-12-05":["Tévét",8,"",""],        "2026-12-06":["Tévét",9,"",""],
+"2026-12-07":["Tévét",10,"",""],       "2026-12-08":["Tévét",11,"",""],
+"2026-12-09":["Tévét",12,"",""],       "2026-12-10":["Tévét",13,"",""],
+"2026-12-11":["Tévét",14,"",""],       "2026-12-12":["Tévét",15,"",""],
+"2026-12-13":["Tévét",16,"",""],       "2026-12-14":["Tévét",17,"",""],
+"2026-12-15":["Tévét",18,"",""],       "2026-12-16":["Tévét",19,"",""],
+"2026-12-17":["Tévét",20,"",""],       "2026-12-18":["Tévét",21,"",""],
+"2026-12-19":["Tévét",22,"",""],       "2026-12-20":["Tévét",23,"",""],
+"2026-12-21":["Tévét",24,"",""],       "2026-12-22":["Tévét",25,"",""],
+"2026-12-23":["Tévét",26,"",""],       "2026-12-24":["Tévét",27,"",""],
+"2026-12-25":["Tévét",28,"",""],       "2026-12-26":["Tévét",29,"",""],
+"2026-12-27":["Svát",1,"Ros Hódesh Svát (5787 – új héber év vége felé)","pr"],
+"2026-12-28":["Svát",2,"",""],         "2026-12-29":["Svát",3,"",""],
+"2026-12-30":["Svát",4,"",""],         "2026-12-31":["Svát",5,"",""]
+};
+
+// ── HÓNAPOK ────────────────────────────────────────────────────────────────
+const MONTHS = [
+  {n:"Január",   d:31, num:1},  {n:"Február",  d:28, num:2},
+  {n:"Március",  d:31, num:3},  {n:"Április",  d:30, num:4},
+  {n:"Május",    d:31, num:5},  {n:"Június",   d:30, num:6},
+  {n:"Július",   d:31, num:7},  {n:"Augusztus",d:31, num:8},
+  {n:"Szeptember",d:30,num:9},  {n:"Október",  d:31, num:10},
+  {n:"November", d:30, num:11}, {n:"December", d:31, num:12}
+];
+const WD = ["Vas","Hét","Kedd","Szer","Csüt","Pén","Szom"];
+const pad = n => String(n).padStart(2,"0");
+
+const navList  = document.getElementById("navList");
+const mainArea = document.getElementById("mainArea");
+const sections = [];
+
+MONTHS.forEach((m) => {
+  const mn = m.num;
+
+  // Sidebar gomb
+  const btn = document.createElement("button");
+  btn.className = "nav-btn";
+  btn.textContent = m.n;
+  navList.appendChild(btn);
+
+  // Héber hónapok összegyűjtése ehhez a Gergely-hónaphoz
+  const hSet = new Set();
+  for (let d = 1; d <= m.d; d++) {
+    const k = `2026-${pad(mn)}-${pad(d)}`;
+    if (DATA[k]) hSet.add(DATA[k][0]);
+  }
+
+  // Section
+  const sec = document.createElement("section");
+  sec.className = "month-sec";
+
+  // Cím
+  const head = document.createElement("div");
+  head.className = "month-head";
+  head.innerHTML = `${m.n} 2026 <span class="heb">// Héber: ${[...hSet].join(" → ")}</span>`;
+
+  // Táblázat
+  let rows = "";
+  for (let d = 1; d <= m.d; d++) {
+    const k   = `2026-${pad(mn)}-${pad(d)}`;
+    const hd  = DATA[k] || ["–","–","",""];
+    const dow = new Date(2026, mn - 1, d).getDay();
+    const sat = dow === 6;
+    const w   = WD[dow];
+
+    // Gergely dátum formázva: pl. "jan. 1."
+    const gregStr = `${m.n.substring(0,3).toLowerCase()}. ${d}.`;
+
+    let pill = "";
+    if (hd[2])     pill = `<span class="pill ${hd[3]}">${hd[2]}</span>`;
+    else if (sat)  pill = `<span class="ps">Szombat</span>`;
+
+    rows += `<tr${sat ? ' class="shab"' : ''}>
+      <td class="cg-date">${gregStr}</td>
+      <td class="cg-day">${w}</td>
+      <td class="ch-mon">${hd[0]}</td>
+      <td class="ch-day">${hd[1]}</td>
+      <td class="ch-hol">${pill}</td>
+    </tr>`;
+  }
+
+  const tbl = document.createElement("table");
+  tbl.innerHTML = `<thead><tr>
+    <th>Gergely dátum</th>
+    <th>Hétköznap</th>
+    <th>Héber hónap</th>
+    <th>Héber nap</th>
+    <th>Ünnep / megjegyzés</th>
+  </tr></thead><tbody>${rows}</tbody>`;
+
+  sec.appendChild(head);
+  sec.appendChild(tbl);
+  mainArea.appendChild(sec);
+  sections.push(sec);
+
+  btn.addEventListener("click", () => {
+    sec.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+// Aktív hónap kiemelése görgetésnél
+const allBtns = navList.querySelectorAll(".nav-btn");
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const i = sections.indexOf(e.target);
+      if (i >= 0) allBtns.forEach((b, j) => b.classList.toggle("on", j === i));
+    }
+  });
+}, { root: mainArea, threshold: 0.1 });
+sections.forEach(s => obs.observe(s));
+allBtns[0].classList.add("on");
+</script>
+</body>
+</html>

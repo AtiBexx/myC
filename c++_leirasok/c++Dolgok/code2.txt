@@ -1,0 +1,298 @@
+/*
+ * vocab_quiz.cpp
+ * Angol-Magyar szókincsfejleszto kviz
+ * Fordítás: g++ -o vocab_quiz vocab_quiz.cpp
+ * Termuxon:  pkg install clang && clang++ -o vocab_quiz vocab_quiz.cpp
+ */
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include <filesystem>
+#include <cctype>
+
+namespace fs = std::filesystem;
+
+// ── Adatszerkezet ──────────────────────────────────────────────────────────
+struct Entry {
+    std::vector<std::string> english;   // egy vagy több angol alak
+    std::vector<std::string> hungarian; // egy vagy több magyar alak
+    std::string pronunciation;          // [dzsuszt ö minit] vagy üres
+};
+
+// ── Segédfüggvények ────────────────────────────────────────────────────────
+
+// Whitespace levágása mindkét végről
+static std::string trim(const std::string& s) {
+    size_t a = s.find_first_not_of(" \t\r\n");
+    if (a == std::string::npos) return "";
+    size_t b = s.find_last_not_of(" \t\r\n");
+    return s.substr(a, b - a + 1);
+}
+
+// Kis betűssé alakítás (ASCII)
+static std::string toLower(std::string s) {
+    for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    return s;
+}
+
+// Szétdarabolás elválasztó szerint (pl. ',' vagy ':')
+static std::vector<std::string> split(const std::string& s, char delim) {
+    std::vector<std::string> parts;
+    std::stringstream ss(s);
+    std::string tok;
+    while (std::getline(ss, tok, delim)) {
+        std::string t = trim(tok);
+        if (!t.empty()) parts.push_back(t);
+    }
+    return parts;
+}
+
+// Kiejtés kinyerése: az utolsó [...] tartalom
+static std::string extractPronunciation(const std::string& s) {
+    size_t open  = s.rfind('[');
+    size_t close = s.rfind(']');
+    if (open != std::string::npos && close != std::string::npos && close > open)
+        return s.substr(open + 1, close - open - 1);
+    return "";
+}
+
+// [...] blokk eltávolítása a szövegből
+static std::string removePronunciation(const std::string& s) {
+    size_t open  = s.rfind('[');
+    size_t close = s.rfind(']');
+    if (open != std::string::npos && close != std::string::npos && close > open) {
+        std::string result = trim(s.substr(0, open)) + trim(s.substr(close + 1));
+        return trim(result);
+    }
+    return s;
+}
+
+// ── Fájl beolvasása ────────────────────────────────────────────────────────
+// Formátum soronként:
+//   angol1 , angol2 -> magyar1 , magyar2 [kiejtés]
+//   vagy
+//   angol1 , angol2 -> magyar1 : magyar2 [kiejtés]
+
+static std::vector<Entry> loadFile(const std::string& path) {
+    std::vector<Entry> entries;
+    std::ifstream file(path);
+    if (!file.is_open()) {
+        std::cerr << "Nem sikerult megnyitni: " << path << "\n";
+        return entries;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        line = trim(line);
+        if (line.empty() || line[0] == '#') continue;
+
+        // Elválasztó: ->
+        size_t arrow = line.find("->");
+        if (arrow == std::string::npos) continue;
+
+        std::string leftSide  = trim(line.substr(0, arrow));
+        std::string rightSide = trim(line.substr(arrow + 2));
+
+        if (leftSide.empty() || rightSide.empty()) continue;
+
+        Entry e;
+
+        // Kiejtés kinyerése a jobb oldalból
+        e.pronunciation = extractPronunciation(rightSide);
+        rightSide = removePronunciation(rightSide);
+
+        // Angol oldal felosztása ',' szerint
+        e.english = split(leftSide, ',');
+
+        // Magyar oldal felosztása ',' vagy ':' szerint
+        if (rightSide.find(',') != std::string::npos)
+            e.hungarian = split(rightSide, ',');
+        else
+            e.hungarian = split(rightSide, ':');
+
+        if (!e.english.empty() && !e.hungarian.empty())
+            entries.push_back(e);
+    }
+    return entries;
+}
+
+// ── Összes .txt / .e fájl betöltése egy mappából ──────────────────────────
+static std::vector<Entry> loadDirectory(const std::string& dir) {
+    std::vector<Entry> all;
+    try {
+        for (const auto& p : fs::directory_iterator(dir)) {
+            std::string ext = p.path().extension().string();
+            if (ext == ".txt" || ext == ".e") {
+                auto part = loadFile(p.path().string());
+                all.insert(all.end(), part.begin(), part.end());
+            }
+        }
+    } catch (...) {}
+    return all;
+}
+
+// ── Válasz ellenőrzése ─────────────────────────────────────────────────────
+static bool checkAnswer(const std::string& input,
+                        const std::vector<std::string>& correct) {
+    std::string norm = toLower(trim(input));
+    for (const auto& c : correct)
+        if (norm == toLower(trim(c))) return true;
+    return false;
+}
+
+// ── Helyes válasz kiíratása ────────────────────────────────────────────────
+static void printCorrect(const std::vector<std::string>& answers,
+                         const std::string& pron) {
+    std::cout << "Helyes valasz: ";
+    for (size_t i = 0; i < answers.size(); ++i) {
+        if (i) std::cout << " / ";
+        std::cout << answers[i];
+    }
+    if (!pron.empty())
+        std::cout << "  [" << pron << "]";
+    std::cout << "\n";
+}
+
+// ── Egy kérdéskör ──────────────────────────────────────────────────────────
+// irány: 0 = angol->magyar, 1 = magyar->angol
+static void askQuestion(const Entry& e, int direction) {
+    const auto& question = (direction == 0) ? e.english    : e.hungarian;
+    const auto& answer   = (direction == 0) ? e.hungarian  : e.english;
+
+    // Kérdés kiírása
+    if (direction == 0)
+        std::cout << "\nAngolul: ";
+    else
+        std::cout << "\nMagyarul: ";
+
+    for (size_t i = 0; i < question.size(); ++i) {
+        if (i) std::cout << " / ";
+        std::cout << question[i];
+    }
+    std::cout << "\n";
+
+    if (direction == 0)
+        std::cout << "Magyar jelentese: ";
+    else
+        std::cout << "Angol jelentese: ";
+
+    // Válasz bekérése – addig, amíg helyes nem lesz (vagy exit)
+    while (true) {
+        std::string input;
+        std::getline(std::cin, input);
+
+        if (toLower(trim(input)) == "exit") {
+            std::cout << "Viszlat!\n";
+            std::exit(0);
+        }
+
+        if (checkAnswer(input, answer)) {
+            std::cout << "Helyes! Jó munka!";
+            if (!e.pronunciation.empty())
+                std::cout << "  Kiejtés: [" << e.pronunciation << "]";
+            std::cout << "\n";
+            break;
+        } else {
+            std::cout << "Nem jo. ";
+            printCorrect(answer, e.pronunciation);
+            std::cout << "Írd be a helyes valaszt a tovabblépéshez: ";
+        }
+    }
+}
+
+// ── Főmenü ─────────────────────────────────────────────────────────────────
+static void showMenu() {
+    std::cout << "\n=== ANGOL-MAGYAR KVIZ ===\n";
+    std::cout << "1. Angol -> Magyar\n";
+    std::cout << "2. Magyar -> Angol\n";
+    std::cout << "3. Mindkét irány (vegyes)\n";
+    std::cout << "0. Kilépés\n";
+    std::cout << "Valasztas: ";
+}
+
+// ── Kviz futtatása ─────────────────────────────────────────────────────────
+static void runQuiz(std::vector<Entry> entries, int mode) {
+    if (entries.empty()) {
+        std::cout << "Nincsenek betöltött szavak!\n";
+        return;
+    }
+
+    // Keverés
+    unsigned seed = static_cast<unsigned>(
+        std::chrono::system_clock::now().time_since_epoch().count());
+    std::shuffle(entries.begin(), entries.end(), std::default_random_engine(seed));
+
+    std::cout << "\nSzavak szama: " << entries.size()
+              << "  |  Kilépés: exit\n";
+
+    for (const auto& entry : entries) {
+        if (mode == 1) {
+            askQuestion(entry, 0); // angol->magyar
+        } else if (mode == 2) {
+            askQuestion(entry, 1); // magyar->angol
+        } else {
+            // Vegyes: mindkét irány
+            askQuestion(entry, 0);
+            askQuestion(entry, 1);
+        }
+    }
+
+    std::cout << "\n*** Gratulálok, végigmentél az összes szón! ***\n";
+}
+
+// ── main ───────────────────────────────────────────────────────────────────
+int main(int argc, char* argv[]) {
+    // Fájl / mappa meghatározása
+    // Alapértelmezett: az exe melletti "words" mappa, vagy argv[1]
+    std::string source = "words";
+    if (argc >= 2) source = argv[1];
+
+    std::vector<Entry> entries;
+
+    // Ha fájl → egyetlen fájl betöltése
+    // Ha mappa → az összes .txt/.e fájl betöltése
+    if (fs::is_directory(source)) {
+        entries = loadDirectory(source);
+        std::cout << "Mappa betoltve: " << source
+                  << " (" << entries.size() << " bejegyzes)\n";
+    } else {
+        entries = loadFile(source);
+        std::cout << "Fajl betoltve: " << source
+                  << " (" << entries.size() << " bejegyzes)\n";
+    }
+
+    if (entries.empty()) {
+        std::cout << "Nem talalhato bejegyzes. Ellenorizd a fajl eleresi utjat.\n";
+        std::cout << "Hasznalat: vocab_quiz [fajl_vagy_mappa]\n";
+        return 1;
+    }
+
+    // Főciklus
+    while (true) {
+        showMenu();
+        std::string choice;
+        std::getline(std::cin, choice);
+        choice = trim(choice);
+
+        if (choice == "0" || toLower(choice) == "exit") {
+            std::cout << "Viszlat!\n";
+            break;
+        } else if (choice == "1") {
+            runQuiz(entries, 1);
+        } else if (choice == "2") {
+            runQuiz(entries, 2);
+        } else if (choice == "3") {
+            runQuiz(entries, 3);
+        } else {
+            std::cout << "Érvénytelen választás.\n";
+        }
+    }
+
+    return 0;
+}

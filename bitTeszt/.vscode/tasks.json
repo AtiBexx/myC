@@ -1,0 +1,1415 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile with gcc 64-bit (debug static)",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_gcc_c64_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 64-bit (release static)",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-O2",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_gcc_c64_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 64-bit (debug static)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp64_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 64-bit (release static)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-O2",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp64_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 32-bit (debug static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_gcc_c32_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 32-bit (release static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\gcc.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_gcc_c32_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 32-bit (debug static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp32_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 32-bit (release static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\g++.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp32_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 64-bit (debug dynamic)",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "${workspaceFolder}/*.c",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_c64_dynamic_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 64-bit (release dynamic)",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-O2",
+                "${workspaceFolder}/*.c",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_c64_dynamic_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 64-bit (debug dynamic)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/*.cpp",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp64_dynamic_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 64-bit (release dynamic)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-O2",
+                "${workspaceFolder}/*.cpp",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp64_dynamic_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 32-bit (debug dynamic)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "${workspaceFolder}/*.c",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_c32_dynamic_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 32-bit (release dynamic)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\gcc.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "${workspaceFolder}/*.c",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_c32_dynamic_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 32-bit (debug dynamic)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "${workspaceFolder}/*.cpp",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp32_dynamic_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 32-bit (release dynamic)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\g++.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "${workspaceFolder}/*.cpp",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_gcc_cpp32_dynamic_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc (create DLL debug)",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.c",
+                "-o",
+                "${workspaceFolder}/mylib_c_debug.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_c_debug.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc (create DLL release)",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-O2",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.c",
+                "-o",
+                "${workspaceFolder}/mylib_c_release.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_c_release.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ (create DLL debug)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_cpp_debug.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_cpp_debug.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ (create DLL release)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-O2",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_cpp_release.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_cpp_release.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 32-bit (create DLL debug)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.c",
+                "-o",
+                "${workspaceFolder}/mylib_c32_debug.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_c32_debug.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with gcc 32-bit (create DLL release)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\gcc.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.c",
+                "-o",
+                "${workspaceFolder}/mylib_c32_release.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_c32_release.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 32-bit (create DLL debug)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_cpp32_debug.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_cpp32_debug.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with g++ 32-bit (create DLL release)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\g++.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_cpp32_release.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_cpp32_release.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with MSVC 64-bit (debug static)",
+            "type": "shell",
+            "command": "F:\\intelij\\vsCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+            "args": [
+                "/EHsc",
+                "/MT",
+                "/nologo",
+                "/Zi",
+                "/Fe:",
+                "${workspaceFolder}/main_msvc64_debug.exe",
+                "${workspaceFolder}/*.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with MSVC 64-bit (release static)",
+            "type": "shell",
+            "command": "F:\\intelij\\vsCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+            "args": [
+                "/EHsc",
+                "/MT",
+                "/nologo",
+                "/O2",
+                "/Fe:",
+                "${workspaceFolder}/main_msvc64_release.exe",
+                "${workspaceFolder}/*.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with MSVC 32-bit (debug static)",
+            "type": "shell",
+            "command": "F:\\intelij\\vsCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\cl.exe",
+            "args": [
+                "/EHsc",
+                "/MT",
+                "/nologo",
+                "/Zi",
+                "/Fe:",
+                "${workspaceFolder}/main_msvc32_debug.exe",
+                "${workspaceFolder}/*.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with MSVC 32-bit (release static)",
+            "type": "shell",
+            "command": "F:\\intelij\\vsCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\cl.exe",
+            "args": [
+                "/EHsc",
+                "/MT",
+                "/nologo",
+                "/O2",
+                "/Fe:",
+                "${workspaceFolder}/main_msvc32_release.exe",
+                "${workspaceFolder}/*.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with MSVC (debug dynamic)",
+            "type": "shell",
+            "command": "cl.exe",
+            "args": [
+                "/EHsc",
+                "/MD",
+                "/nologo",
+                "/Zi",
+                "/Fe:",
+                "${workspaceFolder}/main_msvc_dynamic_debug.exe",
+                "${workspaceFolder}/*.cpp",
+                "mylib.lib"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with MSVC (release dynamic)",
+            "type": "shell",
+            "command": "cl.exe",
+            "args": [
+                "/EHsc",
+                "/MD",
+                "/nologo",
+                "/O2",
+                "/Fe:",
+                "${workspaceFolder}/main_msvc_dynamic_release.exe",
+                "${workspaceFolder}/*.cpp",
+                "mylib.lib"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with MSVC (create DLL debug)",
+            "type": "shell",
+            "command": "cl.exe",
+            "args": [
+                "/EHsc",
+                "/nologo",
+                "/LD",
+                "/Zi",
+                "/Fe:",
+                "${workspaceFolder}/mylib_debug.dll",
+                "${workspaceFolder}/dll_example.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with MSVC (create DLL release)",
+            "type": "shell",
+            "command": "cl.exe",
+            "args": [
+                "/EHsc",
+                "/nologo",
+                "/LD",
+                "/O2",
+                "/Fe:",
+                "${workspaceFolder}/mylib_release.dll",
+                "${workspaceFolder}/dll_example.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "compile with clang++ 64-bit (debug static)",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-g",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_clang64_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang++ 64-bit (release static)",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-O2",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_clang64_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang++ 32-bit (debug static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\clang++.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_clang32_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang++ 32-bit (release static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\clang++.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main_clang32_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang++ (debug dynamic)",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/*.cpp",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_clang_dynamic_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang++ (release dynamic)",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-O2",
+                "${workspaceFolder}/*.cpp",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_clang_dynamic_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang++ (create DLL debug)",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-g",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_debug.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_debug.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang++ (create DLL release)",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-O2",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_release.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_release.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang 64-bit (debug static)",
+            "type": "shell",
+            "command": "clang",
+            "args": [
+                "-g",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_clang_c64_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang 64-bit (release static)",
+            "type": "shell",
+            "command": "clang",
+            "args": [
+                "-O2",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_clang_c64_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang 32-bit (debug static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\clang.exe",
+            "args": [
+                "-g",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_clang_c32_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang 32-bit (release static)",
+            "type": "shell",
+            "command": "F:\\intelij\\mingw32\\bin\\clang.exe",
+            "args": [
+                "-O2",
+                "-m32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/main_clang_c32_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang (debug dynamic)",
+            "type": "shell",
+            "command": "clang",
+            "args": [
+                "-g",
+                "${workspaceFolder}/*.c",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_clang_c_dynamic_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang (release dynamic)",
+            "type": "shell",
+            "command": "clang",
+            "args": [
+                "-O2",
+                "${workspaceFolder}/*.c",
+                "-L.",
+                "-lmylib",
+                "-o",
+                "${workspaceFolder}/main_clang_c_dynamic_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang (create DLL debug)",
+            "type": "shell",
+            "command": "clang",
+            "args": [
+                "-g",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_debug.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_debug.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile with clang (create DLL release)",
+            "type": "shell",
+            "command": "clang",
+            "args": [
+                "-O2",
+                "-shared",
+                "-fPIC",
+                "${workspaceFolder}/dll_example.cpp",
+                "-o",
+                "${workspaceFolder}/mylib_release.dll",
+                "-Wl,--out-implib,${workspaceFolder}/libmylib_release.a"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "compile Java (debug)",
+            "type": "shell",
+            "command": "javac",
+            "args": [
+                "${workspaceFolder}/*.java"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$javac"
+            ]
+        },
+        {
+            "label": "compile Java (release)",
+            "type": "shell",
+            "command": "javac",
+            "args": [
+                "-g:none",
+                "${workspaceFolder}/*.java"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$javac"
+            ]
+        },
+        {
+            "label": "compile Java (debug)",
+            "type": "shell",
+            "command": "javac",
+            "args": [
+                "${workspaceFolder}/*.java",
+                "-d",
+                "${workspaceFolder}/build/java_debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$javac"
+            ]
+        },
+        {
+            "label": "compile Java (release)",
+            "type": "shell",
+            "command": "javac",
+            "args": [
+                "-g:none",
+                "${workspaceFolder}/*.java",
+                "-d",
+                "${workspaceFolder}/build/java_release"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$javac"
+            ]
+        },
+        {
+            "label": "create Java JAR (debug)",
+            "type": "shell",
+            "command": "jar",
+            "args": [
+                "cvf",
+                "${workspaceFolder}/java_debug.jar",
+                "-C",
+                "${workspaceFolder}/build/java_debug",
+                "."
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "create Java JAR (release)",
+            "type": "shell",
+            "command": "jar",
+            "args": [
+                "cvf",
+                "${workspaceFolder}/java_release.jar",
+                "-C",
+                "${workspaceFolder}/build/java_release",
+                "."
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "compile Kotlin (debug)",
+            "type": "shell",
+            "command": "kotlinc",
+            "args": [
+                "${workspaceFolder}/*.kt",
+                "-include-runtime",
+                "-d",
+                "${workspaceFolder}/build/kotlin_debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "compile Kotlin (release)",
+            "type": "shell",
+            "command": "kotlinc",
+            "args": [
+                "-no-stdlib",
+                "${workspaceFolder}/*.kt",
+                "-include-runtime",
+                "-d",
+                "${workspaceFolder}/build/kotlin_release"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "create Kotlin JAR (debug)",
+            "type": "shell",
+            "command": "jar",
+            "args": [
+                "cvf",
+                "${workspaceFolder}/kotlin_debug.jar",
+                "-C",
+                "${workspaceFolder}/build/kotlin_debug",
+                "."
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "create Kotlin JAR (release)",
+            "type": "shell",
+            "command": "jar",
+            "args": [
+                "cvf",
+                "${workspaceFolder}/kotlin_release.jar",
+                "-C",
+                "${workspaceFolder}/build/kotlin_release",
+                "."
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "assemble with NASM (debug)",
+            "type": "shell",
+            "command": "nasm",
+            "args": [
+                "-g",
+                "-f",
+                "win64",
+                "${workspaceFolder}/*.asm",
+                "-o",
+                "${workspaceFolder}/output.obj"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "assemble with NASM (release)",
+            "type": "shell",
+            "command": "nasm",
+            "args": [
+                "-f",
+                "win64",
+                "${workspaceFolder}/*.asm",
+                "-o",
+                "${workspaceFolder}/output.obj"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "link with linker (debug)",
+            "type": "shell",
+            "command": "link",
+            "args": [
+                "/DEBUG",
+                "/SUBSYSTEM:CONSOLE",
+                "${workspaceFolder}/output.obj",
+                "/OUT:${workspaceFolder}/asm_output.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "link with linker (release)",
+            "type": "shell",
+            "command": "link",
+            "args": [
+                "/SUBSYSTEM:CONSOLE",
+                "${workspaceFolder}/output.obj",
+                "/OUT:${workspaceFolder}/asm_output.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "run Python script",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/*.py"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "assemble with MASM (32-bit debug)",
+            "type": "shell",
+            "command": "ml",
+            "args": [
+                "/c",
+                "/Zi",
+                "/Fo${workspaceFolder}/output32.obj",
+                "/Fm${workspaceFolder}/output32.map",
+                "${workspaceFolder}/*.asm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "assemble with MASM (32-bit release)",
+            "type": "shell",
+            "command": "ml",
+            "args": [
+                "/c",
+                "/Fo${workspaceFolder}/output32.obj",
+                "${workspaceFolder}/*.asm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "assemble with MASM (64-bit debug)",
+            "type": "shell",
+            "command": "ml64",
+            "args": [
+                "/c",
+                "/Zi",
+                "/Fo${workspaceFolder}/output64.obj",
+                "/Fm${workspaceFolder}/output64.map",
+                "${workspaceFolder}/*.asm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "assemble with MASM (64-bit release)",
+            "type": "shell",
+            "command": "ml64",
+            "args": [
+                "/c",
+                "/Fo${workspaceFolder}/output64.obj",
+                "${workspaceFolder}/*.asm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "link MASM 32-bit (debug)",
+            "type": "shell",
+            "command": "link",
+            "args": [
+                "/DEBUG",
+                "/SUBSYSTEM:CONSOLE",
+                "${workspaceFolder}/output32.obj",
+                "/OUT:${workspaceFolder}/masm32_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "link MASM 32-bit (release)",
+            "type": "shell",
+            "command": "link",
+            "args": [
+                "/SUBSYSTEM:CONSOLE",
+                "${workspaceFolder}/output32.obj",
+                "/OUT:${workspaceFolder}/masm32_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "link MASM 64-bit (debug)",
+            "type": "shell",
+            "command": "link",
+            "args": [
+                "/DEBUG",
+                "/SUBSYSTEM:CONSOLE",
+                "${workspaceFolder}/output64.obj",
+                "/OUT:${workspaceFolder}/masm64_debug.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "link MASM 64-bit (release)",
+            "type": "shell",
+            "command": "link",
+            "args": [
+                "/SUBSYSTEM:CONSOLE",
+                "${workspaceFolder}/output64.obj",
+                "/OUT:${workspaceFolder}/masm64_release.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: clang++.exe build active file",
+            "command": "F:\\llvm\\bin\\clang++.exe",
+            "args": [
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Task generated by Debugger."
+        }
+    ]
+}

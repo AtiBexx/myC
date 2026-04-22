@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Egy elem megkeresése</title>
+<script>
+function módosít() {
+    var válasz = prompt("Írj be új szöveget");
+    var hely = document.getElementById("itt");
+    hely.innerHTML = válasz;
+}
+</script>
+</head>
+<body>
+<h1>Próbáljunk meg megkeresni egy elemet</h1>
+<button type="button" onclick="módosít()">
+Kattints ide a módosításhoz
+</button>
+<p id="itt">Ez az eredeti szöveg</p>
+</body>
+</html>

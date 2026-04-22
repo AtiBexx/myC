@@ -1,0 +1,775 @@
+{
+    "version": "0.2.0",
+    "inputs": [
+        {
+            "id": "javaMainClass",
+            "type": "promptString",
+            "description": "Java main class name",
+            "default": "HelloWorld"
+        },
+        {
+            "id": "kotlinMainClass",
+            "type": "promptString",
+            "description": "Kotlin main class name",
+            "default": "HelloKt"
+        }
+    ],
+    "configurations": [
+        {
+            "name": "C: gcc 64-bit debug (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_c64_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with gcc 64-bit (debug static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C++: g++ 64-bit debug (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_cpp64_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ 64-bit (debug static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C: gcc 64-bit release (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_c64_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with gcc 64-bit (release static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C++: g++ 64-bit release (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_cpp64_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ 64-bit (release static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C: gcc 32-bit debug (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_c32_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with gcc 32-bit (debug static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C: gcc 32-bit release (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_c32_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with gcc 32-bit (release static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C++: g++ 32-bit debug (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_cpp32_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ 32-bit (debug static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C++: g++ 32-bit release (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_cpp32_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ 32-bit (release static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: g++ debug (dynamic)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ (debug dynamic)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: g++ release (dynamic)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ (release dynamic)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: g++ debug DLL",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ (create DLL debug)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: g++ release DLL",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_gcc_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with g++ (create DLL release)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: MSVC 64-bit debug (static)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc64_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: MSVC 64-bit release (static)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc64_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: MSVC 32-bit debug (static)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc32_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: MSVC 32-bit release (static)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc32_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: MSVC debug (dynamic)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: MSVC release (dynamic)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: MSVC debug DLL",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: MSVC release DLL",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_msvc_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C/C++: clang++ debug (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang++ (debug static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang++ release (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang++ (release static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang++ debug (dynamic)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang++ (debug dynamic)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang++ release (dynamic)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang++ (release dynamic)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang++ debug DLL",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang++ (create DLL debug)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang++ release DLL",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang++ (create DLL release)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang debug (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_c_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang (debug static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang release (static)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_c_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang (release static)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang debug (dynamic)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_c_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang (debug dynamic)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang release (dynamic)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_c_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang (release dynamic)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang debug DLL",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_c_dynamic_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang (create DLL debug)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "C/C++: clang release DLL",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_clang_c_dynamic_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "compile with clang (create DLL release)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "Java: compile and run (debug)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "${input:javaMainClass}",
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole"
+        },
+        {
+            "name": "Java: compile and run (release)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "${input:javaMainClass}",
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "Java: run JAR (debug)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": null,
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "args": [],
+            "vmArgs": [
+                "-jar",
+                "${workspaceFolder}/java_debug.jar"
+            ],
+            "preLaunchTask": "create Java JAR (debug)"
+        },
+        {
+            "name": "Java: run JAR (release)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": null,
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+            "args": [],
+            "vmArgs": [
+                "-jar",
+                "${workspaceFolder}/java_release.jar"
+            ],
+            "preLaunchTask": "create Java JAR (release)"
+        },
+        {
+            "name": "Kotlin: compile and run (debug)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "${input:kotlinMainClass}",
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "args": []
+        },
+        {
+            "name": "Kotlin: compile and run (release)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "${input:kotlinMainClass}",
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+            "args": []
+        },
+        {
+            "name": "Kotlin: run JAR (debug)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": null,
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "args": [],
+            "vmArgs": [
+                "-jar",
+                "${workspaceFolder}/kotlin_debug.jar"
+            ],
+            "preLaunchTask": "create Kotlin JAR (debug)"
+        },
+        {
+            "name": "Kotlin: run JAR (release)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": null,
+            "projectName": "bitTeszt",
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+            "args": [],
+            "vmArgs": [
+                "-jar",
+                "${workspaceFolder}/kotlin_release.jar"
+            ],
+            "preLaunchTask": "create Kotlin JAR (release)"
+        },
+        {
+            "name": "Assembly NASM: run (debug)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/asm_output.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "link with linker (debug)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "Assembly NASM: run (release)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/asm_output.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "link with linker (release)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "Assembly MASM 32-bit: run (debug)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/masm32_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "link MASM 32-bit (debug)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "Assembly MASM 32-bit: run (release)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/masm32_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "link MASM 32-bit (release)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "Assembly MASM 64-bit: run (debug)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/masm64_debug.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "link MASM 64-bit (debug)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "Assembly MASM 64-bit: run (release)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/masm64_release.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "link MASM 64-bit (release)",
+            "miDebuggerPath": "C:/coding/mingw64/bin/gdb.exe"
+        },
+        {
+            "name": "Python: run script",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/hello.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

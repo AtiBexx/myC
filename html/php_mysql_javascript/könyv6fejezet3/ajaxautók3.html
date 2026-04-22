@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Autós legördülő mezők tesztje</title>
+<script src="jquery-3.4.1.js"></script>
+<script language="javascript" type="text/javascript">
+function modelleklekérése()
+{
+    var kijelölés = document.getElementById("márka");
+    var márka = kijelölés.options[kijelölés.selectedIndex].value;
+    var URL = "ajaxautók.php?márka=" + márka;
+    $.get(URL).done(function(válasz) {
+        var modellek = válasz.split(',');
+        var modell = document.getElementById('modell');
+        if (modell) {
+            modell.innerHTML = "";
+            for(i = 0; i < modellek.length; i++) {
+                modell.innerHTML += "<option value='" + modellek[i] +
+                                "'>" + modellek[i] + "</option>";
+            }
+        }
+    });
+}
+</script>
+</head>
+<body>
+<h2>Válaszd ki a kocsidat</h2>
+Márka:
+<select id="márka" onchange="modelleklekérése()">
+<option value="">Válaszd ki a márkát</option>
+<option value="volkswagen">Volkswagen</option>
+<option value="toyota">Toyota</option>
+<option value="renault">Renault</option>
+<option value="ford">Ford</option>
+</select><br><br>
+
+Modell:
+<select id="modell">
+<option value="">Először válassz márkát</option>
+</select>
+</body>
+</html>

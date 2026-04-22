@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A jQuery billentyűleütés-eseményeinek tesztelése</title> <!--<ce:anchor id="pp:280 np:281" role="page-break"/>-->
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    jQuery(document).ready( function() {
+        $("textarea").on("keyup", function() {
+            var darabszám = $(this).val().length;
+            var kimenet = "Karakterek száma: " + darabszám;
+            $("#állapot").text(kimenet);
+        });
+    });
+</script>
+</head>
+<body>
+<h1>Billentyűleütések tesztelése</h1>
+<p>Adj meg némi szöveget a szövegterületen</p>
+<textarea cols="50" rows="20"></textarea><br>
+<p id="állapot"></p>
+</body>
+</html>

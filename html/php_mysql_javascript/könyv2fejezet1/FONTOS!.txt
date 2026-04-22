@@ -1,0 +1,27 @@
+1.
+A html-kódokat szerintem hagyjuk meg eredetiben,
+de az ű,ő,stb. karakterek megfelelő megjelenítéséhez
+át kell állítani az alapértelmezett karakterkészletet.
+
+Ez HTML-ben a legegyszerűbben úgy oldható meg, hogy a <head> szakaszban
+elhelyezzük a következőt: <meta charset="utf-8">
+
+Ezt valamilyen megjegyzésben lehetne elhelyezni az 1. előfordulásnál,
+a 2. könyv 1. fejezet 1.1. ábra kódjánál.
+
+2.
+A CHCP 1250 parancs segít a szimpla MySQL-példáknál, hogy illeszkedjenek az ékezetes betűk a MySQL alapértelmezett betűkészletéhez (latin1).
+Ez viszont, mivel
+	1. A weblapokon UTF8 kell a megfelelő megjelenítéshez, itt még a megfelelő Kelet-Európai kódlap sem adott helyes megjelenítést
+	2. A PHP-kód máskülönben az ékezetes karaktereket helytelenül adja át a MySQL-szervernek, így a lekérdezések hibákat dobnak, vagy még a kapcsolatot sem sikerül létrehozni
+a PHP-s webalkalmazásoknál már kevésnek bizonyult.
+Másik megoldás, hogy a CHCP 1250-et elhagyjuk, meghagyjuk az alapértelmezett K-Európai betűkészletet a parancssorban, és a MySQL-szervert állítjuk át UTF8-ra, hogy tudja kezelni az akár a parancssorból, akár a PHP-ból érkező ékezetes bemeneteket. Ehhez a következőket kell elhelyezni a XAMPP-ból is megnyitható my.ini fájlban:
+[client]
+default-character-set = utf8mb4
+
+[mysqld]
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+[mysql]
+default-character-set = utf8mb4

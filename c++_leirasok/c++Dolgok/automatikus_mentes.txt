@@ -1,0 +1,42 @@
+ Az exit parancs kezelése (Automata mentés)
+Kotlin
+if (currentWords.english == "exit") {
+    // AUTOMATIKUS MENTÉS
+: Kiírjuk, hogy mentsük a fájlt a kilépés előtt
+        std::cout << createVocabFile.savingAndExiting << std::endl;
+outFile.close(); // Lezárjuk a fájlt (ezzel véglegesítjük a puffert) break; // Kilépünk a ciklusból }
+Java
+outFile.close(); // Lezárjuk a fájlt (ezzel véglegesítjük a puffert)
+        break; // Kilépünk a ciklusból
+    }
+/* if (currentWords.english == "exit") { std::cout << "Szeretned menteni a valtoztatasokat kilepes elott? (y/n): "; std::string saveChoice;
+/*
+    if (currentWords.english == "exit") {
+        std::cout << "Szeretned menteni a valtoztatasokat kilepes elott? (y/n): ";
+        std::string saveChoice;
+    std::getline(std::cin, saveChoice);
+    
+    if (saveChoice == "y" || saveChoice == "yes" || saveChoice == "i" || saveChoice == "igen") {
+        outFile.close(); // Mentés és lezárás
+        std::
+/*
+    if (currentWords.english == "exit") {
+        std::cout << "Szeretned menteni a valtoztatasokat kilepes elott? (y/n): ";
+        std::string saveChoice;
+cout << "Valtoztatasok elmentve!" << std::endl; } else { // Itt technikailag nem mentunk semmit, amit eddig a pufferbe irtunk, elveszhet // De mivel mar a ciklusban outFile << ...-t irtunk, az mar ott van a pufferben.
+/*
+    if (currentWords.english == "exit") {
+        std::cout << "Szeretned menteni a valtoztatasokat kilepes elott? (y/n): ";
+        std::string saveChoice;
+        // Ahhoz, hogy tenylegesen NE mentsuk, egy ideiglenes pufferben kellene tarolnunk a szavakat.
+        std::cout << "Kilepes mentes nelkul..." << std::endl;
+    }
+    break;
+}
+*/
+Java
+std::getline(std::cin, saveChoice);
+
+if (saveChoice == "y" || saveChoice == "yes" || saveChoice == "i" || saveChoice == "igen") {
+    outFile.close(); // Mentés és lezárás
+    std::

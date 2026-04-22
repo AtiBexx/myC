@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>XSS-teszt</title>
+<style>
+   input {
+        margin: 5px;
+    }
+</style>
+</head>
+<body>
+<h2>Add meg a keresztneved:</h2>
+<form action="xss-teszt.php" method="post">
+<input type="text" name="knév"><br>
+<input type="submit" value="Név küldése">
+</form>
+</body>
+</html>

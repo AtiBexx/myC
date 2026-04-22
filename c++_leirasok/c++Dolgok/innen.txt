@@ -1,0 +1,52 @@
+/ Szavak betöltése
+std::vector<WordPair> loadWords(const std::string& filename) {
+    std::vector<WordPair> words;
+    std::ifstream file(filename);
+    std::string line;
+
+    if (!file.is_open()) {
+        std::cerr << "Hiba: Nem sikerült megnyitni a fájlt: " << filename << std::endl;
+        return words;
+    }
+
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+
+        WordPair currentWord;
+
+        // 1. Kiejtés keresése [ ] között
+        size_t openBracket = line.find('[');
+        size_t closeBracket = line.find(']');
+
+        if (openBracket != std::string::npos && closeBracket != std::string::npos) {
+            currentWord.pronunciation = line.substr(openBracket + 1, closeBracket - openBracket - 1);
+            line = line.substr(0, openBracket);
+        }
+
+        // 2. Elválasztó keresése (-> vagy >)
+        size_t separatorPos = line.find("->");
+        int skipChars = 2;
+
+        if (separatorPos == std::string::npos) {
+            separatorPos = line.find(">");
+            skipChars = 1;
+        }
+
+        if (separatorPos != std::string::npos) {
+            currentWord.english = line.substr(0, separatorPos);
+
+            size_t hungarianStart = separatorPos + skipChars;
+            if (hungarianStart < line.length()) {
+                currentWord.hungarian = line.substr(hungarianStart);
+            }
+
+            // Trim
+            currentWord.english = trim(currentWord.english);
+            currentWord.hungarian = trim(currentWord.hungarian);
+
+            words.push_back(currentWord);
+        }
+    }
+    file.close();
+    return words;
+}

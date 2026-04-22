@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Az egéresemények tesztelése</title>
+<style>
+    .sárga {
+        background-color: yellow;
+        width: 400px;
+    }
+
+    .piros {
+        background-color: red;
+        width: 400px;
+    }
+</style>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    jQuery(document).ready( function() {
+        $("p").hover( function() {
+            $(this).addClass("piros"); },
+        function() {
+            $(this).removeClass("piros"); });
+    });
+</script>
+</head>
+<body>
+<h1>Ez itt az egéresemények tesztje</h1>
+<p class="sárga">Ez itt olyan tartalom, amelynek megváltozik a színe!</p>
+<p>Ennek a tartalomnak szintén megváltozik a színe!</p>
+</body>
+</html>

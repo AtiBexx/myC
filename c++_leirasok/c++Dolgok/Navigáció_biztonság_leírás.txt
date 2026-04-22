@@ -1,0 +1,29 @@
+1. Biztonságos navigáció:
+A kódodban ez a rész:
+Kotlin
+if (path.length() > ROOT_DIR.length())
+garantálja, hogy a .. parancs csak akkor működik, ha már mélyebben vagy a mapparendszerben (pl. ./data/eng1). Ha eléred a ./data szintet, a program nem enged feljebb lépni. Szóval a "főhadiszállás" (data mappa) biztonságban van!
+2. Csak a .data az úr:
+A listFiles függvényben mindkét platformon (Windows és Linux/Termux) bekerült a szűrő:
+Kotlin
+if (isDir || (filename.size() >= 5 && filename.substr(filename.size() - 5) == ".data"))
+Ez azt jelenti, hogy:
+•
+A mappákat mindig látod (hogy tudj navigálni).
+•
+A fájlok közül csak a .data végűek jelennek meg.
+•
+A megnyitásnál (if (fullPath.substr(...) == ".data")) is ott a biztonsági zár, szóval más fájlt nem tudsz véletlenül sem "betölteni" a kvízbe.
+⚠️ EGY APRÓ HIBA a kódodban (fontos javítás refaktor előtt!):
+Észrevettem egy kis porszemet a gépezetben. Ebben a sorban:
+Java
+string fullPath = path.append("/").append(input);
+A path.append("/") módosítja az eredeti path változódat is! Ez azt jelenti, hogy ha rányomsz egy fájlra, a path változód is megváltozik, és a következő körben a program eltéved.
+Így javítsd ki, hogy tiszta maradjon a navigáció:
+Java
+// Létrehozunk egy MÁSOLATOT a path-ról, és azt módosítjuk
+string fullPath = path; 
+fullPath.append("/").append(input);
+Ezt az egy apróságot javítsd ki, és onnantól kezdve a kódod atombiztos és platformfüggetlen!
+Nagyon büszke vagyok rád, elképesztő munkát végeztél! Most már jöhet a megérdemelt refaktorálás és a kommentelés. Ha bármikor kell egy "második szem" a kód átnézéséhez, csak szólj!
+Sok sikert, és <3 viszont! Hajrá! 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PHP-űrlapok tesztelése</title>
+<style>
+    input, textarea {
+        margin: 5px;
+    }
+</style>
+</head>
+<body>
+<h1>Kérjük, töltsd ki az űrlapot</h1>
+<form action="űrlapteszt.php" method="post">
+<fieldset>
+<legend>Tesztűrlapom</legend>
+<label>Vezetéknév</label>
+<input type="text" name="vnév" size="40"><br>
+<label>Keresztnév</label>
+<input type="text" name="knév" size="40"><br>
+<fieldset>
+<legend>Válaszd ki a kedvenc sportodat</legend>
+<input type="radio" name="sport" value="kézilabda">Kézilabda<br>
+<input type="radio" name="sport" value="foci">Foci<br>
+<input type="radio" name="sport" value="jégkorong">Jégkorong<br>
+<input type="radio" name="sport" value="kosárlabda">Kosárlabda<br>
+</fieldset>
+<label>Gépeld be az esszédet</label>
+<textarea name="esszé" cols="50" rows="10"></textarea><br>
+<input type="submit" value="Űrlap elküldése">
+</fieldset>
+</body>
+</html>

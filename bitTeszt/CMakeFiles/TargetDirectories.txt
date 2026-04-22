@@ -1,0 +1,10 @@
+E:/projects/vscode/bitTeszt/CMakeFiles/cpp_app.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/java_compile.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/java_run.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/run_all.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/edit_cache.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/rebuild_cache.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/list_install_components.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/install.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/install/local.dir
+E:/projects/vscode/bitTeszt/CMakeFiles/install/strip.dir

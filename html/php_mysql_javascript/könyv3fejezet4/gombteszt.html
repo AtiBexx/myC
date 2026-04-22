@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A gombesemények tesztelése</title>
+<script>
+   function kattintsrám(név) {
+     if (név == "súgó") {
+        alert("Segítségre van szükséged?");
+     } else if (név == "vásárlás") {
+        alert("Mit szeretnél venni?");
+     } else if (név == "böngészés") {
+        alert("Böngészhetsz katalógusunkban");
+   }
+   }
+</script>
+</head>
+<body>
+<h1>Az áruház menüje</h1>
+<p>A jelenlegi lehetőségek a következők:</p>
+<button onclick="kattintsrám('vásárlás')">Termék vásárlása</button>
+<button onclick="kattintsrám('böngészés')">Katalógus böngészése</button>
+<button onclick="kattintsrám('súgó')">Segítség kérése</button>
+</body>
+</html>

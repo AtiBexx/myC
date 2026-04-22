@@ -1,0 +1,64 @@
+Ez egy nagyon jó kérdés, és valójában egy gyakori tévhit a Rusttal kapcsolatban! A rövid válasz az, hogy **a Rustban nagyon is léteznek pointerek**, sőt, a nyelv alapja a memóriacímekkel való okos játék.
+
+A Rust nem másol le mindent (mert az borzalmasan lassú lenne), hanem egy teljesen új rendszert használ, amit **Ownership (Tulajdonjog)** rendszernek hívunk.
+
+---
+
+## 1. Vannak pointerek, csak máshogy hívjuk őket
+Amikor C++-ban azt írod, hogy `int *p`, a Rustban ezt **referenciának** hívjuk, és `&i32`-nek írjuk.
+
+* **C++ mutató:** `int *p = &x;`
+* **Rust referencia:** `let p = &x;`
+
+A különbség az, hogy a Rust fordítója garantálja, hogy a pointer (referencia) soha nem mutathat "a semmibe" (null pointer) vagy már felszabadított memóriára.
+
+---
+
+## 2. Move (Áthelyezés) vs. Copy (Másolás)
+Rustban kétféleképpen viselkedhetnek az adatok, ha átadjuk őket:
+
+### A "Move" (A Rust különlegessége)
+Ha egy olyan adatot adsz át, ami sok helyet foglal (pl. egy `String` vagy egy nagy tábla), a Rust **nem másolja le** az adatot, de nem is hagyja ott az eredeti helyén. Egyszerűen "átruházza a tulajdonjogot".
+
+```rust
+let s1 = String::from("Szia");
+let s2 = s1; // Itt NEM másolás történt!
+
+// println!("{}", s1); // Ez HIBA! s1 már nem létezik, "beköltözött" s2-be.
+```
+Itt a háttérben csak a memória címe adódott át (mint egy pointer), de a régi változót a fordító "letiltja", hogy ne lehessen káosz.
+
+### A "Copy"
+Csak azokat az apró dolgokat másolja le automatikusan a Rust, amik a stack-en laknak és fix méretűek (pl. `i32`, `bool`, `f64`). Ezeknél nem drága a másolás.
+
+---
+
+## 3. Hogyan adunk át "címet" Rustban?
+Ha nem akarod, hogy egy változó "eltűnjön" (Move), akkor **kölcsönadod** (Borrowing). Ez pontosan olyan, mint a pointer használata:
+
+
+
+```rust
+fn kiir(szoveg: &String) { // & jelzi, hogy csak kölcsönkapjuk a címet
+    println!("{}", szoveg);
+}
+
+fn main() {
+    let s1 = String::from("Adat");
+    kiir(&s1); // Csak a címet adjuk át (pointer), nem másolunk!
+    println!("Még megvagyok: {}", s1); // s1 életben marad
+}
+```
+
+---
+
+## Összegzés: Miért hitted, hogy nincs pointer?
+
+Valószínűleg azért, mert Rustban nincsenek **"nyers" (raw) pointerek** a mindennapi biztonságos kódban.
+1.  **Nincs Pointer-aritmetika:** Nem tudsz csak úgy hozzáadni 5-öt egy címhez, hogy a szomszéd memóriába nézz (ez veszélyes).
+2.  **Nincs Null Pointer:** Nem tudsz olyan pointert létrehozni, ami a semmire mutat.
+3.  **Smart Pointerek:** A Rust tele van "okos" mutatókkal (`Box`, `Rc`, `Arc`), amik maguktól takarítanak, ha már nincs rájuk szükség.
+
+Szóval a Rust **nem másol mindent**, sőt, sokkal hatékonyabb tud lenni a C++-nál, mert a fordító pontosan tudja, kié az adat, és mikor kell a címet átadni a teljes másolás helyett.
+
+Melyik rész tűnik bonyolultabbnak: a C++ mutatók világa vagy ez a "tulajdonjog" rendszer?
