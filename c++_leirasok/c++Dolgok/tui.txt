@@ -1,0 +1,75 @@
+Igen, teljesen igaz! A DOS-os idők nagyon érdekesek ebből a szempontból:
+
+---
+
+**DOS-ban így rajzoltak "ablakot":**
+
+```asm
+; BIOS videó interrupt - karakter kiírás
+mov ah, 02h      ; kurzor pozíció
+mov bh, 0        ; oldal
+mov dh, 5        ; sor
+mov dl, 10       ; oszlop
+int 10h          ; BIOS interrupt
+
+; Karakter kiírás színnel
+mov ah, 09h
+mov al, '+'      ; sarokkeret karakter
+mov bl, 0x1F     ; fehér betű kék háttér
+mov cx, 1
+int 10h
+```
+
+---
+
+**DOS-os "ablakok" valójában ASCII art volt:**
+
+```
+╔══════════════════╗
+║  File  Edit  View║
+╠══════════════════╣
+║                  ║
+║   > _            ║
+║                  ║
+╚══════════════════╝
+```
+
+Ezek nem igazi pixeles ablakok — a `╔ ═ ╗ ║ ╚ ╝` karakterek a **CP437** kódlapban vannak, és a BIOS ezeket karakterként rajzolta ki. Ezért volt olyan gyors!
+
+---
+
+**A BIOS maga:**
+
+```
+Korai BIOS (1980s)  → 100% Assembly
+Későbbi BIOS        → C + ASM mix
+Modern UEFI (ma)    → főleg C, kis ASM
+```
+
+Az eredeti IBM PC BIOS **8 kilobyte** volt — ma egy UEFI firmware több **megabyte**. Ez mutatja mennyit változott.
+
+---
+
+**Ami igazán érdekes:**
+
+A DOS-os TUI (Text User Interface) programok mint a **Norton Commander**, **Turbo Pascal IDE**, **Volkov Commander** — ezek mind ezt csinálták, és **nagyon gyorsak** voltak mert:
+
+- Nem volt pixel manipuláció
+- Csak karaktereket írtak a videómemóriába **közvetlenül**
+- `0xB8000` — ez volt a CGA videómemória címe, ide írva azonnal megjelent a képernyőn
+
+```asm
+; Közvetlenül videómemóriába írás - gyorsabb mint a BIOS!
+mov ax, 0B800h
+mov es, ax          ; ES = videómemória szegmens
+mov di, 0           ; képernyő bal felső sarok
+mov al, 'A'         ; karakter
+mov ah, 0x1F        ; szín (fehér/kék)
+stosw               ; ír és lépteti a pointert
+```
+
+---
+
+**Szóval igen — nem lehetetlen, sőt:**
+
+A grafikus ablakok előtt **ez volt a standard** — és sok régi fejlesztő szerint gyorsabb és egyszerűbb volt mint a mai GUI frameworkök. A Norton Commander ma is él **mc (Midnight Commander)** formájában Linuxon, ugyanolyan TUI stílusban!

@@ -1,0 +1,709 @@
+# Doxyfile 1.14.0
+# Nyelvtanulo App - Magyar konfiguracio
+# Keszitette: Claude <3
+#
+# Hasznalat:
+#   doxygen -g Doxyfile   <- csak egyszer, letrehozza a fajlt
+#   doxygen Doxyfile      <- ezt futtatod minden alkalommal amikor generalod a doksikat
+#   Majd nyisd meg: E:/English/docs/html/index.html
+
+#---------------------------------------------------------------------------
+# Projekt beallitasok
+#---------------------------------------------------------------------------
+
+# A fajl kodolasa - mindig UTF-8
+DOXYFILE_ENCODING      = UTF-8
+
+# A projekt neve - ez jelenik meg a dokumentacio tetejen
+PROJECT_NAME           = "Nyelvtanulo App"
+
+# Verzio szam - ha van, ide irhatod pl: 1.0.0
+PROJECT_NUMBER         = 1.0.0
+
+# Rovid leiras a projekt fooldalan
+PROJECT_BRIEF          = "Magyar-Angol nyelvtanulo konzol alkalmazas C++ nyelven"
+
+# Logo a dokumentaciohoz - ha van kepfajlod, ide irhatod pl: logo.png
+# Maximum 55px magas, 200px szeles
+PROJECT_LOGO           =
+
+#Ikon a HTML fülekhez
+PROJECT_ICON           =
+
+# Ide generaljuk a dokumentaciot
+OUTPUT_DIRECTORY       = docs
+
+# Almappakra bontja a kimenetet - NO elég kis projektnél
+CREATE_SUBDIRS         = NO
+CREATE_SUBDIRS_LEVEL   = 8
+
+# Unicode fajlnevek engedelyezese
+ALLOW_UNICODE_NAMES    = NO
+
+# A generalt dokumentacio nyelve - MAGYAR!
+OUTPUT_LANGUAGE        = Hungarian
+
+# Rovid leiras megjelenjen a tagok mellett
+BRIEF_MEMBER_DESC      = YES
+
+# Rovid leiras ismetlodik a reszletes leiras elott
+REPEAT_BRIEF           = YES
+
+# Ezeket a szavakat levagja a brief elol (felesleges)
+ABBREVIATE_BRIEF       = "The $name class" \
+                         "The $name widget" \
+                         "The $name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
+
+# Reszletes szekció mindig megjelenjen - NO eleg
+ALWAYS_DETAILED_SEC    = NO
+
+# Oroklott tagok megjelenjenek a leszarmazottban is
+INLINE_INHERITED_MEMB  = NO
+
+# Teljes eleresi ut megjelenjen a fajlneveknel
+FULL_PATH_NAMES        = YES
+
+# Ezt a reszt levagja az eleresi utbol (hogy ne latszodjon az E:/English/ resz)
+STRIP_FROM_PATH        = E:/English/
+
+# Include utvonalakbol is levag
+STRIP_FROM_INC PATH    =
+
+# Rovid fajlnevek - NO, legyen olvasható
+SHORT_NAMES            = NO
+
+# Javadoc stilus: az elso sor legyen a brief - NO, hasznaljuk a @brief -et
+JAVADOC_AUTOBRIEF      = NO
+
+# Javadoc banner stilus
+JAVADOC_BANNER         = NO
+
+# Qt stilus brief
+QT_AUTOBRIEF           = NO
+
+# Tobbsoros /// komment legyen brief - NO
+MULTILINE_CPP_IS_BRIEF = NO
+
+# Python docstring tamogatas
+PYTHON_DOCSTRING       = YES
+
+# Dokumentacio oroklese
+INHERIT_DOCS           = YES
+
+# Minden tagnak kulon oldal - NO, maradjon egyutt
+SEPARATE_MEMBER_PAGES  = NO
+
+# Tab meret a kodban
+TAB_SIZE               = 4
+
+# Egyedi parancsok - most ures
+ALIASES                =
+
+# C optimalizalt kimenet - NO mert C++ projekted van
+# Ha tiszta C lenne YES kellene
+OPTIMIZE_OUTPUT_FOR_C  = NO
+
+# Java/Python optimalizalt kimenet
+OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_FOR_FORTRAN   = NO
+OPTIMIZE_OUTPUT_VHDL   = NO
+OPTIMIZE_OUTPUT_SLICE  = NO
+
+# Fajlkiterjesztes - nyelv megfeleltetés
+EXTENSION_MAPPING      =
+
+# Markdown tamogatas a kommentekben - YES, hasznos
+MARKDOWN_SUPPORT       = YES
+TOC_INCLUDE_HEADINGS   = 6
+MARKDOWN_ID_STYLE      = DOXYGEN
+
+# Automatikus hivatkozasok osztaly nevekre
+AUTOLINK_SUPPORT       = YES
+AUTOLINK_IGNORE_WORDS  =
+
+# STL tamogatas (std::string, std::vector, stb.)
+BUILTIN_STL_SUPPORT    = YES
+
+# C++/CLI tamogatas
+CPP_CLI_SUPPORT        = NO
+SIP_SUPPORT            = NO
+IDL_PROPERTY_SUPPORT   = YES
+
+# Csoporttagok dokumentacioja
+DISTRIBUTE_GROUP_DOC   = NO
+GROUP_NESTED_COMPOUNDS = NO
+SUBGROUPING            = YES
+INLINE_GROUPED_CLASSES = NO
+INLINE_SIMPLE_STRUCTS  = NO
+TYPEDEF_HIDES_STRUCT   = NO
+
+# Cache meret
+LOOKUP_CACHE_SIZE      = 0
+
+# Szalak szama - 0 = automatikus
+NUM_PROC_THREADS       = 0
+
+# Datum/ido a generalt oldalon - DATE megmutatja a datumot
+TIMESTAMP              = DATE
+
+#---------------------------------------------------------------------------
+# Mit dokumentaljon
+#---------------------------------------------------------------------------
+
+# MINDEN entitas dokumentalva legyen meg komment nelkul is - YES
+EXTRACT_ALL            = YES
+
+# Private tagok is - YES, lasd az osztaly belso mukodeset
+EXTRACT_PRIVATE        = YES
+
+# Private virtual metodusok
+EXTRACT_PRIV_VIRTUAL   = YES
+
+# Package scope tagok
+EXTRACT_PACKAGE        = NO
+
+# Static tagok is - YES
+EXTRACT_STATIC         = YES
+
+# Lokalis osztalyok (cpp fajlban definialtak) is
+EXTRACT_LOCAL_CLASSES  = YES
+
+# Lokalis metodusok (Objective-C)
+EXTRACT_LOCAL_METHODS  = NO
+
+# Anonim namespace tagok
+EXTRACT_ANON_NSPACES   = NO
+
+# Nevtelen parameterek neve a definiciobol
+RESOLVE_UNNAMED_PARAMS = YES
+
+# Dokumentalatlan tagok elrejtese - NO, mutasson mindent
+HIDE_UNDOC_MEMBERS     = NO
+
+# Dokumentalatlan osztalyok elrejtese
+HIDE_UNDOC_CLASSES     = NO
+
+# Dokumentalatlan namespace-ek elrejtese
+HIDE_UNDOC_NAMESPACES  = YES
+
+# Friend deklaraciok elrejtese
+HIDE_FRIEND_COMPOUNDS  = NO
+
+# Fuggvenytorzsben levo dokumentacio elrejtese
+HIDE_IN_BODY_DOCS      = NO
+
+# \internal paranccsal jelolt reszek megjelenjenek - NO (privat marad)
+INTERNAL_DOCS          = NO
+
+# Nagy-kisbetu erzekeny fajlnevek - SYSTEM = rendszertol fugg
+# Windows-on NO lenne a jo, de SYSTEM is mukodik
+CASE_SENSE_NAMES       = NO
+
+# Teljes scope nev megjelenjen
+HIDE_SCOPE_NAMES       = NO
+HIDE_COMPOUND_REFERENCE= NO
+
+# Header fajl megjelenjen az osztaly dokumentacioban
+SHOW_HEADERFILE        = YES
+
+# Include fajlok listaja
+SHOW_INCLUDE_FILES     = YES
+SHOW_GROUPED_MEMB_INC  = NO
+
+# Include fajlok idezojellel (nem <>-el)
+FORCE_LOCAL_INCLUDES   = NO
+
+# [inline] cimke inline tagoknál
+INLINE_INFO            = YES
+
+# Tagok rendezese abeceben - YES
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = NO
+
+# Konstruktorok elore
+SORT_MEMBERS_CTORS_1ST = YES
+
+SORT_GROUP_NAMES       = NO
+SORT_BY_SCOPE_NAME     = NO
+STRICT_PROTO_MATCHING  = NO
+
+# TODO lista generalasa - YES, hasznos fejlesztes kozben
+GENERATE_TODOLIST      = YES
+
+# TEST lista
+GENERATE_TESTLIST      = YES
+
+# BUG lista
+GENERATE_BUGLIST       = YES
+
+# DEPRECATED lista
+GENERATE_DEPRECATEDLIST= YES
+
+# Feltételes dokumentacios szekciok
+ENABLED_SECTIONS       =
+
+# Inicializalo sorok max szama
+MAX_INITIALIZER_LINES  = 30
+
+# Hasznalt fajlok listaja az osztalyoknal
+SHOW_USED_FILES        = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = YES
+
+# Fajl verzio szuro
+FILE_VERSION_FILTER    =
+
+# Elrendezesi fajl
+LAYOUT_FILE            =
+
+# Irodalomjegyzek
+CITE_BIB_FILES         =
+
+# Kulso eszkoz eleresi ut
+EXTERNAL_TOOL_PATH     =
+
+#---------------------------------------------------------------------------
+# Figyelmeztetesek
+#---------------------------------------------------------------------------
+
+# Csendes mod - NO, lassuk az uzeneteket
+QUIET                  = NO
+
+# Figyelmeztetesek - YES!
+WARNINGS               = YES
+
+# Dokumentalatlan tagokra figyelmeztetés
+WARN_IF_UNDOCUMENTED   = YES
+
+# Dokumentacios hibakra figyelmeztetés
+WARN_IF_DOC_ERROR      = YES
+
+# Hianyos parameter dokumentaciokon figyelmeztessen
+WARN_IF_INCOMPLETE_DOC = YES
+
+# Nincs parameter dokumentacio
+WARN_NO_PARAMDOC       = YES
+
+# Enum ertekek dokumentalatlanok
+WARN_IF_UNDOC_ENUM_VAL = NO
+
+# Layout fajl hibak
+WARN_LAYOUT_FILE       = YES
+
+# Figyelmeztetés = hiba legyen - NO, csak figyelmeztetés
+WARN_AS_ERROR          = NO
+
+# Figyelmeztetés formatum
+WARN_FORMAT            = "$file:$line: $text"
+WARN_LINE_FORMAT       = "at line $line of file $file"
+
+# Figyelmeztetesek fajlba - ures = konzolra ir
+WARN_LOGFILE           =
+
+#---------------------------------------------------------------------------
+# Bemeneti fajlok
+#---------------------------------------------------------------------------
+
+# A forrasfajlok helye - IDE IRD A SAJAT UTADAT!
+INPUT                  = E:/English/src
+
+# Forras fajlok kodolasa
+INPUT_ENCODING         = UTF-8
+INPUT_FILE_ENCODING    =
+
+# Milyen fajlokat dolgozzon fel
+FILE_PATTERNS          = *.h \
+                         *.hpp \
+                         *.cpp \
+                         *.c
+
+# Almappakat is keressen at - YES!
+RECURSIVE              = YES
+
+# Kizart fajlok/mappak - pl. ha van build mappa
+EXCLUDE                =
+
+# Szimbolikus linkek kizarasa
+EXCLUDE_SYMLINKS       = NO
+
+# Kizart mintak
+EXCLUDE_PATTERNS       =
+
+# Kizart szimbolumok
+EXCLUDE_SYMBOLS        =
+
+# Pelda kodok helye
+EXAMPLE_PATH           =
+EXAMPLE_PATTERNS       = *
+EXAMPLE_RECURSIVE      = NO
+
+# Kepek helye a dokumentaciohoz
+IMAGE_PATH             = docs
+
+# Bemeneti szuro
+INPUT_FILTER           =
+FILTER_PATTERNS        =
+FILTER_SOURCE_FILES    = NO
+FILTER_SOURCE_PATTERNS =
+
+# README.md legyen a fooldal - ha van README.md a gyokerben
+USE_MDFILE_AS_MAINPAGE = README.md
+
+# Implicit mappa dokumentacio
+IMPLICIT_DIR_DOCS      = YES
+
+# Fortran komment hossz
+FORTRAN_COMMENT_AFTER  = 72
+
+#---------------------------------------------------------------------------
+# Forrasbongeszo
+#---------------------------------------------------------------------------
+
+# Forras kod bongeszheto legyen - YES!
+SOURCE_BROWSER         = YES
+
+# Fuggvenytorzs beagyazva a dokumentacioban - YES
+INLINE_SOURCES         = YES
+
+# Doxygen kommentek eltunjenek a forrasbol
+STRIP_CODE_COMMENTS    = YES
+
+# Ki hivja ezt a fuggvenyt
+REFERENCED_BY_RELATION = YES
+
+# Mit hiv ez a fuggveny
+REFERENCES_RELATION    = YES
+
+# Hivatkozasok a forrasra mutassanak
+REFERENCES_LINK_SOURCE = YES
+
+# Tooltip a forras hivatkozasokon
+SOURCE_TOOLTIPS        = YES
+
+# htags eszkoz
+USE_HTAGS              = NO
+
+# Header fajlok massolata
+VERBATIM_HEADERS       = YES
+
+#---------------------------------------------------------------------------
+# Ábécé index
+#---------------------------------------------------------------------------
+
+# Abece index - YES
+ALPHABETICAL_INDEX     = YES
+IGNORE_PREFIX          =
+
+#---------------------------------------------------------------------------
+# HTML kimenet
+#---------------------------------------------------------------------------
+
+# HTML generalas - YES!
+GENERATE_HTML          = YES
+
+# HTML kimenet helye (OUTPUT_DIRECTORY/html)
+HTML_OUTPUT            = html
+
+# HTML fajl kiterjesztes
+HTML_FILE_EXTENSION    = .html
+
+# Egyedi fejlec/lab/stilus - ures = alapertelmezett
+HTML_HEADER            =
+HTML_FOOTER            =
+HTML_STYLESHEET        =
+HTML_EXTRA_STYLESHEET  =
+HTML_EXTRA_FILES       =
+
+# Szintema - TOGGLE: felhasznalo valaszthat vilagos/sotet kozott
+HTML_COLORSTYLE        = TOGGLE
+
+# Szin (0-359) - 220 = kek
+HTML_COLORSTYLE_HUE    = 220
+
+# Szin telitettseg (0-255)
+HTML_COLORSTYLE_SAT    = 100
+
+# Gamma korrekcio
+HTML_COLORSTYLE_GAMMA  = 80
+
+# Dinamikus menu - YES
+HTML_DYNAMIC_MENUS     = YES
+
+# Dinamikus szekciok
+HTML_DYNAMIC_SECTIONS  = NO
+
+# Kod osszecsukhato legyen - YES
+HTML_CODE_FOLDING      = YES
+
+# Masolas vagonba gomb - YES
+HTML_COPY_CLIPBOARD    = YES
+
+# Cookie projekt specifikus
+HTML_PROJECT_COOKIE    =
+
+# Index bejegyzesek szama
+HTML_INDEX_NUM_ENTRIES = 100
+
+# Apple Xcode docset - NO
+GENERATE_DOCSET        = NO
+DOCSET_FEEDNAME        = "Doxygen generated docs"
+DOCSET_FEEDURL         =
+DOCSET_BUNDLE_ID       = org.doxygen.Project
+DOCSET_PUBLISHER_ID    = org.doxygen.Publisher
+DOCSET_PUBLISHER_NAME  = Publisher
+
+# Windows HTML Help (.chm) - NO
+GENERATE_HTMLHELP      = NO
+CHM_FILE               =
+HHC_LOCATION           =
+GENERATE_CHI           = NO
+CHM_INDEX_ENCODING     =
+BINARY_TOC             = NO
+TOC_EXPAND             = NO
+
+# Sitemap URL
+SITEMAP_URL            =
+
+# Qt Help - NO
+GENERATE_QHP           = NO
+QCH_FILE               =
+QHP_NAMESPACE          = org.doxygen.Project
+QHP_VIRTUAL_FOLDER     = doc
+QHP_CUST_FILTER_NAME   =
+QHP_CUST_FILTER_ATTRS  =
+QHP_SECT_FILTER_ATTRS  =
+QHG_LOCATION           =
+
+# Eclipse Help - NO
+GENERATE_ECLIPSEHELP   = NO
+ECLIPSE_DOC_ID         = org.doxygen.Project
+
+# Index tab elrejtese
+DISABLE_INDEX          = NO
+
+# Fa nezet oldalsavon - YES
+GENERATE_TREEVIEW      = YES
+
+# Oldal vazlat panel - YES
+PAGE_OUTLINE_PANEL     = YES
+
+# Teljes oldalsav
+FULL_SIDEBAR           = NO
+
+# Enum ertekek soronkent
+ENUM_VALUES_PER_LINE   = 4
+
+# Enum ertekek megjelenjenek
+SHOW_ENUM_VALUES       = YES
+
+# Fa szelesseg pixelben
+TREEVIEW_WIDTH         = 250
+
+# Kulso linkek uj ablakban
+EXT_LINKS_IN_WINDOW    = NO
+
+# Email cimek elrejtese
+OBFUSCATE_EMAILS       = YES
+
+# Keplet formatum
+HTML_FORMULA_FORMAT    = png
+FORMULA_FONTSIZE       = 10
+FORMULA_MACROFILE      =
+
+# MathJax - NO
+USE_MATHJAX            = NO
+MATHJAX_VERSION        = MathJax_2
+MATHJAX_FORMAT         = HTML-CSS
+MATHJAX_RELPATH        =
+MATHJAX_EXTENSIONS     =
+MATHJAX_CODEFILE       =
+
+# Kereses - YES
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+EXTERNAL_SEARCH        = NO
+SEARCHENGINE_URL       =
+SEARCHDATA_FILE        = searchdata.xml
+EXTERNAL_SEARCH_ID     =
+EXTRA_SEARCH_MAPPINGS  =
+
+#---------------------------------------------------------------------------
+# LaTeX kimenet - NEM KELL!
+#---------------------------------------------------------------------------
+
+GENERATE_LATEX         = NO
+LATEX_OUTPUT           = latex
+LATEX_CMD_NAME         =
+MAKEINDEX_CMD_NAME     = makeindex
+LATEX_MAKEINDEX_CMD    = makeindex
+COMPACT_LATEX          = NO
+PAPER_TYPE             = a4
+EXTRA_PACKAGES         =
+LATEX_HEADER           =
+LATEX_FOOTER           =
+LATEX_EXTRA_STYLESHEET =
+LATEX_EXTRA_FILES      =
+PDF_HYPERLINKS         = YES
+USE_PDFLATEX           = YES
+LATEX_BATCHMODE        = NO
+LATEX_HIDE_INDICES     = NO
+LATEX_BIB_STYLE        = plainnat
+LATEX_EMOJI_DIRECTORY  =
+
+#---------------------------------------------------------------------------
+# RTF kimenet - NEM KELL
+#---------------------------------------------------------------------------
+
+GENERATE_RTF           = NO
+RTF_OUTPUT             = rtf
+COMPACT_RTF            = NO
+RTF_HYPERLINKS         = NO
+RTF_STYLESHEET_FILE    =
+RTF_EXTENSIONS_FILE    =
+RTF_EXTRA_FILES        =
+
+#---------------------------------------------------------------------------
+# Man page - NEM KELL
+#---------------------------------------------------------------------------
+
+GENERATE_MAN           = NO
+MAN_OUTPUT             = man
+MAN_EXTENSION          = .3
+MAN_SUBDIR             =
+MAN_LINKS              = NO
+
+#---------------------------------------------------------------------------
+# XML kimenet - NEM KELL
+#---------------------------------------------------------------------------
+
+GENERATE_XML           = NO
+XML_OUTPUT             = xml
+XML_PROGRAMLISTING     = YES
+XML_NS_MEMB_FILE_SCOPE = NO
+
+#---------------------------------------------------------------------------
+# Egyeb kimenetek - NEM KELL
+#---------------------------------------------------------------------------
+
+GENERATE_DOCBOOK       = NO
+DOCBOOK_OUTPUT         = docbook
+GENERATE_AUTOGEN_DEF   = NO
+GENERATE_SQLITE3       = NO
+SQLITE3_OUTPUT         = sqlite3
+SQLITE3_RECREATE_DB    = YES
+GENERATE_PERLMOD       = NO
+PERLMOD_LATEX          = NO
+PERLMOD_PRETTY         = YES
+PERLMOD_MAKEVAR_PREFIX =
+
+#---------------------------------------------------------------------------
+# Preprocesszor
+#---------------------------------------------------------------------------
+
+# Preprocesszor direktivan feldolgozasa
+ENABLE_PREPROCESSING   = YES
+
+# Macro kiterjeszitest
+MACRO_EXPANSION        = NO
+EXPAND_ONLY_PREDEF     = NO
+
+# Include fajlok keresese
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           =
+INCLUDE_FILE_PATTERNS  =
+
+# Elore definialt macrok - pl. ha van sajat define-od
+# PREDEFINED           = MY_MACRO=1
+PREDEFINED             =
+
+EXPAND_AS_DEFINED      =
+
+# Fuggveny macrok kihagyasa
+SKIP_FUNCTION_MACROS   = YES
+
+#---------------------------------------------------------------------------
+# Kulso hivatkozasok
+#---------------------------------------------------------------------------
+
+TAGFILES               =
+GENERATE_TAGFILE       =
+ALLEXTERNALS           = NO
+EXTERNAL_GROUPS        = YES
+EXTERNAL_PAGES         = YES
+
+#---------------------------------------------------------------------------
+# Diagramok - Graphviz (dot) kell hozza
+# Ha nincs telepitve a Graphviz: HAVE_DOT = NO
+# Ha telepitve van: HAVE_DOT = YES es szep diagramokat general
+#---------------------------------------------------------------------------
+
+# Dokumentalatlan relациok elrejtese
+HIDE_UNDOC_RELATIONS   = YES
+
+# Graphviz dot eszkoz - YES ha telepitve van, NO ha nincs
+HAVE_DOT               = NO
+
+DOT_NUM_THREADS        = 0
+DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
+DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"
+DOT_NODE_ATTR          = "shape=box,height=0.2,width=0.4"
+DOT_FONTPATH           =
+
+# Osztaly oroklesi diagram - BUILTIN nem kell Graphviz
+CLASS_GRAPH            = BUILTIN
+
+# Egyuttmukodesi diagram
+COLLABORATION_GRAPH    = YES
+
+# Csoport fuggosegi diagram
+GROUP_GRAPHS           = YES
+
+# UML stilus
+UML_LOOK               = NO
+UML_LIMIT_NUM_FIELDS   = 10
+UML_MAX_EDGE_LABELS    = 10
+DOT_UML_DETAILS        = NO
+DOT_WRAP_THRESHOLD     = 17
+
+# Sablon kapcsolatok
+TEMPLATE_RELATIONS     = NO
+
+# Include fuggosegi diagramok
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+
+# Hivas diagram - NO (lassit)
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+
+# Grafikus hierarcia
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DIR_GRAPH_MAX_DEPTH    = 2
+
+# Dot kep formatum
+DOT_IMAGE_FORMAT       = png
+INTERACTIVE_SVG        = NO
+DOT_PATH               =
+DOTFILE_DIRS           =
+DIA_PATH               =
+DIAFILE_DIRS           =
+PLANTUML_JAR_PATH      =
+PLANTUML_CFG_FILE      =
+PLANTUML_INCLUDE_PATH  =
+PLANTUMLFILE_DIRS      =
+DOT_GRAPH_MAX_NODES    = 50
+MAX_DOT_GRAPH_DEPTH    = 0
+DOT_MULTI_TARGETS      = NO
+GENERATE_LEGEND        = YES
+DOT_CLEANUP            = YES
+MSCGEN_TOOL            =
+MSCFILE_DIRS           =

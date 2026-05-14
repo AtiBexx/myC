@@ -1,0 +1,20 @@
+explanation
+
+Am ikor a C++-ban keressük egy karakter helyét (pl. find_last_of), a gép egy s zámot ad vissza (pl. a 12. karakter).
+•
+De mi van, ha nem találja meg ?
+•
+Ilyenkor nem adhat vissza 0-át, mert a 0 az első karaktert jelenti .
+•
+Ezért egy speciális "nem létező" értéket ad vissza, ez a string::npos .
+•
+A te kódodban a if (lastSlash != string::npos) azt jelenti: " Ha SIKERÜLT megtalálni a perjelet..."
+
+### Útvonal kezelés és Navigáció
+
+A program a `path.find_last_of` metódust használja a könyvtárszerkezetben való visszalépéshez.
+
+#### Technikai részletek:
+* **`string::npos`**: Ez egy konstans érték, amit a keresőfüggvények adnak vissza, ha nem találják a keresett karaktert.
+* **Logika**: 
+  

@@ -1,0 +1,106 @@
+Igen, ez most tényleg egy átmeneti „szívás” 😄 — és teljesen jogos, amit mondasz.
+
+## 🧠 Miért nem támogatja minden GCC / Clang?
+
+👉 mert a `std::print / std::println`:
+
+* **C++23 újdonság**
+* viszonylag **friss implementáció**
+* és **nem triviális megírni** (belső buffer, formázás, locale stb.)
+
+---
+
+## 📊 Jelenlegi helyzet (egyszerűen)
+
+### ✔️ MSVC (Visual Studio)
+
+* általában már támogatja
+
+### ⚠️ GCC
+
+* csak **újabb verziókban kezd megjelenni**
+* MinGW → gyakran le van maradva
+
+### ⚠️ Clang
+
+* libc++ implementáció még nem teljes mindenhol
+
+---
+
+## 💡 Miért ilyen lassú?
+
+Mert a C++ standard ≠ compiler
+
+👉 A szabvány csak **előírja**, de:
+
+* GCC dev-eknek meg kell írni
+* Clang-nak is külön
+* stdlib külön (libstdc++, libc++)
+
+👉 ez idő (néha évek)
+
+---
+
+## 🔥 Amit most érdemes csinálni
+
+### ✔️ 1. Használd ezt (legjobb kompromisszum)
+
+```cpp
+#include <format>
+#include <iostream>
+
+std::cout << std::format("Szia {}\n", name);
+```
+
+👉 ez C++20
+👉 sokkal jobban támogatott
+
+---
+
+### ✔️ 2. vagy maradj `cout`-nál
+
+```cpp
+std::cout << "Szia " << name << '\n';
+```
+
+👉 stabil, mindenhol megy
+
+---
+
+## 💥 Pro tipp (amit kevesen csinálnak)
+
+Írj saját wrapper-t:
+
+```cpp
+#include <format>
+#include <iostream>
+
+template<typename... Args>
+void println(std::string_view fmt, Args&&... args) {
+    std::cout << std::format(fmt, std::forward<Args>(args)...) << '\n';
+}
+```
+
+👉 és már használhatod:
+
+```cpp
+println("Szia {}", name);
+```
+
+🔥 gyakorlatilag saját `std::println`
+
+---
+
+## 🧠 Lényeg
+
+* Nem a feature rossz → csak még **nem érett minden platformon**
+* C++ világ mindig lassabban egységesedik
+* 2–3 év múlva ez alap lesz
+
+---
+
+Ha akarod, megmondod melyik:
+👉 GCC verzió / MinGW / Clang
+
+és konkrétan megmondom:
+👉 nálad működne-e vagy sem 👍
