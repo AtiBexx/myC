@@ -1,480 +1,501 @@
-# Punctuation
+Íme a teljes szöveg magyar fordítással, megmaradva az eredeti angol verzióval és a szerkezettel, ahogy kérted.
 
- 
+------
 
-[C++](https://cppreference.com/cpp)
+[C++ language](https://cppreference.com/cpp/language) C++ nyelv
 
- 
+[Basic Concepts](https://cppreference.com/cpp/language/basic_concepts) Alapfogalmak
 
-[C++ language](https://cppreference.com/cpp/language)
+These are the punctuation symbols in C++. The meaning of each symbol is detailed in the linked pages. Ez a szakasz tartalmazza a C++ interpunkciós szimbólumait. Minden egyes szimbólum jelentése részletesen megtalálható a kapcsolódó oldalakon.
 
- 
-
-[Basic Concepts](https://cppreference.com/cpp/language/basic_concepts)
-
- 
-
-These are the punctuation symbols in C++. The meaning of each symbol is detailed in the linked pages.
+------
 
 ### Preprocessing operators
 
-Preprocessing operators are recognized by [preprocessors](https://cppreference.com/cpp/preprocessor).
+### Előprocesszor operátorok
+
+Preprocessing operators are recognized by [preprocessors](https://cppreference.com/cpp/preprocessor). Az előprocesszor operátorokat az előprocesszor ismeri fel.
 
 #### `#`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `%:`.
+[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `%:`. (Alternatív írásmód: `%:`)
 
-- Introduce a [preprocessing directive](https://cppreference.com/cpp/preprocessor).
-- The [preprocessing operator for stringification](https://cppreference.com/cpp/preprocessor/replace##_and_##_operators).
+- Introduce a [preprocessing directive](https://cppreference.com/cpp/preprocessor). Előprocesszor direktíva bevezetése.
+- The [preprocessing operator for stringification](https://cppreference.com/cpp/preprocessor/replace##_and_##_operators). A „szövecsesítési” (*stringification*) előprocesszor operátora.
 
 #### `##`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `%:%:`.
+[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `%:%:`. (Alternatív írásmód: `%:%:`)
 
-- The [preprocessing operator for token pasting](https://cppreference.com/cpp/preprocessor/replace##_and_##_operators).
+- The [preprocessing operator for token pasting](https://cppreference.com/cpp/preprocessor/replace##_and_##_operators). A tokenek összefűzésére (*token pasting*) szolgáló előprocesszor operátora.
+
+------
 
 ### Single-character operators and punctuators
 
+### Egyetlen karakterből álló operátorok és interpunkciós jelek
+
 #### `{` and `}`
 
-[Alternative spellings](https://cppreference.com/cpp/language/operator_alternative) are `<%` and `%>` respectively.
+Alternative spellings are `<%` and `%>` respectively. (Alternatív írásmódok: `<%` és `%>`)
 
-- In a [class](https://cppreference.com/cpp/language/class) definition, delimit the [member specification](https://cppreference.com/cpp/language/class#Member_specification).
-- In an [enumeration](https://cppreference.com/cpp/language/enum) definition, delimit the enumerator list.
-- Delimit a [compound statement](https://cppreference.com/cpp/language/statements#Compound_statements). The compound statement may be part of
+- In a class definition, delimit the member specification. Osztálydefinícióban határjolja le a tagokat.
 
+- In an enumeration definition, delimit the enumerator list. Enumeráció (típus) definíciójában határjolja le az enumerátorok listáját.
 
+- Delimit a compound statement. The compound statement may be part of:
 
-| a [lambda expression](https://cppreference.com/cpp/language/lambda) | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+  Határjol egy összetett utasítást. Az összetett utasítás része lehet a következőnek:
 
-- Part of the [aggregate initialization](https://cppreference.com/cpp/language/aggregate_initialization)(until C++11)[list-initialization](https://cppreference.com/cpp/language/list_initialization)(since C++11) syntax of an [initializer](https://cppreference.com/cpp/language/initialization).
-- In a [namespace definition](https://cppreference.com/cpp/language/namespace), delimit the namespace body.
-- In a [language linkage specification](https://cppreference.com/cpp/language/language_linkage), delimit the declarations.
+  - a function definition (egy függvénydefiníciónak)
+  - a try block (egy try blokknak)
+  - a lambda expression (since C++11) (egy lambda kifejezésnek (C++11 óta))
 
-| In a [`requires` expression](https://cppreference.com/cpp/language/constraints#Requires_expressions), delimit the requirements.In a [compound requirement](https://cppreference.com/cpp/language/constraints#Compound_Requirements), delimit the expression.In an [export declaration](https://cppreference.com/cpp/language/modules), delimit the declarations. | (since C++20) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Part of the aggregate initialization (until C++11) / list-initialization (since C++11) syntax of an initializer. Egy inicializáló aggregált inicializálásának (C++11-ig) vagy lista-inicializálásának (C++11 óta) része.
+
+- In a namespace definition, delimit the namespace body. Névtér (namespace) definícióban határjolja le a névtér testét.
+
+- In a language linkage specification, delimit the declarations. Nyelvi kapcsolódási specifikációban határjolja le a deklarációkat.
+
+- In a requires expression, delimit the requirements. Egy `requires` kifejezésben határjolja le a követelményeket.
+
+- In a compound requirement, delimit the expression. Egy összetett követelményben határjolja le a kifejezést.
+
+- In an export declaration, delimit the declarations (since C++20). Egy export deklarációban határjolja le a deklarációkat (C++20 óta).
 
 #### `[` and `]`
 
-[Alternative spellings](https://cppreference.com/cpp/language/operator_alternative) are `<:` and `:>` respectively.
+Alternative spellings are `<:` and `:>` respectively. (Alternatív írásmódok: `<:` és `:>`)
 
-- [Subscript operator](https://cppreference.com/cpp/language/operator_member_access#Built-in_subscript_operator); part of `operator[]` in [operator overloading](https://cppreference.com/cpp/language/operators#Array_subscript_operator).
-- Part of [array declarator](https://cppreference.com/cpp/language/declarations#Declarators) in a [declaration](https://cppreference.com/cpp/language/declarations) or a [type-id](https://cppreference.com/cpp/language/type#Type_naming) (e.g. in a [`new` expression](https://cppreference.com/cpp/language/new)).
-- Part of `new[]` operator in [operator overloading (allocation function)](https://cppreference.com/cpp/memory/new/operator_new).
-- Part of `delete[]` operator in [delete expression](https://cppreference.com/cpp/language/delete) and [operator overloading (deallocation function)](https://cppreference.com/cpp/memory/new/operator_delete).
-
-| In a [lambda expression](https://cppreference.com/cpp/language/lambda), delimit the [captures](https://cppreference.com/cpp/language/lambda#Lambda_capture).In an [attribute specifier](https://cppreference.com/cpp/language/attributes), delimit the attributes. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| In a [structured binding declaration](https://cppreference.com/cpp/language/structured_binding), delimit the identifier list. | (since C++17) |
-| In a [pack indexing](https://cppreference.com/cpp/language/pack_indexing), delimit [converted constant expression](https://cppreference.com/cpp/language/constant_expression) representing an index. | (since C++26) |
+- Subscript operator; part of `operator[]` in operator overloading. Indexelő operátor; az operátor túlterhelésnél az `operator[]` része.
+- Part of array declarator in a declaration or a type-id (e.g. in a `new` expression). Tömb deklaráló része egy deklarációban vagy egy típus-azonosítóban (pl. egy `new` kifejezésben).
+- Part of `new[]` operator in operator overloading (allocation function). Az `operator new[]` része az operátor túlterheléskor (allokációs függvény).
+- Part of `delete[]` operator in `delete` expression and operator overloading (deallocation function). A `delete[]` operátor része egy `delete` kifejezésben vagy operátor túlterheléskor (deallokációs függvény).
+- In a lambda expression, delimit the captures. Lambda kifejezésben határjolja le a capture-okat (elfogásokat).
+- In an attribute specifier, delimit the attributes (since C++11). Attribút specifikátorban határjolja le az attribútokat (C++11 óta).
+- In a structured binding declaration, delimit the identifier list (since C++17). Strukturált kötési (*structured binding*) deklarációban határjolja le az azonosítók listáját (C++17 óta).
+- In a pack indexing, delimit converted constant expression representing an index (since C++26). Pack indexelésnél határjolja le az indexet reprezentáló konvertált konstans kifejezést (C++26 óta).
 
 #### `(` and `)`
 
-- In an expression, [indicate grouping](https://cppreference.com/cpp/language/expressions#Primary_expressions).
-- [Function call operator](https://cppreference.com/cpp/language/operator_other#Built-in_function_call_operator); part of `operator()` in [operator overloading](https://cppreference.com/cpp/language/operators#Function_call_operator).
-- In a [function-style type cast](https://cppreference.com/cpp/language/explicit_cast), delimit the expression/initializers.
-- In a [`static_cast`](https://cppreference.com/cpp/language/static_cast), [`const_cast`](https://cppreference.com/cpp/language/const_cast), [`reinterpret_cast`](https://cppreference.com/cpp/language/reinterpret_cast), or [`dynamic_cast`](https://cppreference.com/cpp/language/dynamic_cast), delimit the expression.
-- Delimit the operand of the following operators:
+- In an expression, indicate grouping. Kifejezésben jelzi a csoportosítást.
 
+- Function call operator; part of `operator()` in operator overloading. Függvényhívó operátor; az operátor túlterhelésnél az `operator()` része.
 
+- In a function-style type cast, delimit the expression/initializers. Függvényszerű típuskonvertálásnál határjolja le a kifejezést/inicializálókat.
 
-| [`sizeof...`](https://cppreference.com/cpp/language/sizeof...)[`alignof`](https://cppreference.com/cpp/language/alignof)[`noexcept`](https://cppreference.com/cpp/language/noexcept) | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- In a `static_cast`, `const_cast`, `reinterpret_cast`, or `dynamic_cast`, delimit the expression. `static_cast`, `const_cast`, `reinterpret_cast` vagy `dynamic_cast` esetében határjolja le a kifejezést.
 
-- In a [placement `new` expression](https://cppreference.com/cpp/language/new), delimit the placement arguments.
-- In a [`new` expression](https://cppreference.com/cpp/language/new), optionally delimit the type-id.
-- In a [`new` expression](https://cppreference.com/cpp/language/new), delimit the initializers.
-- In a [C-style cast](https://cppreference.com/cpp/language/explicit_cast), delimit the type-id.
-- In a [declaration](https://cppreference.com/cpp/language/declarations) or a [type-id](https://cppreference.com/cpp/language/type#Type_naming), indicate grouping.
-- Delimit the parameter list in
+- Delimit the operand of the following operators: `typeid`, `sizeof`, `sizeof...`, `alignof`, `noexcept` (since C++11). A következő operátorok operandumát határjolja le: `typeid`, `sizeof`, `sizeof...`, `alignof`, `noexcept` (C++11 óta).
 
+- In a placement new expression, delimit the placement arguments. Placement new kifejezésben határjolja le a placement argumentumokat.
 
+- In a `new` expression, optionally delimit the type-id. `new` kifejezésben opcionálisan határjolja le a típus-azonosítót.
 
-| a [lambda expression](https://cppreference.com/cpp/language/lambda) | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| a [user-defined deduction guide](https://cppreference.com/cpp/language/class_template_argument_deduction) | (since C++17) |
-| a [`requires` expression](https://cppreference.com/cpp/language/constraints#Requires_expressions) | (since C++20) |
+- In a `new` expression, delimit the initializers. `new` kifejezésben határjolja le az inicializálókat.
 
-- Part of the [direct-initialization](https://cppreference.com/cpp/language/direct_initialization) syntax of an [initializer](https://cppreference.com/cpp/language/initialization).
-- In an [asm declaration](https://cppreference.com/cpp/language/asm), delimit the string literal.
-- In a [member initializer list](https://cppreference.com/cpp/language/initializer_list), delimit the initializers to a base or member.
-- Delimit the controlling clause of a selection statement or iteration statement, including:
+- In a C-style cast, delimit the type-id. C-stílusú típuskonvertálásnál határjolja le a típus-azonosítót.
 
+- In a declaration or a type-id, indicate grouping. Deklarációban vagy típus-azonosítóban jelzi a csoportosítást.
 
+- Delimit the parameter list in:
 
-| [range-based `for`](https://cppreference.com/cpp/language/range-for) | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+  Határjolja le a paraméterlistát a következőknél:
 
-- In a [handler](https://cppreference.com/cpp/language/catch), delimit the parameter declaration.
-- In a [function-like macro definition](https://cppreference.com/cpp/preprocessor/replace#Function-like_macros), delimit the macro parameters.
-- In a [function-like macro invocation](https://cppreference.com/cpp/preprocessor/replace#Function-like_macros), delimit the macro arguments or prevent commas from being interpreted as argument separators.
-- Part of a `defined`, `__has_include`(since C++17), `__has_cpp_attribute`(since C++20) preprocessing operator.
+  - a function declarator (in a declaration or a type-id) (függvény deklaráló (deklarációban vagy típus-azonosítóban))
+  - a lambda expression (since C++11) (lambda kifejezés (C++11 óta))
+  - a user-defined deduction guide (since C++17) (felhasználói dedukciós útmutató (C++17 óta))
+  - a requires expression (since C++20) (requires kifejezés (C++20 óta))
 
-| In a [`static_assert`](https://cppreference.com/cpp/language/static_assert) declaration, delimit the operands.Delimit the operand of the following specifiers:[`decltype`](https://cppreference.com/cpp/language/decltype)[`noexcept`](https://cppreference.com/cpp/language/noexcept_spec)[`alignas`](https://cppreference.com/cpp/language/alignas)[`explicit`](https://cppreference.com/cpp/language/explicit)(since C++20)In an [attribute](https://cppreference.com/cpp/language/attributes), delimit the attribute arguments. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| Part of [`decltype(auto)`](https://cppreference.com/cpp/language/decltype) specifier. | (since C++14) |
-| Delimit a [fold expression](https://cppreference.com/cpp/language/fold). | (since C++17) |
-| Part of [`__VA_OPT__`](https://cppreference.com/cpp/preprocessor/replace) replacement in a variadic macro definition. | (since C++20) |
+- Part of the direct-initialization syntax of an initializer. Egy inicializáló közvetlen inicializálási szintaxisának része.
+
+- In an `asm` declaration, delimit the string literal. `asm` deklarációban határjolja le a karakterlánc literálisan.
+
+- In a member initializer list, delimit the initializers to a base or member. Tag-inicializáló listában határjolja le a bázis- vagy tag-inicializálókat.
+
+- Delimit the controlling clause of a selection statement or iteration statement, including: `if`, `switch`, `while`, `do-while`, `for`, range-based `for` (since C++11). Határjolja le a választási vagy iterációs utasítások vezérlő részét, többek között: `if`, `switch`, `while`, `do-while`, `for`, valamint a tartományalapú (`range-based`) `for` (C++11 óta).
+
+- In a handler, delimit the parameter declaration. Kezelőben (*handler*) határjolja le a paraméter deklarációját.
+
+- In a function-like macro definition, delimit the macro parameters. Függvényszerű makró definícióban határjolja le a makró paramétereit.
+
+- In a function-like macro invocation, delimit the macro arguments or prevent commas from being interpreted as argument separators. Függvényszerű makró híváskor határjolja le a makró argumentumait, vagy megakadályozza, hogy a vesszőket argumentum-szeparátorként értelmezzék.
+
+- Part of a defined, `__has_include` (since C++17), `__has_cpp_attribute` (since C++20) preprocessing operator. Részét képezi a meghatározott, `__has_include` (C++17 óta) vagy `__has_cpp_attribute` (C++20 óta) előprocesszor operátoroknak.
+
+- In a `static_assert` declaration, delimit the operands (since C++11). `static_assert` deklarációban határjolja le az operandumokat (C++11 óta).
+
+- Delimit the operand of the following specifiers: `decltype`, `noexcept`, `alignas`, `explicit` (since C++20). A következő specifikátorok operandumát határjolja le: `decltype`, `noexcept`, `alignas`, `explicit` (C++20 óta).
+
+- In an attribute, delimit the attribute arguments (since C++11). Attribúmnál határjolja le az attribút argumentumokat (C++11 óta).
+
+- Part of `decltype(auto)` specifier (since C++14). A `decltype(auto)` specifikátor része (C++14 óta).
+
+- Delimit a fold expression (since C++17). Határjol egy fold kifejezést (C++17 óta).
+
+- Part of `__VA_OPT__` replacement in a variadic macro definition (since C++20). Variábilis makró definícióban az `__VA_OPT__` helyettesítése része (C++20 óta).
 
 #### `;`
 
-- Indicate the end of
+Indicate the end of: Jelzi a következők végét:
 
-
-
-| a [module declaration](https://cppreference.com/cpp/language/modules), import declaration, global module fragment introducer, or private module fragment introducera [requirement](https://cppreference.com/cpp/language/constraints#Requires_expressions) | (since C++20) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
-
-- Separate the *condition* and *statement* of a [`for` statement](https://cppreference.com/cpp/language/for).
+- a statement (egy utasításnak)
+- a declaration or member declaration (egy deklarációnak vagy tag-deklarációnak)
+- a module declaration, import declaration, global module fragment introducer, or private module fragment introducer (egy modul deklarációnak, import deklarációnak, globális modul fragment bevezetőnek vagy privát modul fragment bevezetőnek)
+- a requirement (since C++20) (egy követelménynek (C++20 óta))
+- Separate the condition and statement of a `for` statement. Elválasztja a `for` utasítás feltételét és az utasítást.
 
 #### `:`
 
-- Part of [conditional operator](https://cppreference.com/cpp/language/operator_other#Conditional_operator).
-- Part of [label declaration](https://cppreference.com/cpp/language/statements#Labels).
-- In the *base-clause* of a [class definition](https://cppreference.com/cpp/language/class), introduce the [base class](https://cppreference.com/cpp/language/derived_class).
-- Part of [access specifier](https://cppreference.com/cpp/language/access) in member specification.
-- In a [bit-field member declaration](https://cppreference.com/cpp/language/bit_field), introduce the width.
-- In a [constructor](https://cppreference.com/cpp/language/constructor) definition, introduce the member initializer list.
-
-| In a [range-based `for`](https://cppreference.com/cpp/language/range-for) statement, separate the *item-declaration* and the *range-initializer*.In the *enum-base* of an [enumeration declaration](https://cppreference.com/cpp/language/enum), introduce the underlying type. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| In an [attribute specifier](https://cppreference.com/cpp/language/attributes), separate the *attribute-namespace* and the *attribute-list*. | (since C++17) |
-| In a [module declaration](https://cppreference.com/cpp/language/modules) or import declaration of module partition, introduce the module partition name.Part of a [private module fragment](https://cppreference.com/cpp/language/modules#Private_module_fragment) introducer (`module :private;`). | (since C++20) |
+- Part of conditional operator. A kondícionális (ternáres) operátor része.
+- Part of label declaration. Címke (*label*) deklaráció része.
+- In the base-clause of a class definition, introduce the base class. Osztálydefiníció bázis-részében vezeti be a bázisosztályt.
+- Part of access specifier in member specification. A tag-specifikáció hozzáférési specifikátora része.
+- In a bit-field member declaration, introduce the width. Bitmező tag-deklarációban vezeti be a szélességet.
+- In a constructor definition, introduce the member initializer list. Konstruktornál vezeti be a tag-inicializáló listát.
+- In a range-based `for` statement, separate the item-declaration and the range-initializer. Tartományalapú `for` utasításban választja el az elem-deklarációt a tartomány-inicializálótól.
+- In the enum-base of an enumeration declaration, introduce the underlying type (since C++11). Enumeráció deklarációjának alap-típusa esetén vezeti be az alapul szolgáló típust (C++11 óta).
+- In an attribute specifier, separate the attribute-namespace and the attribute-list (since C++17). Attribút specifikátorban választja el az attribút-névteret az attribút-listától (C++17 óta).
+- In a module declaration or import declaration of module partition, introduce the module partition name (since C++20). Modul deklarációnál vagy modul partíció import deklarációjánál vezeti be a modul partíció nevét (C++20 óta).
+- Part of a private module fragment introducer (`module :private;`) (since C++20). Privát modul fragment bevezető része (`module :private;`) (C++20 óta).
 
 #### `?`
 
-- Part of [conditional operator](https://cppreference.com/cpp/language/operator_other#Conditional_operator).
+Part of conditional operator. A kondícionális (ternáres) operátor része.
 
 #### `.`
 
-- [Member access operator](https://cppreference.com/cpp/language/operator_member_access#Built-in_member_access_operators).
-
-| In [aggregate initialization](https://cppreference.com/cpp/language/aggregate_initialization), introduce a designator.Part of [module name or module partition name](https://cppreference.com/cpp/language/modules). | (since C++20) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Member access operator. Tag-elérési operátor.
+- In aggregate initialization, introduce a designator. Aggregált inicializálásnál vezeti be a megnevező (*designator*)-t.
+- Part of module name or module partition name (since C++20). Modulnév vagy modul partíció név része (C++20 óta).
 
 #### `~`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `compl`.
+Alternative spelling is `compl`. (Alternatív írásmód: `compl`)
 
-- [Unary complement operator (a.k.a. bitwise not operator)](https://cppreference.com/cpp/language/operator_arithmetic#Bitwise_logic_operators); part of `operator~` in [operator overloading](https://cppreference.com/cpp/language/operators).
-- Part of an [identifier expression](https://cppreference.com/cpp/language/identifiers) to name a [destructor](https://cppreference.com/cpp/language/destructor) or pseudo-destructor.
+- Unary complement operator (a.k.a. bitwise not operator); part of `operator~` in operator overloading. Unáris kiegészítő operátor (más néven bitbisel négation); az operátor túlterhelésnél az `operator~` része.
+- Part of an identifier expression to name a destructor or pseudo-destructor. A destruktor vagy pseudo-destruktor megnevezésének azonosító kifejezés része.
 
 #### `!`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `not`.
+Alternative spelling is `not`. (Alternatív írásmód: `not`)
 
-- [Logical not operator](https://cppreference.com/cpp/language/operator_logical); part of `operator!` in [operator overloading](https://cppreference.com/cpp/language/operators).
-
-| Part of [consteval if](https://cppreference.com/cpp/language/if#Consteval_if) statement. | (since C++23) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Logical not operator; part of `operator!` in operator overloading. Logikai NEM operátor; az operátor túlterhelésnél az `operator!` része.
+- Part of `consteval if` statement (since C++23). `consteval if` utasítás része (C++23 óta).
 
 #### `+`
 
-- [Unary plus operator](https://cppreference.com/cpp/language/operator_arithmetic#Unary_arithmetic_operators); part of `operator+` in [operator overloading](https://cppreference.com/cpp/language/operators).
-- [Binary plus operator](https://cppreference.com/cpp/language/operator_arithmetic#Additive_operators); part of `operator+` in [operator overloading](https://cppreference.com/cpp/language/operators).
+- Unary plus operator; part of `operator+` in operator overloading. Unáris plusz operátor; az operátor túlterhelésnél az `operator+` része.
+- Binary plus operator; part of `operator+` in operator overloading. Bináris plusz operátor; az operátor túlterhelésnél az `operator+` része.
 
 #### `-`
 
-- [Unary minus operator](https://cppreference.com/cpp/language/operator_arithmetic#Unary_arithmetic_operators); part of `operator-` in [operator overloading](https://cppreference.com/cpp/language/operators).
-- [Binary minus operator](https://cppreference.com/cpp/language/operator_arithmetic#Additive_operators); part of `operator-` in [operator overloading](https://cppreference.com/cpp/language/operators).
+- Unary minus operator; part of `operator-` in operator overloading. Unáris mínusz operátor; az operátor túlterhelésnél az `operator-` része.
+- Binary minus operator; part of `operator-` in operator overloading. Bináris mínusz operátor; az operátor túlterhelésnél az `operator-` része.
 
 #### `*`
 
-- [Indirection operator](https://cppreference.com/cpp/language/operator_member_access#Built-in_indirection_operator); part of `operator*` in [operator overloading](https://cppreference.com/cpp/language/operators).
-- [Multiplication operator](https://cppreference.com/cpp/language/operator_arithmetic#Multiplicative_operators); part of `operator*` in [operator overloading](https://cppreference.com/cpp/language/operators).
-- Pointer operator or part of pointer-to-member operator in a [declarator](https://cppreference.com/cpp/language/declarations#Declarators) or in a [type-id](https://cppreference.com/cpp/language/type#Type_naming).
-
-| Part of `*this` in a [lambda capture](https://cppreference.com/cpp/language/lambda#Lambda_capture) list, to capture the current object by copy. | (since C++17) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Indirection operator; part of `operator*` in operator overloading. Indirekciós operátor; az operátor túlterhelésnél az `operator*` része.
+- Multiplication operator; part of `operator*` in operator overloading. Szorzás operátor; az operátor túlterhelésnél az `operator*` része.
+- Pointer operator or part of pointer-to-member operator in a declarator or in a type-id. Mutató operátor vagy tag-mutató operátor része egy deklarálóban vagy típus-azonosítóban.
+- Part of `*this` in a lambda capture list, to capture the current object by copy (since C++17). Lambda capture listben a `*this` része, amely a jelenlegi objektumot másolással fogja el (C++17 óta).
 
 #### `/`
 
-- [Division operator](https://cppreference.com/cpp/language/operator_arithmetic#Multiplicative_operators); part of `operator/` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Division operator; part of `operator/` in operator overloading. Osztás operátor; az operátor túlterhelésnél az `operator/` része.
 
 #### `%`
 
-- [Modulo operator](https://cppreference.com/cpp/language/operator_arithmetic#Multiplicative_operators); part of `operator%` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Modulo operator; part of `operator%` in operator overloading. Modulo (maradék) operátor; az operátor túlterhelésnél az `operator%` része.
 
 #### `^`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `xor`.
+Alternative spelling is `xor`. (Alternatív írásmód: `xor`)
 
-- [Bitwise xor operator](https://cppreference.com/cpp/language/operator_arithmetic#Bitwise_logic_operators); part of `operator^` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Bitwise xor operator; part of `operator^` in operator overloading. Bitbisel XOR operátor; az operátor túlterhelésnél az `operator^` része.
 
 #### `&`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `bitand`.
+Alternative spelling is `bitand`. (Alternatív írásmód: `bitand`)
 
-- [Address-of operator](https://cppreference.com/cpp/language/operator_member_access#Built-in_address-of_operator); part of `operator&` in [operator overloading](https://cppreference.com/cpp/language/operators#Rarely_overloaded_operators).
-- [Bitwise and operator](https://cppreference.com/cpp/language/operator_arithmetic#Bitwise_logic_operators); part of `operator&` in [operator overloading](https://cppreference.com/cpp/language/operators).
-- Lvalue-reference operator in a [declarator](https://cppreference.com/cpp/language/declarations#Declarators) or in a [type-id](https://cppreference.com/cpp/language/type#Type_naming).
-
-| In a [lambda capture](https://cppreference.com/cpp/language/lambda#Lambda_capture), indicate by-reference capture.[Ref-qualifier](https://cppreference.com/cpp/language/member_functions#ref-qualified_member_functions) in [member function declaration](https://cppreference.com/cpp/language/member_functions). | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Address-of operator; part of `operator&` in operator overloading. Cím-operátor; az operátor túlterhelésnél az `operator&` része.
+- Bitwise and operator; part of `operator&` in operator overloading. Bitbisel AND operátor; az operátor túlterhelésnél az `operator&` része.
+- Lvalue-reference operator in a declarator or in a type-id. Lvalue-referencia operátor egy deklarálóban vagy típus-azonosítóban.
+- In a lambda capture, indicate by-reference capture. Lambda capture-ban jelzi a referenciによる elfogást.
+- Ref-qualifier in member function declaration (since C++11). Referencia-kvalifikátor egy tagfüggvény deklarációban (C++11 óta).
 
 #### `|`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `bitor`.
+Alternative spelling is `bitor`. (Alternatív írásmód: `bitor`)
 
-- [Bitwise or operator](https://cppreference.com/cpp/language/operator_arithmetic#Bitwise_logic_operators); part of `operator|` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Bitwise or operator; part of `operator|` in operator overloading. Bitbisel OR operátor; az operátor túlterhelésnél az `operator|` része.
 
 #### `=`
 
-- [Simple assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator=` in [operator overloading](https://cppreference.com/cpp/language/operators#Assignment_operator), which might be a special member function ([copy assignment operator](https://cppreference.com/cpp/language/copy_assignment)or [move assignment operator](https://cppreference.com/cpp/language/move_assignment)(since C++11)).
-- Part of the [copy-initialization](https://cppreference.com/cpp/language/copy_initialization) and [aggregate initialization](https://cppreference.com/cpp/language/aggregate_initialization)(until C++11)[copy-list-initialization](https://cppreference.com/cpp/language/list_initialization)(since C++11) syntax of an [initializer](https://cppreference.com/cpp/language/initialization).
-- In a [function declaration](https://cppreference.com/cpp/language/function), introduce a [default argument](https://cppreference.com/cpp/language/default_arguments).
-- In a [template parameter list](https://cppreference.com/cpp/language/template_parameters), introduce a [default template argument](https://cppreference.com/cpp/language/template_parameters#Default_template_arguments).
-- In a [namespace alias definition](https://cppreference.com/cpp/language/namespace_alias), separate the alias and the aliased namespace.
-- In an [enum definition](https://cppreference.com/cpp/language/enum), introduce the value of enumerator.
-- Part of *pure-specifier* in a [pure virtual function declaration](https://cppreference.com/cpp/language/abstract_class).
-
-| Capture default in [lambda capture](https://cppreference.com/cpp/language/lambda#Lambda_capture), to indicate by-copy capture.Part of defaulted definition (`=default;`) or deleted definition (`=delete;`) in [function definition](https://cppreference.com/cpp/language/function#Function_definition).In a [type alias declaration](https://cppreference.com/cpp/language/type_alias), separate the alias and the aliased type. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| In a [concept definition](https://cppreference.com/cpp/language/constraints), separate the concept name and the constraint expression. | (since C++20) |
+- Simple assignment operator; part of `operator=` in operator overloading, which might be a special member function (copy assignment operator or move assignment operator (since C++11)). Egyszerű hozzárendelési operátor; az operátor túlterhelésnél az `operator=` része, amely lehet egy speciális tagfüggvény (másolási vagy mozgatási hozzárendelő operátor (C++11 óta)).
+- Part of the copy-initialization and aggregate initialization (until C++11) / copy-list-initialization (since C++11) syntax of an initializer. Egy inicializáló másolási-inicializálásának és aggregált inicializálásának (C++11-ig) vagy másolási lista-inicializálásának (C++11 óta) szintaxisának része.
+- In a function declaration, introduce a default argument. Függvény deklarációban vezeti be az alapértelmezett argumentumot.
+- In a template parameter list, introduce a default template argument. Sablon (template) paraméterlistában vezeti be az alapértelmezett sablonargumentumot.
+- In a namespace alias definition, separate the alias and the aliased namespace. Névtér alias definícióban választja el az aliast a hivatkozott névtértől.
+- In an enum definition, introduce the value of enumerator. Enum definícióban vezeti be az enumerátor értékét.
+- Part of pure-specifier in a pure virtual function declaration. Tiszta virtuális függvény deklarációjában a „tiszta” specifikátor része.
+- Capture default in lambda capture, to indicate by-copy capture. Lambda capture alapértelmezése, amely a másolással történő elfogást jelzi.
+- Part of defaulted definition (`=default;`) or deleted definition (`=delete;`) in function definition. Függvénydefinícióban az alapértelmezett (`=default;`) vagy törölt (`=delete;`) definíció része.
+- In a type alias declaration, separate the alias and the aliased type (since C++11). Típus alias deklarációban választja el az aliast a hivatkozott típustól (C++11 óta).
+- In a concept definition, separate the concept name and the constraint expression (since C++20). Koncepció definícióban választja el a koncepció nevét a korlátozó kifejezéstől (C++20 óta).
 
 #### `<`
 
-- [Less-than operator](https://cppreference.com/cpp/language/operator_comparison); part of `operator<` in [operator overloading](https://cppreference.com/cpp/language/operators#Comparison_operators).
-- In a [`static_cast`](https://cppreference.com/cpp/language/static_cast), [`const_cast`](https://cppreference.com/cpp/language/const_cast), [`reinterpret_cast`](https://cppreference.com/cpp/language/reinterpret_cast), or [`dynamic_cast`](https://cppreference.com/cpp/language/dynamic_cast), introduce the type-id.
-- Introduce a [template argument list](https://cppreference.com/cpp/language/template_parameters#Template_arguments).
-- Introduce a [template parameter list](https://cppreference.com/cpp/language/template_parameters) in
+- Less-than operator; part of `operator<` in operator overloading. Kisebb mint operátor; az operátor túlterhelésnél az `operator<` része.
 
+- In a `static_cast`, `const_cast`, `reinterpret_cast`, or `dynamic_cast`, introduce the type-id. `static_cast`, `const_cast`, `reinterpret_cast` vagy `dynamic_cast` esetében vezeti be a típus-azonosítót.
 
+- Introduce a template argument list. Bevezeti a sablon-argumentum listát.
 
-| a [lambda expression](https://cppreference.com/cpp/language/lambda) | (since C++20) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Introduce a template parameter list in:
 
-- Part of `template<>` in [template specialization declaration](https://cppreference.com/cpp/language/template_specialization).
-- Introduce a header name in
+  Bevezeti a sablon-paraméter listát a következőkben:
 
+  - a template declaration (egy sablon deklarációban)
+  - a partial specialization (egy részleges specializációban)
+  - a lambda expression (since C++20) (egy lambda kifejezésben (C++20 óta))
 
+- Part of `template<>` in template specialization declaration. Sablon specializációs deklarációban a `template<>` része.
 
-| a [`__has_include` preprocessing expression](https://cppreference.com/cpp/preprocessor/include) | (since C++17) |
-| ------------------------------------------------------------ | ------------- |
-| an [`import` declaration](https://cppreference.com/cpp/language/modules) | (since C++20) |
+- Introduce a header name in:
+
+  Bevezeti a fejléцnévben a következőkben:
+
+  - a `#include` directive (egy `#include` direktívában)
+  - a `__has_include` preprocessing expression (since C++17) (egy `__has_include` előprocesszor kifejezésben (C++17 óta))
+  - an import declaration (since C++20) (egy import deklarációban (C++20 óta))
 
 #### `>`
 
-- [Greater-than operator](https://cppreference.com/cpp/language/operator_comparison); part of `operator>` in [operator overloading](https://cppreference.com/cpp/language/operators#Comparison_operators).
-- [`static_cast`](https://cppreference.com/cpp/language/static_cast), [`const_cast`](https://cppreference.com/cpp/language/const_cast), [`reinterpret_cast`](https://cppreference.com/cpp/language/reinterpret_cast), or [`dynamic_cast`](https://cppreference.com/cpp/language/dynamic_cast), indicate the end of type-id.
-- Indicate the end of a [template argument list](https://cppreference.com/cpp/language/template_parameters#Template_arguments).
-- Indicate the end of a [template parameter list](https://cppreference.com/cpp/language/template_parameters) in
+- Greater-than operator; part of `operator>` in operator overloading. Nagyobb mint operátor; az operátor túlterhelésnél az `operator>` része.
 
+- In `static_cast`, `const_cast`, `reinterpret_cast`, or `dynamic_cast`, indicate the end of type-id. `static_cast`, `const_cast`, `reinterpret_cast` vagy `dynamic_cast` esetében jelzi a típus-azonosító végét.
 
+- Indicate the end of a template argument list. Jelzi a sablon-argumentum lista végét.
 
-| a [lambda expression](https://cppreference.com/cpp/language/lambda) | (since C++20) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Indicate the end of a template parameter list in:
 
-- Part of `template<>` in [template specialization declaration](https://cppreference.com/cpp/language/template_specialization).
-- Indicate the end of a header name in
+  Jelzi a sablon-paraméter lista végét a következőkben:
 
+  - a template declaration (egy sablon deklarációban)
+  - a partial specialization (egy részleges specializációban)
+  - a lambda expression (since C++20) (egy lambda kifejezésben (C++20 óta))
 
+- Part of `template<>` in template specialization declaration. Sablon specializációs deklarációban a `template<>` része.
 
-| a [`__has_include` preprocessing expression](https://cppreference.com/cpp/preprocessor/include) | (since C++17) |
-| ------------------------------------------------------------ | ------------- |
-| an [`import` declaration](https://cppreference.com/cpp/language/modules) | (since C++20) |
+- Indicate the end of a header name in:
+
+  Jelzi a fejléccnév végét a következőkben:
+
+  - a `#include` directive (egy `#include` direktívában)
+  - a `__has_include` preprocessing expression (since C++17) (egy `__has_include` előprocesszor kifejezésben (C++17 óta))
+  - an import declaration (since C++20) (egy import deklarációban (C++20 óta))
 
 #### `,`
 
-- [Comma operator](https://cppreference.com/cpp/language/operator_other#Built-in_comma_operator); part of `operator,` in [operator overloading](https://cppreference.com/cpp/language/operators#Rarely_overloaded_operators).
-- List separator in
+- Comma operator; part of `operator,` in operator overloading. Vessző operátor; az operátor túlterhelésnél az `operator,` része.
 
+- List separator in:
 
+  Lista szeparátor (elválasztó) a következőkben:
 
-| a [lambda capture](https://cppreference.com/cpp/language/lambda#Lambda_capture) listan [attribute](https://cppreference.com/cpp/language/attributes) list | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| the declarator list in a [using-declaration](https://cppreference.com/cpp/language/namespace#Using-declarations)the identifier list in a [structured binding](https://cppreference.com/cpp/language/structured_binding) declaration | (since C++17) |
-| the argument list in a [multi-argument subscript expression](https://cppreference.com/cpp/language/operator_member_access#Built-in_subscript_operator) | (since C++23) |
+  - the declarator list in a declaration (egy deklaráció deklaráló listájában)
+  - initializer list in initialization (inicializálásnál az inicializáló listában)
+  - the placement argument list in a placement new (egy placement new placement argument listjében)
+  - the argument list in a function call expression (egy függvényhívási kifejezés argumentum listájában)
+  - the enumerator list in an enum declaration (egy enum deklaráció enumerátor listájában)
+  - the base class list in a class declaration (egy osztály deklaráció bázisosztály listájában)
+  - the member initializer list in a constructor definition (egy konstruktor definíció tag-inicializáló listájában)
+  - a function parameter list (egy függvény paraméterlistájában)
+  - a template parameter list (egy sablon paraméterlistájában)
+  - a template argument list (egy sablon argumentum listájában)
+  - a lambda capture list (egy lambda capture listában)
+  - an attribute list (since C++11) (egy attribút listában (C++11 óta))
+  - the declarator list in a `using`-declaration (egy `using` deklaráció deklaráló listájában)
+  - the identifier list in a structured binding declaration (since C++17) (egy strukturált kötési deklaráció azonosító listájában (C++17 óta))
+  - the argument list in a multi-argument subscript expression (since C++23) (egy több argumentumú indexelő kifejezés argumentum listájában (C++23 óta))
+  - the macro parameter list in a function-like macro definition (egy függvényszerű makró definíció paraméter listájában)
+  - the macro argument list in a function-like macro invocation, unless found between the parentheses of an argument (egy függvényszerű makró hívás argumentum listájában, hacsak nem egy argumentum zárójelei között található)
 
+- In a `static_assert` declaration, separate the arguments (since C++11). `static_assert` deklarációban választja el az argumentumokat (C++11 óta).
 
-
-| In a [`static_assert`](https://cppreference.com/cpp/language/static_assert) declaration, separate the arguments. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+------
 
 ### Multi-character operators and punctuators
 
+### Több karakterből álló operátorok és interpunkciós jelek
+
 #### `[:` and `:]` (since C++26)
 
-- Delimit a [splice specifier](https://cppreference.com/cpp/language/splice_specifiers).
+Delimit a splice specifier. Határjol egy splice specifikátort (C++26 óta).
 
 #### `^^` (since C++26)
 
-- [Reflection operator](https://cppreference.com/cpp/language/operator_reflection).
+Reflection operator. Reflekciós operátor (C++26 óta).
 
 #### `...`
 
-- In the [parameter list](https://cppreference.com/cpp/language/function#Parameter_list) of a function declarator or lambda expression(since C++11) or user-defined deduction guide(since C++17), signify a [variadic function](https://cppreference.com/cpp/language/variadic_arguments).
-- In a [handler](https://cppreference.com/cpp/language/catch), signify catch-all handler.
-
-| In a [macro definition](https://cppreference.com/cpp/preprocessor/replace), signify a variadic macro.Indicate [pack](https://cppreference.com/cpp/language/parameter_pack) declaration and expansion. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| In [pack indexing](https://cppreference.com/cpp/language/pack_indexing#Syntax) expression and specifier. | (since C++26) |
+- In the parameter list of a function declarator or lambda expression (since C++11) or user-defined deduction guide (since C++17), signify a variadic function. Egy függvény deklaráló vagy lambda kifejezés (C++11 óta) vagy egy felhasználói dedukciós útmutató (C++17 óta) paraméterlistájában variábilis függvényt jelez.
+- In a handler, signify catch-all handler. Kezelőben (*handler*) egy „mindenlehetőséget elfogó” (*catch-all*) kezelőt jelez.
+- In a macro definition, signify a variadic macro. Makró definícióban egy variábilis makrót jelez.
+- Indicate pack declaration and expansion (since C++11). A pack deklarációját és kibontását jelzi (C++11 óta).
+- In pack indexing expression and specifier (since C++26). Pack indexelő kifejezésben és specifikátorban (C++26 óta).
 
 #### `::`
 
-- Scope resolution operator in
+Scope resolution operator in: Tartalommeg határozó (*scope resolution*) operátor a következőkben:
 
-
-
-| In an [attribute](https://cppreference.com/cpp/language/attributes), indicate attribute scope. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| Part of [nested namespace definition](https://cppreference.com/cpp/language/namespace). | (since C++17) |
+- a qualified name (egy kvalifikált névben)
+- a pointer-to-member declaration (egy tag-mutató deklarációban)
+- a `new` or `delete` expression, to indicate that only global allocation or deallocation functions are looked up (egy `new` vagy `delete` kifejezésben, jelzve, hogy csak a globális allokációs vagy deallokációs függvények legyenek keresve)
+- In an attribute, indicate attribute scope (since C++11). Attribúmnál jelzi az attribút scope-ját (C++11 óta).
+- Part of nested namespace definition (since C++17). Beágyazott névtér definíciója része (C++17 óta).
 
 #### `.*`
 
-- [Pointer-to-member access operator](https://cppreference.com/cpp/language/operator_member_access#Built-in_pointer-to-member_access_operators).
+Pointer-to-member access operator. Tag-mutató elérést biztosító operátor.
 
 #### `->`
 
-- [Member access operator](https://cppreference.com/cpp/language/operator_member_access#Built-in_member_access_operators); part of `operator->` in [operator overloading](https://cppreference.com/cpp/language/operators).
-
-| In a [function declarator](https://cppreference.com/cpp/language/function) or [lambda expression](https://cppreference.com/cpp/language/lambda), introduce the trailing return type. | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-| In a [user-defined deduction guide](https://cppreference.com/cpp/language/class_template_argument_deduction), introduce the result type. | (since C++17) |
-| In a [compound requirement](https://cppreference.com/cpp/language/constraints#Compound_Requirements), introduce the return type requirement. | (since C++20) |
+- Member access operator; part of `operator->` in operator overloading. Tag-elérési operátor; az operátor túlterhelésnél az `operator->` része.
+- In a function declarator or lambda expression, introduce the trailing return type (since C++11). Függvény deklarálóban vagy lambda kifejezésben vezeti be a trailing return típust (C++11 óta).
+- In a user-defined deduction guide, introduce the result type (since C++17). Felhasználói dedukciós útmutatóban vezeti be az eredmény típust (C++17 óta).
+- In a compound requirement, introduce the return type requirement (since C++20). Összetett követelményben vezeti be a visszaadási típus követelményét (C++20 óta).
 
 #### `->*`
 
-- [Pointer-to-member access operator](https://cppreference.com/cpp/language/operator_member_access#Built-in_pointer-to-member_access_operators); part of `operator->*` in [operator overloading](https://cppreference.com/cpp/language/operators#Rarely_overloaded_operators).
+Pointer-to-member access operator; part of `operator->*` in operator overloading. Tag-mutató elérést biztosító operátor; az operátor túlterhelésnél az `operator->*` része.
 
 #### `+=`
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator+=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator+=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator+=` része.
 
 #### `-=`
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator-=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator-=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator-=` része.
 
 #### `*=`
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator*=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator*=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator*=` része.
 
 #### `/=`
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator/=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator/=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator/=` része.
 
 #### `%=`
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator%=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator%=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator%=` része.
 
 #### `^=`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `xor_eq`.
+Alternative spelling is `xor_eq`. (Alternatív írásmód: `xor_eq`)
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator^=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator^=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator^=` része.
 
 #### `&=`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `and_eq`.
+Alternative spelling is `and_eq`. (Alternatív írásmód: `and_eq`)
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator&=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator&=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator&=` része.
 
 #### `|=`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `or_eq`.
+Alternative spelling is `or_eq`. (Alternatív írásmód: `or_eq`)
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator|=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator|=` in operator overloading. Összecompound hozzárendelési operátor; az operátor túlterhelésnél az `operator|=` része.
 
 #### `==`
 
-- [Equality operator](https://cppreference.com/cpp/language/operator_comparison); part of `operator==` in [operator overloading](https://cppreference.com/cpp/language/operators#Comparison_operators).
+Equality operator; part of `operator==` in operator overloading. Egyenlőség operátora; az operátor túlterhelésnél az `operator==` része.
 
 #### `!=`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `not_eq`.
+Alternative spelling is `not_eq`. (Alternatív írásmód: `not_eq`)
 
-- [Inequality operator](https://cppreference.com/cpp/language/operator_comparison); part of `operator!=` in [operator overloading](https://cppreference.com/cpp/language/operators#Comparison_operators).
+Inequality operator; part of `operator!=` in operator overloading. Egyenlőtlenség operátora; az operátor túlterhelésnél az `operator!=` része.
 
 #### `<=`
 
-- [Less-than-or-equal-to operator](https://cppreference.com/cpp/language/operator_comparison); part of `operator<=` in [operator overloading](https://cppreference.com/cpp/language/operators#Comparison_operators).
+Less-than-or-equal-to operator; part of `operator<=` in operator overloading. „Kisebb vagy egyenlő” operátor; az operátor túlterhelésnél az `operator<=` része.
 
 #### `>=`
 
-- [Greater-than-or-equal-to operator](https://cppreference.com/cpp/language/operator_comparison); part of `operator>=` in [operator overloading](https://cppreference.com/cpp/language/operators#Comparison_operators).
+Greater-than-or-equal-to operator; part of `operator>=` in operator overloading. „Nagyobb vagy egyenlő” operátor; az operátor túlterhelésnél az `operator>=` része.
 
-| `<=>`[Three-way comparison (spaceship) operator](https://cppreference.com/cpp/language/operator_comparison#Three-way_comparison); part of `operator<=>` in [operator overloading](https://cppreference.com/cpp/language/operators#Comparison_operators). | (since C++20) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+#### `<=>`
+
+Three-way comparison (spaceship) operator; part of `operator<=>` in operator overloading (since C++20). Háromirányú összehasonlító (űrhajó) operátor; az operátor túlterhelésnél az `operator<=>` része (C++20 óta).
 
 #### `&&`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `and`.
+Alternative spelling is `and`. (Alternatív írásmód: `and`)
 
-- [Logical and operator](https://cppreference.com/cpp/language/operator_logical); part of `operator&&` in [operator overloading](https://cppreference.com/cpp/language/operators#Rarely_overloaded_operators).
-
-| Rvalue-reference operator in a [declarator](https://cppreference.com/cpp/language/declarations#Declarators) or in a [type-id](https://cppreference.com/cpp/language/type#Type_naming).[Ref-qualifier](https://cppreference.com/cpp/language/member_functions#ref-qualified_member_functions) in [member function declaration](https://cppreference.com/cpp/language/member_functions). | (since C++11) |
-| ------------------------------------------------------------ | ------------- |
-|                                                              |               |
+- Logical and operator; part of `operator&&` in operator overloading. Logikai ÉS operátor; az operátor túlterhelésnél az `operator&&` része.
+- Rvalue-reference operator in a declarator or in a type-id. Rvalue-referencia operátor egy deklarálóban vagy típus-azonosítóban.
+- Ref-qualifier in member function declaration (since C++11). Referencia-kvalifikátor egy tagfüggvény deklarációban (C++11 óta).
 
 #### `||`
 
-[Alternative spelling](https://cppreference.com/cpp/language/operator_alternative) is `or`.
+Alternative spelling is `or`. (Alternatív írásmód: `or`)
 
-- [Logical or operator](https://cppreference.com/cpp/language/operator_logical); part of `operator||` in [operator overloading](https://cppreference.com/cpp/language/operators#Rarely_overloaded_operators).
+Logical or operator; part of `operator||` in operator overloading. Logikai VAGY operátor; az operátor túlterhelésnél az `operator||` része.
 
 #### `<<`
 
-- [Bitwise shift operator](https://cppreference.com/cpp/language/operator_arithmetic#Bitwise_shift_operators); part of `operator<<` in operator overloading ([bitwise operator](https://cppreference.com/cpp/language/operators#Bitwise_arithmetic_operators) or [stream insertion operator](https://cppreference.com/cpp/language/operators#Stream_extraction_and_insertion)).
+Bitwise shift operator; part of `operator<<` in operator overloading (bitwise operator or stream insertion operator). Bitbisel tolási operátor; az operátor túlterhelésnél az `operator<<` része (bitbisel operátor vagy stream beillesztő operátor).
 
 #### `>>`
 
-- [Bitwise shift operator](https://cppreference.com/cpp/language/operator_arithmetic#Bitwise_shift_operators); part of `operator>>` in operator overloading ([bitwise operator](https://cppreference.com/cpp/language/operators#Bitwise_arithmetic_operators) or [stream extraction operator](https://cppreference.com/cpp/language/operators#Stream_extraction_and_insertion)).
+Bitwise shift operator; part of `operator>>` in operator overloading (bitwise operator or stream extraction operator). Bitbisel tolási operátor; az operátor túlterhelésnél az `operator>>` része (bitbisel operátor vagy stream kinyérő operátor).
 
 #### `<<=`
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator<<=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator<<=` in operator overloading. Összetett hozzárendelési operátor; az operátor túlterhelésnél az `operator<<=` része.
 
 #### `>>=`
 
-- [Compound assignment operator](https://cppreference.com/cpp/language/operator_assignment); part of `operator>>=` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Compound assignment operator; part of `operator>>=` in operator overloading. Összetett hozzárendelési operátor; az operátor túlterhelésnél az `operator>>=` része.
 
 #### `++`
 
-- [Increment operator](https://cppreference.com/cpp/language/operator_incdec); part of `operator++` in [operator overloading](https://cppreference.com/cpp/language/operators).
+Increment operator; part of `operator++` in operator overloading. Inkrementációs operátor; az operátor túlterhelésnél az `operator++` része.
 
 #### `--`
 
-- [Decrement operator](https://cppreference.com/cpp/language/operator_incdec); part of `operator--` in [operator overloading](https://cppreference.com/cpp/language/operators).
-
-### References
-
-- C++23 standard (ISO/IEC 14882:2024):
+Decrement operator; part of `operator--` in operator overloading. Dekrementációs operátor; az operátor túlterhelésnél az `operator--` része.
 
 
 
-- C++20 standard (ISO/IEC 14882:2020):
+#### Alternatív írásmód
 
+Mindkét írásmód teljesen egyformánMacrophages hatással bír a C++ nyelvben. A `not_eq` egyszerűen a `!=` operátora úgynevezett alternatív írásmódja (alternative spelling).
 
+### Mi a különbség?
 
-- C++17 standard (ISO/IEC 14882:2017):
+1. `if (d != a)`: Ez a standard, leggyakrabban használt forma. Szinte minden programozó ezt használja, és ez a "norma".
+2. `if (d not_eq a)`: Ez egy kulcsszó, amely pontosan ugyanazt csinálja. Ritkán látod a gyakorlatban, de nyelvtanilag teljesen helyes.
 
+### Miért léteznek ezek az alternatív írásmódok?
 
+Ezek azért kerültek be a nyelvbe, mert voltak olyan régi billentyűzetek (különösen nem angol nyelvű országokban), ahol a `!`, `<`, `>`, `&`, `|` jeleket nagyon nehéz volt elérni (vagy egyáltalán nem voltak a billentyűkön). Így lehetőséget kaptak a programozók, hogy szövegesen is leírják ezeket az operátorokat.
 
-- C++14 standard (ISO/IEC 14882:2014):
+### Más hasonló példák, amiket szintén használhatsz:
 
+A listában, amit korábban fordítottunk, szerepeltek mások is. Íme a leggyakoribb párjai:
 
+| Szimbólum | Alternatív szöveges írásmód | Példa                                         |
+| :-------- | :-------------------------- | :-------------------------------------------- |
+| `&&`      | `and`                       | `if (a && b)` $\rightarrow$ `if (a and b)`    |
+| `||`      | `or`                        | `if (a || b)` $\rightarrow$ `if (a or b)`     |
+| `!`       | `not`                       | `if (!a)` $\rightarrow$ `if (not a)`          |
+| `!=`      | `not_eq`                    | `if (a != b)` $\rightarrow$ `if (a not_eq b)` |
+| `&=`      | `and_eq`                    | `a &= b;` $\rightarrow$ `a and_eq b;`         |
+| `|=`      | `or_eq`                     | `a |= b;` $\rightarrow$ `a or_eq b;`          |
+| `^=`      | `xor_eq`                    | `a ^= b;` $\rightarrow$ `a xor_eq b;`         |
 
-- C++11 standard (ISO/IEC 14882:2011):
-
-
-
-- C++03 standard (ISO/IEC 14882:2003):
-
-
-
-- C++98 standard (ISO/IEC 14882:1998):
-
+Pro tipp: Bár a `not_eq`, `and`, `or` működnek, a legtöbb C++ fejlesztő a szimbólumokat (`!=`, `&&`, `||`) preferálja, mert így gyorsabban felismerhető a kód szerkezete. De ha nehezábban találod a billentyűket, vagy egyszerűbbnek érzed a szöveges formát, nyugodtan használhatod!

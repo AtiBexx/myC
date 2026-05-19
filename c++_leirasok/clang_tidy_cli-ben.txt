@@ -1,0 +1,107 @@
+
+---
+
+# 1. clang-tidy – van CLI-ben
+
+A **clang-tidy** egy parancssoros eszköz.
+
+Használat:
+
+```bash
+clang-tidy linkedList.cpp
+```
+
+De általában kell mellé compile database is:
+
+```bash
+clang-tidy linkedList.cpp -- -std=c++17
+```
+
+vagy CMake projektnél:
+
+```bash
+clang-tidy -p build linkedList.cpp
+```
+
+---
+
+# 2. clang-check – szintén CLI
+
+A **clang-check** is terminálos eszköz.
+
+Használat:
+
+```bash
+clang-check linkedList.cpp -- -std=c++17
+```
+
+Ez:
+
+* átnézi a kódot
+* hibákat keres
+* nem fordít végrehajtható fájlt
+
+---
+
+# 3. Hol vannak ezek valójában?
+
+Ezek nem külön “Windows CMD programok”, hanem:
+
+* Clang csomag részei
+* telepítés után PATH-ba kerülnek
+
+Linuxon:
+
+```bash
+sudo apt install clang clang-tidy clang-tools
+```
+
+Windowson:
+
+* LLVM installer → pipálod:
+
+  * clang
+  * clang-tidy
+  * clang-tools-extra
+
+---
+
+# 4. Mit tudnak pontosan?
+
+## clang-tidy
+
+* modern C++ szabályok
+* hibás pointer használat
+* memory leak gyanú
+* stílus (pl. naming, const helyesség)
+* refactor javaslatok
+
+## clang-check
+
+* gyors “átvizsgálás”
+* kevesebb szabály, gyorsabb
+
+---
+
+# 5. Fontos különbség
+
+```text id="q9n8d2"
+clang++    = fordít (EXE készül)
+clang-tidy = elemzi (nem fordít)
+clang-check= gyors elemzés
+```
+
+---
+
+# 6. Miért jó ez neked?
+
+A te linked list kódodnál például:
+
+* pointer hibákat jelezhet
+* felesleges include-okat lát
+* unused változókat kiszúr
+* modern C++ megoldást javasol
+
+---
+
+
