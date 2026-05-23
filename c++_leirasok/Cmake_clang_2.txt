@@ -1,0 +1,93 @@
+Azért, mert rossz helyen generáltad a buildet.
+
+Most ez történt:
+
+```bash id="vq7y5e"
+E:\English\Release> cmake ... ..
+```
+
+A `..` miatt a source mappa:
+
+```text id="p3d1rk"
+E:\English
+```
+
+de a build fájlokat nem a `Release`-be írta, hanem az `E:\English` gyökérbe:
+
+```text id="m2w7af"
+Build files have been written to: E:/English
+```
+
+Ezért:
+
+```bash id="j8n0zs"
+cmake --build .
+```
+
+a `Release` mappában nem talál cache-t:
+
+```text id="y4l2cu"
+Error: could not load cache
+```
+
+Mert ott nincs `CMakeCache.txt`.
+
+Most így csináld tisztán:
+
+```bash id="r6v9xe"
+cd E:\English
+
+mkdir build
+cd build
+
+cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
+cmake --build .
+```
+
+Vagy ha Release mappát akarsz buildnek:
+
+```bash id="s1f8qt"
+cd E:\English
+
+mkdir Release
+cd Release
+
+cmake -G Ninja -DCMAKE_BUILD_TYPE=Release ^
+-DCMAKE_C_COMPILER=clang ^
+-DCMAKE_CXX_COMPILER=clang++ ..
+
+cmake --build .
+```
+
+Nagyon fontos:
+
+A `cmake` parancsot ABBAN a mappában futtatod, ahová a build fájlokat akarod generálni.
+
+Tehát:
+
+```text id="h5u2nw"
+E:\English\Release
+```
+
+mappában kell létrejönnie ezeknek:
+
+```text id="j7c4py"
+build.ninja
+CMakeCache.txt
+CMakeFiles\
+```
+
+Most véletlenül az `E:\English` gyökérbe generáltad őket.
+
+Ellenőrizd:
+
+```bash id="e9v0kg"
+dir E:\English
+```
+
+valószínű ott van:
+
+* `build.ninja`
+* `CMakeCache.txt`
+
+Ha igen, törölheted őket és kezdd újra tisztán.

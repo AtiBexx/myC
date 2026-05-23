@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1779532525 source:e:\projects\codeblocks\test\tagokmegsemmitese_destruktor\main.cpp
+	<cstdio>
+	<cstdlib>
+	<iostream>
+	<limits>
+

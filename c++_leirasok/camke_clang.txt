@@ -1,0 +1,77 @@
+Ha Ninja + Clang kombinációval akarod fordítani Windows alatt, akkor így:
+
+```bash id="f5g9nh"
+cd E:\English
+
+mkdir build
+cd build
+
+cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
+cmake --build .
+```
+
+Ha `clang++` nincs PATH-ban, akkor előbb ellenőrizd:
+
+```bash id="m9p0ws"
+clang++ --version
+```
+
+és:
+
+```bash id="80plzy"
+ninja --version
+```
+
+Ha működik, akkor az `.exe` itt lesz:
+
+```text id="8kn5d7"
+E:\English\build\
+```
+
+Futtatás:
+
+```bash id="0cl9sa"
+English.exe
+```
+
+vagy:
+
+```bash id="36g5jq"
+.\English.exe
+```
+
+Release build:
+
+```bash id="o57b9j"
+cmake -G Ninja ^
+-DCMAKE_BUILD_TYPE=Release ^
+-DCMAKE_C_COMPILER=clang ^
+-DCMAKE_CXX_COMPILER=clang++ ..
+```
+
+Debug build:
+
+```bash id="opq89z"
+cmake -G Ninja ^
+-DCMAKE_BUILD_TYPE=Debug ^
+-DCMAKE_C_COMPILER=clang ^
+-DCMAKE_CXX_COMPILER=clang++ ..
+```
+
+A `^` a Windows CMD sortörés.
+
+Ha egyszer már generáltad a buildet, utána elég:
+
+```bash id="l4m8vw"
+cmake --build .
+```
+
+A Ninja általában gyorsabb mint:
+
+* MinGW Makefiles
+* sima Make
+* sokszor Visual Studio build is
+
+főleg sok `.cpp` fájlnál.
+
+A CLion is sokszor Ninja + CMake kombót használ háttérben ezért érződik gyorsnak.

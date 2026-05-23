@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1779213235 source:e:\projects\codeblocks\test\linkedlist\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<string>
+	<limits>
+

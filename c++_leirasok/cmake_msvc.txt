@@ -1,0 +1,89 @@
+MSVC-vel (Visual Studio compiler) CMD-ből így fordítasz CMake projektnél:
+
+Először fontos:
+a sima CMD nem mindig elég — általában a Visual Studio Developer Command Prompt kell.
+
+Példa:
+
+```bash id="cf9y8k"
+cd E:\English
+
+mkdir build
+cd build
+
+cmake -G "Visual Studio 17 2022" ..
+cmake --build . --config Release
+```
+
+Debug build:
+
+```bash id="5p3m2x"
+cmake -G "Visual Studio 17 2022" ..
+cmake --build . --config Debug
+```
+
+A `.exe` itt lesz:
+
+```text id="v7o4e2"
+build\Release\English.exe
+```
+
+vagy:
+
+```text id="2z0j6b"
+build\Debug\English.exe
+```
+
+Futtatás:
+
+```bash id="4lq1w7"
+.\Release\English.exe
+```
+
+Ha Visual Studio 2019:
+
+```bash id="0x9m3v"
+cmake -G "Visual Studio 16 2019" ..
+```
+
+Visual Studio 2022:
+
+```bash id="3t8r5c"
+cmake -G "Visual Studio 17 2022" ..
+```
+
+A generátorok listája:
+
+```bash id="z1k7qp"
+cmake --help
+```
+
+Ott látod:
+
+* Ninja
+* MinGW Makefiles
+* Visual Studio
+* NMake
+* stb.
+
+MSVC compiler külön:
+
+```bash id="ps4v9n"
+cl
+```
+
+ha kiírja a compiler verziót, akkor jó environmentben vagy.
+
+A CLion sokszor így működik Windows alatt:
+
+* CMake
+* Ninja
+* MSVC toolchain
+
+vagy:
+
+* CMake
+* Ninja
+* Clang-cl
+
+Ezért gyorsabb mint a régi CodeBlocks/MinGW kombók.

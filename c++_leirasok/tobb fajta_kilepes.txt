@@ -1,0 +1,179 @@
+# `return 0;`
+
+Ez általában a `main()` végén:
+
+```cpp id="6rmgbm"
+int main() {
+    return 0;
+}
+```
+
+Jelentése:
+
+* a program sikeresen lefutott
+* visszatér az operációs rendszerhez
+
+A `0` általában siker.
+
+---
+
+# `exit(0);`
+
+Ez egy függvény a `<cstdlib>`-ből.
+
+```cpp id="s9zsq7"
+#include <cstdlib>
+
+int main() {
+    exit(0);
+}
+```
+
+Ez:
+
+* AZONNAL kilépteti a programot
+* nem csak a függvényből lép ki
+* hanem az egész programból
+
+---
+
+# Nagy különbség
+
+## `return`
+
+```cpp id="5zcdsa"
+void test() {
+    return;
+}
+```
+
+csak az aktuális függvényből lép ki.
+
+---
+
+## `exit()`
+
+```cpp id="wg4n7l"
+exit(0);
+```
+
+➡️ az egész programot leállítja.
+
+---
+
+# Van olyan hogy `return exit(0)`?
+
+Technikailag lehet ilyet írni:
+
+```cpp id="m1hmlz"
+return exit(0);
+```
+
+DE:
+
+* értelmetlen
+* hibás stílus
+* mert az `exit()` soha nem tér vissza
+
+Az `exit()` típusa:
+
+```cpp id="hn0c1o"
+[[noreturn]] void exit(int);
+```
+
+tehát:
+
+* nem ad vissza értéket
+* nem fut tovább a program
+
+---
+
+# Példa
+
+```cpp id="b6n8rn"
+#include <iostream>
+#include <cstdlib>
+
+void test() {
+    std::cout << "test\n";
+    exit(0);
+    std::cout << "nem fut le\n";
+}
+
+int main() {
+    test();
+
+    std::cout << "main sem fut tovább\n";
+}
+```
+
+A második kiírások nem futnak le.
+
+---
+
+# `return EXIT_SUCCESS`
+
+Ez viszont létezik:
+
+```cpp id="m0sqif"
+#include <cstdlib>
+
+int main() {
+    return EXIT_SUCCESS;
+}
+```
+
+vagy:
+
+```cpp id="1dbxud"
+exit(EXIT_SUCCESS);
+```
+
+---
+
+# `EXIT_SUCCESS` és `EXIT_FAILURE`
+
+A `<cstdlib>` adja:
+
+| Makró          | Jelentés |
+| -------------- | -------- |
+| `EXIT_SUCCESS` | siker    |
+| `EXIT_FAILURE` | hiba     |
+
+Példa:
+
+```cpp id="zn4a63"
+return EXIT_FAILURE;
+```
+
+---
+
+# Röviden
+
+| Kód                    | Mit csinál                 |
+| ---------------------- | -------------------------- |
+| `return 0;`            | visszatér a `main`-ből     |
+| `exit(0);`             | teljes program leáll       |
+| `return;`              | aktuális függvényből kilép |
+| `return exit(0);`      | értelmetlen                |
+| `return EXIT_SUCCESS;` | szabványos sikeres kilépés |
+
+---
+
+# Extra érdekesség
+
+C++-ban:
+
+```cpp id="z5e0m0"
+int main() {
+
+}
+```
+
+automatikusan:
+
+```cpp id="n7o82u"
+return 0;
+```
+
+a végén.

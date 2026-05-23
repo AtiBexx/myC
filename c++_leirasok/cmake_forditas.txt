@@ -1,0 +1,86 @@
+
+
+```bash id="gh0vzs"
+cd E:\English
+
+mkdir build
+cd build
+
+cmake -G "MinGW Makefiles" ..
+cmake --build .
+```
+
+Utána futtatás:
+
+```bash id="h6m7fw"
+English.exe
+```
+
+vagy:
+
+```bash id="e4k1l8"
+.\English.exe
+```
+
+Ha Debug build kell:
+
+```bash id="4r5quu"
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
+cmake --build .
+```
+
+Release:
+
+```bash id="ayb4z7"
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+```
+
+Ha módosítasz kódot, elég:
+
+```bash id="wrx7gj"
+cmake --build .
+```
+
+A `cmake ..` csak akkor kell újra, ha:
+
+* új `.cpp`
+* új `.h`
+* új library
+* `CMakeLists.txt` változott
+
+A te projektednél például most ha hozzáadsz:
+
+```text id="90q0rj"
+src/Test/test.cpp
+```
+
+akkor azt bele kell írni az `add_executable()` részbe és újra:
+
+```bash id="8w7gxq"
+cmake ..
+```
+
+Ami még fontos:
+
+Ez hibás/nem szükséges:
+
+```cmake id="4z8ryx"
+src/Translate/translations.txt
+```
+
+A `.txt` fájl nem C++ forrásfájl. Az `add_executable()`-ből érdemes kivenni.
+
+Tehát inkább:
+
+```cmake id="ow0p9w"
+add_executable(English
+    src/main.cpp
+    ...
+    src/Translate/translations.cpp
+)
+```
+
+A `.txt` fájlt futáskor olvassa a program, nem fordításkor.
+
+A `.h` fájlokat sem kötelező beleírni az `add_executable()`-be. Nem baj ha ott vannak, csak nem szükséges.
