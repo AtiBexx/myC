@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1779576877 source:e:\projects\vscode\objertekatadas\objertekatadas\main.cpp
+	<cstdio>
+	<cstdlib>
+	<iostream>
+	<limits>
+
+1779578256 source:e:\projects\vscode\objertekatadas\objertekatadas\main2.cpp
+	<cstdio>
+	<cstdlib>
+	<iostream>
+	<limits>
+
