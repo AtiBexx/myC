@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1779916396 source:/data/githubProjects/myC/myC/alapertelmezettErtekek/main.cpp
+	<cstdlib>
+	<cstdio>
+	<iostream>
+	<limits>
+

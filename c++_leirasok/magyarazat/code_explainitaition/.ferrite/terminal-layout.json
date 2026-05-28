@@ -1,0 +1,20 @@
+{
+  "name": "Workspace",
+  "tabs": [
+    {
+      "name": "Tab 1",
+      "layout": {
+        "Terminal": 1
+      },
+      "terminals": {
+        "1": {
+          "shell": "Default",
+          "cwd": "/data/githubProjects/myC/myC/c++_leirasok/magyarazat/code_explainitaition",
+          "title": "AtiBexx@AtiBexx: /data/githubProjects/myC/myC/c++_leirasok/magyarazat/code_explainitaition"
+        }
+      }
+    }
+  ],
+  "floating_windows": [],
+  "active_tab_index": 0
+}

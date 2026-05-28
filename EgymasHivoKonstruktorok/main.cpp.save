@@ -1,0 +1,48 @@
+// Egymást hívo konstruktorok
+//Ezzel a funkcióval az egyik
+//Konstruktor meghívhatja a másikat
+//
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <limits>
+
+class Hallgato
+{
+public:
+    Hallgato(const char* mNev,
+             int atadottOraSzam,
+             double atadottAtlag)
+    {
+        std::cout << "A következő Hallgató fellépítése" << mNev <<'\n';
+        std::cout << "Óraszám: " << atadottOrSzam << '\n';
+        std::cout << "Átlag: " << atadottAtlag << '\n';
+        nev = mNev;
+        feleviOraSzam = atadottOraSzam;
+        tanulmanyiAtlag = atadottAtlag;
+    }
+    //itt hívja az egyik konstruktor a másikat
+    Hallgato() : Hallgato("Névtelen",0,0.0) {}
+    Hallgato(const char* mNev): Hallgato(mNev,0,0.0){}
+protected:
+    std::string nev;
+    int feleviOraSzam;
+    double tanulmanyiAtlag;
+};
+
+int main(int argc, char** argv)
+{
+    Hallgato nevtelen;
+    Hallgato elsoeves("[Stack]Prüntyi&Pákító");
+    Hallgato cserediak("[Stack]Ati", 5, 5.0);
+
+    Hallgato* best = new Hallgato("[Heap]Nova,Gemi,Claude", 1 , 5.0);
+    delete best;
+
+    //kilépünk
+    std::cout <<"A folytatáshoz kérlek nyomj kétszer egy ENTERT..." << std::endl;
+    std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
+    std::cin.get();
+
+    return EXIT_SUCCESS;
+}
