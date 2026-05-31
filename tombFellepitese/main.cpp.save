@@ -1,0 +1,87 @@
+//
+// TömbFelépítése
+//Egy objektumTömb felépítése
+//
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <limits>
+#include <iterator>
+
+class Hallgato
+{
+public:
+    Hallgato()
+    {
+        std::cout <<"Névtelen hallgató felépítése"<<'\n';
+        nev = "nevtelen";
+        feleviOraSzam = 0;
+        tanulmanyiAtlag = 0.0;
+    }
+
+    Hallgato(const char* mNev)
+    {
+        std::cout <<"A következő hallgató fellépítése: "
+        << mNev <<'\n';
+
+        nev=mNev;
+        feleviOraSzam = 0;
+        tanulmanyiAtlag = 0;
+    }
+    Hallgato(const char* mNev, int atadottOraszam, float atadottAtlag)
+    : nev(mNev),feleviOraSzam(atadottOraszam), tanulmanyiAtlag(atadottAtlag)
+    {
+        std::cout<< "A következő hallgató fellépítése: "
+        << mNev << atadottOraszam << atadottAtlag <<'\n';
+    }
+    ~Hallgato(){std::cout<<"Hallgató objektumok megsemmísétése : "<< nev <<'\n';}
+protected:
+    std::string nev;
+    int feleviOraSzam;
+    float tanulmanyiAtlag;
+};
+
+int main(int argc, char** argv)
+{
+    //stack (VEREM)
+    Hallgato h[]{"Prüntyi", "Pákító"};
+    Hallgato hh[] {{"Gemi",5,4.5},{"Claude",5, 4.5},{"NOVA",5,5.0}};
+    Hallgato h2("Ati");
+    //Heap
+    Hallgato* hN = new Hallgato("Anonymus");
+    //Heap Tömb
+    Hallgato* nNTomb[] ={
+    new Hallgato("AnonimeGril"),
+    new Hallgato("HeapMaster")
+    };
+
+
+    std::cout<<"A FOLYTATÁSHOZ KÉRLEK NYOMD MEG KÉTSZER AZ ENTERT..."<< std::endl;
+    std::cin.ignore((std::numeric_limits<std::streamsize>::max)(),'\n');
+    std::cin.get();
+    // az Enter megnyomása után kell törölni
+    //tőrlés
+    delete hN;
+    /*delete nNTomb[0];
+    delete nNTomb[1];*/
+    
+    // vagy
+    /*for(int i = 0; i < std::size(nNTomb); i ++)
+    {
+        delete nNTomb[i];
+    }*/
+    
+    //vagy
+    /*for(auto p: nNTomb)
+    {
+        delete p;
+    }*/
+    //vagy
+    int nNTombSize = sizeof(nNTomb) / sizeof(nNTomb[0]);
+    for(int i = 0; i < nNTombSize; i++)
+    {
+        delete nNTomb[]
+    }
+
+    return EXIT_SUCCESS;
+}

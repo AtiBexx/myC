@@ -31,7 +31,7 @@ protected:
 class Hallgato
 {
 public:
-    //Hallgato() = default;
+    Hallgato() = default;
     Hallgato(const char* mNev,int mFeleviOraSzam = 0,double mTanulmanyiAtlag = 0.0)
     {
         std::cout << "A következő Hallgató fellépítése: " << mNev << '\n';

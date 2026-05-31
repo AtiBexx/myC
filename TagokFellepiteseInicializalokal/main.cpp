@@ -1,0 +1,60 @@
+// TagokFelépítéseInicializálókkal
+// Ez a program bemutatja mi történik egy inicializálóval
+// rendelkező adattag fellépítésekor
+
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <limits>
+
+class HallgatoiAzonosito
+{
+public:
+    HallgatoiAzonosito(int azonosito): ertek(azonosito)
+    {
+        std::cout << "azonositó: " << ertek <<'\n';
+    }
+protected:
+    int ertek;
+};
+int kovHallgatoiAzonosito = 1000;
+
+class Hallgato
+{
+public:
+    //const = constant (állandó)
+    Hallgato(const char* mNev, int kHAzonosito)
+        : nev(mNev), azonosito(kHAzonosito)
+    {
+        std::cout << "A következő hallgató fellépítése: "
+                  << mNev <<'\n';
+    }
+    Hallgato(const char* mNev): nev(mNev)
+    {
+        std::cout << "A következő hallgató felépítése: " << mNev <<'\n';
+    }
+protected:
+    std::string nev;
+    HallgatoiAzonosito azonosito = kovHallgatoiAzonosito++;
+};
+
+int main(int argc, char** argv)
+{
+    //Stack memory (VEREM)
+    Hallgato h1("Ati", 12345);
+    Hallgato h2("Prüntyi");
+    Hallgato h3("Pákító");
+    //Heap memory (HALOM)
+    Hallgato* hH = new Hallgato("NOVA");
+    Hallgato*hH2 = new Hallgato("GEMINI");
+    Hallgato* hH3 = new Hallgato("CLAUDE",5);
+
+    delete hH, hH2, hH3;
+
+    //kilépünk
+    std::cout << "A folytatáshoz kérlek kétszer nyomd meg az ENTERT..." << std::endl;
+    std::cin.ignore((std::numeric_limits<std::streamsize>::max)(),'\n');
+    std::cin.get();
+
+    return EXIT_SUCCESS;
+}
