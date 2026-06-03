@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1780500076 source:/data/githubProjects/myC/myC/konstruktor_reszleges_masolat/main.cpp
+	<cstdio>
+	<cstdlib>
+	<iostream>
+	<limits>
+
