@@ -1,0 +1,1 @@
+Ha verhetetlen motort akarsz: csak töltsd le a Stockfish-t, tedd PATH-ba, és a Java program automatikusan csatlakozik hozzá ugyanúgy!
