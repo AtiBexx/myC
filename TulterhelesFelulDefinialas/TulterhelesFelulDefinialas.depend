@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1780968578 source:e:\projects\vscode\tulterhelesfeluldefinialas\main.cpp
+	<cstdio>
+	<cstdlib>
+	<iostream>
+	<limits>
+
