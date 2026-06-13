@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1781302846 source:e:\projects\cpp\athelyezooperator\main.cpp
+	<cstdio>
+	<cstdlib>
+	<iostream>
+	<limits>
+	<cstring>
+

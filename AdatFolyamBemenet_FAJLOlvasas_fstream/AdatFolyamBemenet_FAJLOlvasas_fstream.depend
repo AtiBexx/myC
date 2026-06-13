@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1781318482 source:e:\projects\cpp\adatfolyambemenet_fajlolvasas_fstream\main.cpp
+	<iostream>
+	<cstdio>
+	<cstdio>
+	<limits>
+	<fstream>
+	<sstream>
+
