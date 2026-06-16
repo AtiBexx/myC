@@ -79,6 +79,7 @@ int main(int argc,char**argv)
         std::cout << "Átrendezett mezők: " << kiSztring << std::endl;
     }
     delete mFajlAdatfolyam;
+
     std::cout << "A folytatáshoz nyomd meg kétszer az Entert..." << std::endl;
     std::cin.ignore((std::numeric_limits<std::streamsize>::max)(),'\n');
     std::cin.get();

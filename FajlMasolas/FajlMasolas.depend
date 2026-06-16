@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1781463772 source:e:\projects\cpp\fajlmasolas\main.cpp
+	<cstdio>
+	<cstdlib>
+	<fstream>
+	<limits>
+	<string>
+	<iostream>
+

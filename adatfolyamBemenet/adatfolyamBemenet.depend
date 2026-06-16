@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1781570848 source:e:\projects\cpp\adatfolyambemenet\main.cpp
+	<cstdlib>
+	<cstdio>
+	<iostream>
+	<fstream>
+	<ostream>
+	<limits>
+	<string>
+
